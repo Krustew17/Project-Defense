@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DriverHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+        <div class="banner">
+            <div class="navbar animatedTransition">
+                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>>
+                <ul>
+                    <li><a href="{% url 'home page' %}">Home</a></li>
+                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                </ul>
+            </div>
+            </div>
+</nav>
+{% block page_content %}
+{% endblock %}
+</body>

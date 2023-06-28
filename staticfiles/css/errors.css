@@ -1,0 +1,12 @@
+.errorlist {
+    color: #C93E50;
+    font-size: medium;
+    margin-bottom: 20px;
+    padding: 0px;
+    display: flex;
+    list-style: none;
+}
+
+.onerror input:invalid {
+    border-bottom-color: red
+}

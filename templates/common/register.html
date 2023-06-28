@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+<nav>
+        <div class="banner banner1">
+            <div class="navbar animatedTransition">
+                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>>
+                <ul>
+                    <li><a href="{% url 'home page' %}">Home</a></li>
+                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+{#                    <li><a href="{% url 'login user' %}">login</a></li>#}
+{#                    <li><a href="{% url 'register user' %}">Register</a></li>#}
+                </ul>
+            </div>
+            </div>
+</nav>
+
+<div class="login-box animatedTransition">
+
+  <h2>Register</h2>
+  <form method="post" action="{% url 'register user' %}">
+       {% csrf_token %}
+        {% for field in form %}
+      <div class="user-box">
+        {{ field }}
+        {{ field.label_tag }}
+      {% if field.errors %}
+      {{ field.errors }}
+      {% endif %}
+      </div>
+        {% endfor %}
+
+{#      <div class="user-box">#}
+{#        {{ form.password1 }}#}
+{#        {{ form.password1.label_tag }}#}
+{#      </div>#}
+{#        <div class="user-box">#}
+{#        {{ form.password2 }}#}
+{#        {{ form.password2.label_tag }}#}
+{#      </div>#}
+{#      {% for field in form %}#}
+{#    <div class="user-box">#}
+{#        {{ field.errors }}#}
+{#        {{ field.label_tag }} {{ field }}#}
+{#    </div>#}
+{#{% endfor %}#}
+{#      <div class="user-box">#}
+{#      <input type="text" name="username" id="id_username" required="">#}
+{#      <label>Username</label>#}
+{#    </div>#}
+{#    <div class="user-box">#}
+{#      <input type="text" name="first_name" id="first_name"  required="">#}
+{#      <label>First Name</label>#}
+{#    </div>#}
+{#    <div class="user-box">#}
+{#      <input type="text" name="last_name" id="last_name" required="">#}
+{#      <label>Last Name</label>#}
+{#    </div>#}
+{#    <div class="user-box">#}
+{#      <input type="email" name="email" id="email" required="">#}
+{#      <label>Email</label>#}
+{#    </div>#}
+{##}
+{#    <div class="user-box">#}
+{#      <input type="password" name="password1" id="id_password 1" required="">#}
+{#      <label>Password</label>#}
+{#    </div>#}
+{#      <div class="user-box">#}
+{#      <input type="password" name="password2" id="id_password 2" required="">#}
+{#      <label>Confirm Password</label>#}
+{#    </div>#}
+      <button type="submit" class="button-style1">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+      Register
+      </button>
+  </form>
+    <p>Already have an account? <a class="a2" href="{% url 'login user' %}">Sign in!</a></p>
+</div>
+</body>
+
+
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<nav>
+        <div class="banner banner2">
+            <div class="navbar animatedTransition">
+                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>>
+                <ul>
+                    <li><a href="{% url 'home page' %}">Home</a></li>
+                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+{#                    <li><a href="{% url 'login user' %}">login</a></li>#}
+{#                    <li><a href="{% url 'register user' %}">Register</a></li>#}
+                </ul>
+            </div>
+            </div>
+</nav>
+
+
+<div class="login-box animatedTransition">
+  <h2>Login</h2>
+  <form method="post" action="{% url 'login user' %}">
+       {% csrf_token %}
+        {% for field in form %}
+      <div class="user-box">
+        {{ field }}
+        {{ field.label_tag }}
+      {% if field.errors %}
+      {{ field.errors }}
+      {% endif %}
+      </div>
+        {% endfor %}
+        {% if form.errors %}
+          <li class="errorlist">Invalid username or password.</li>
+{% endif %}
+      <button type="submit" class="button-style">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+      Login
+      </button>
+  </form>
+    <p>Don't have an account? <a class="a2" href="{% url 'register user' %}">Sign up!</a></p>
+</div>
+</body>
+
+</html>

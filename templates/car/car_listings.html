@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DriverHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="car-listings-body">
+<nav>
+    <div class="banner">
+        <div class="navbar animatedTransition">
+            <img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo">
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                <li><a href="{% url 'login user' %}">login</a></li>
+                <li><a href="{% url 'register user' %}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <section class="hero-section">
+        <div class="card-grid">
+            <a class="card" href="#">
+                <div class="card__background"
+                     style="background-image: url(https://hips.hearstapps.com/hmg-prod/images/a213107-large-1655144753.jpg?crop=0.684xw:0.770xh;0.174xw,0.188xh&resize=640:*)"></div>
+                <div class="card__content">
+                    <p class="card__category">Car Type</p>
+                    <h3 class="card__heading">$/Day</h3>
+                    <h3 class="card__heading">Fuel Type</h3>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card__background"
+                     style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                <div class="card__content">
+                    <p class="card__category">Category</p>
+                    <h3 class="card__heading">Example Card Heading</h3>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card__background"
+                     style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                <div class="card__content">
+                    <p class="card__category">Category</p>
+                    <h3 class="card__heading">Example Card Heading</h3>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card__background"
+                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                <div class="card__content">
+                    <p class="card__category">Category</p>
+                    <h3 class="card__heading">Example Card Heading</h3>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card__background"
+                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                <div class="card__content">
+                    <p class="card__category">Category</p>
+                    <h3 class="card__heading">Example Card Heading</h3>
+                </div>
+            </a>
+{#            <a class="card" href="#">#}
+{#                <div class="card__background"#}
+{#                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>#}
+{#                <div class="card__content">#}
+{#                    <p class="card__category">Category</p>#}
+{#                    <h3 class="card__heading">Example Card Heading</h3>#}
+                </div>
+            </a>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>

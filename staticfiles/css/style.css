@@ -1,0 +1,42 @@
+@import "errors.css";
+@import "nav.css";
+@import 'buttons.css';
+@import 'login.css';
+@import 'close.css';
+@import '404.css';
+
+html {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.home-page-body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /*background: linear-gradient(to top, #240b36 45%, #000E38);*/
+}
+
+
+.animatedTransition {
+    animation: transitionIn 1.25s;
+}
+
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------ */

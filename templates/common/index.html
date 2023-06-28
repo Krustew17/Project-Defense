@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DriverHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="home-page-body">
+<nav>
+    <div class="banner">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if not user_authenticated %}
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                {% else %}
+                    <li><a href="{% url 'home page' %}">Profile</a></li>
+                {% endif %}
+            </ul>
+        <div class="content animatedTransition">
+            <h1>DriverHub</h1>
+            <p>Unlock the potential of your car and embark on a rewarding journey with us.
+                <br>We provide a seamless platform for you to turn your idle car into a source of income by
+                offering it for rental to our trusted community of travelers.</p>
+            <div>
+                <button type="button" class="home-page-btn" onclick="window.location.href={% url 'login user' %};">
+                    <span></span>
+                    RENT A CAR
+                </button>
+                <button type="button" class="home-page-btn" onclick="window.location.href={% url 'login user' %};">
+                    <span></span>
+                    LIST YOUR CAR
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+</nav>
+</body>
+</html>
