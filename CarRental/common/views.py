@@ -14,12 +14,6 @@ class HomePageView(views.TemplateView):
     model = User
     template_name = 'common/index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user_authenticated'] = self.request.user.is_authenticated
-        context['is_staff'] = self.request.user.is_staff
-        return context
-
 
 class CarListingsView(views.TemplateView):
     template_name = 'car/car_listings.html'

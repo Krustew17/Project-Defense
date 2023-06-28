@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
+    'phonenumber_field',
+
     'CarRental.common',
     'CarRental.car_app',
     'CarRental.profile_app',

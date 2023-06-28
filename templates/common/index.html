@@ -15,11 +15,11 @@
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
-                {% if not user_authenticated %}
+                {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
-                    <li><a href="{% url 'home page' %}">Profile</a></li>
+                    <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
                 {% endif %}
             </ul>
         <div class="content animatedTransition">

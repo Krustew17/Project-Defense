@@ -2,9 +2,10 @@ import django.contrib.auth.base_user as auth_models
 from django.contrib.auth.models import UserManager
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
-from django.utils import timezone
-
+# from CarRental.common.validators import validate_phone_number_length
 from CarRental.core.utils import check_username_starts_with_letter
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 # Create your models here.
@@ -51,6 +52,8 @@ class ProfileUser(models.Model):
 
     first_name = models.CharField(
         verbose_name='First Name',
+        null=True,
+        blank=True,
         max_length=MAX_FIRST_NAME_LENGTH,
         validators=(
             MinLengthValidator(MIN_FIRST_NAME_LENGTH),
@@ -59,6 +62,8 @@ class ProfileUser(models.Model):
 
     last_name = models.CharField(
         verbose_name='Last Name',
+        null=True,
+        blank=True,
         max_length=MAX_LAST_NAME_LENGTH,
         validators=(
             MinLengthValidator(MIN_LAST_NAME_LENGTH),
@@ -67,6 +72,8 @@ class ProfileUser(models.Model):
 
     age = models.PositiveIntegerField(
         verbose_name='Age',
+        null=True,
+        blank=True,
         validators=(
             MinValueValidator(MIN_AGE),
         )
@@ -74,14 +81,33 @@ class ProfileUser(models.Model):
 
     country = models.CharField(
         verbose_name='Country',
+        null=True,
+        blank=True,
         max_length=MAX_COUNTRY_LENGTH,
         validators=(
             MinLengthValidator(MIN_COUNTRY_LENGTH),
         )
+    )
+    phone_number = models.IntegerField(
+        verbose_name="Phone Number",
+        null=True,
+        blank=True,
     )
 
     user = models.OneToOneField(
         AppUser,
         primary_key=True,
         on_delete=models.CASCADE,
+        related_name='profile'
     )
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+@receiver(post_save, sender=AppUser)
+def create_profile_user(sender, instance, created, **kwargs):
+    if created:
+        if not hasattr(instance, 'profile'):
+            ProfileUser.objects.create(user=instance)

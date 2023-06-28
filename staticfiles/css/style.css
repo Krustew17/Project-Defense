@@ -4,6 +4,8 @@
 @import 'login.css';
 @import 'close.css';
 @import '404.css';
+@import "account_details.css";
+
 
 html {
     height: 100%;
