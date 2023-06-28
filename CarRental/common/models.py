@@ -50,6 +50,13 @@ class ProfileUser(models.Model):
     MAX_COUNTRY_LENGTH = 30
     MIN_COUNTRY_LENGTH = 3
 
+    profile_image = models.ImageField(
+        verbose_name='Profile Image',
+        null=True,
+        blank=True,
+        upload_to='profile_pictures/'
+    )
+
     first_name = models.CharField(
         verbose_name='First Name',
         null=True,

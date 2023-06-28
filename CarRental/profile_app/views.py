@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
+import django.contrib.auth.views as auth_views
 from django.shortcuts import render
 import django.views.generic as views
 from django.urls import reverse_lazy
 
 from CarRental.common.models import ProfileUser
-from CarRental.profile_app.forms import ProfileBaseForm, EditProfileForm
+from CarRental.profile_app.forms import ProfileBaseForm, EditProfileForm, EditPasswordForm
 
 User = get_user_model()
 
@@ -18,6 +19,7 @@ class ProfileDetailView(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ProfileBaseForm
+        context['pf'] = EditPasswordForm(user=self.request.user)
         return context
 
 
@@ -26,6 +28,14 @@ class EditProfileDetailsView(views.UpdateView):
     model = ProfileUser
     form_class = EditProfileForm
     context_object_name = 'user'
+
+    def get_success_url(self):
+        return reverse_lazy('profile details', kwargs={'pk': self.request.user.pk})
+
+
+class EditPasswordView(auth_views.PasswordChangeView):
+    template_name = 'profile/password_change.html'
+    form_class = EditPasswordForm
 
     def get_success_url(self):
         return reverse_lazy('profile details', kwargs={'pk': self.request.user.pk})

@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
 
 from CarRental.common.models import ProfileUser
 
@@ -6,7 +7,7 @@ from CarRental.common.models import ProfileUser
 class ProfileBaseForm(forms.ModelForm):
     class Meta:
         model = ProfileUser
-        fields = ('first_name', 'last_name', 'age', 'country', 'phone_number')
+        fields = ('first_name', 'last_name', 'age', 'country', 'phone_number', 'profile_image')
 
 
 class EditProfileForm(ProfileBaseForm):
@@ -19,3 +20,12 @@ class EditProfileForm(ProfileBaseForm):
 
     country = forms.CharField(widget=forms.TextInput(attrs={'class': 'user-box onerror'}), label="Country",
                               label_suffix="")
+
+
+class EditPasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control oneerror'}),
+                                   label="Old Password", label_suffix="")
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control oneerror'}),
+                                    label="New Password", label_suffix="")
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control oneerror'}),
+                                    label="New Password Again", label_suffix="")
