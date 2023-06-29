@@ -1,8 +1,10 @@
 import django.contrib.auth.base_user as auth_models
 from django.contrib.auth.models import UserManager
-from django.core.validators import MinLengthValidator, MinValueValidator
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, RegexValidator
 from django.db import models
-# from CarRental.common.validators import validate_phone_number_length
+
+from CarRental.common.validators import validate_only_characters, \
+    validate_phone_number_starts_with_zero
 from CarRental.core.utils import check_username_starts_with_letter
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -46,9 +48,15 @@ class ProfileUser(models.Model):
     MIN_LAST_NAME_LENGTH = 3
 
     MIN_AGE = 18
+    MAX_AGE = 70
+    AGE_VALIDATION_MESSAGE = f"You have to be between {MIN_AGE} and {MAX_AGE} to rent a car."
 
     MAX_COUNTRY_LENGTH = 30
     MIN_COUNTRY_LENGTH = 3
+
+    MAX_CITY_LENGTH = 30
+
+    PHONE_NUMBER_LENGTH = 9
 
     profile_image = models.ImageField(
         verbose_name='Profile Image',
@@ -64,6 +72,7 @@ class ProfileUser(models.Model):
         max_length=MAX_FIRST_NAME_LENGTH,
         validators=(
             MinLengthValidator(MIN_FIRST_NAME_LENGTH),
+            validate_only_characters(field_name='first name')
         )
     )
 
@@ -74,6 +83,7 @@ class ProfileUser(models.Model):
         max_length=MAX_LAST_NAME_LENGTH,
         validators=(
             MinLengthValidator(MIN_LAST_NAME_LENGTH),
+            validate_only_characters(field_name='last name')
         )
     )
 
@@ -82,8 +92,10 @@ class ProfileUser(models.Model):
         null=True,
         blank=True,
         validators=(
-            MinValueValidator(MIN_AGE),
-        )
+            MinValueValidator(MIN_AGE, message=AGE_VALIDATION_MESSAGE),
+            MaxValueValidator(MAX_AGE, message=AGE_VALIDATION_MESSAGE),
+        ),
+        default=18,
     )
 
     country = models.CharField(
@@ -93,12 +105,28 @@ class ProfileUser(models.Model):
         max_length=MAX_COUNTRY_LENGTH,
         validators=(
             MinLengthValidator(MIN_COUNTRY_LENGTH),
+            validate_only_characters(field_name='country'),
         )
     )
     phone_number = models.IntegerField(
         verbose_name="Phone Number",
         null=True,
         blank=True,
+        unique=True,
+        validators=(
+            # validate_phone_number_length(PHONE_NUMBER_LENGTH),
+            validate_phone_number_starts_with_zero,
+        )
+    )
+
+    city = models.CharField(
+        verbose_name='City',
+        max_length=MAX_CITY_LENGTH,
+        null=True,
+        blank=True,
+        validators=(
+            validate_only_characters(field_name='city'),
+        ),
     )
 
     user = models.OneToOneField(
@@ -110,7 +138,12 @@ class ProfileUser(models.Model):
 
     @property
     def full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}" if self.first_name and self.last_name else ""
+
+    @property
+    def image_url(self):
+        if self.profile_image and hasattr(self.profile_image, 'url'):
+            return self.profile_image.url
 
 
 @receiver(post_save, sender=AppUser)

@@ -20,6 +20,7 @@
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                     <li><a href="{% url 'logout user' %}">Logout</a></li>
                 {% endif %}
             </ul>
         <div class="content animatedTransition">

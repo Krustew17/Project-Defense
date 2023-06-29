@@ -65,11 +65,11 @@ body {
     left: 15%;
 }
 
-.button-style {
+.button-style7 {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #3a8ee8;
+    color: #35d4b9;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -80,60 +80,62 @@ body {
     margin-left: 10px;
     letter-spacing: 4px;
     background: transparent;
-    border: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    border-color: #35d4b9;
     cursor: pointer;
 }
 
-.button-style:hover {
-    background: #3a8ee8;
-    color: #fff;
+.button-style7:hover {
+    background: #35d4b9;
+    color: #000000;
     border-radius: 5px;
-    box-shadow: 0 0 5px #22578f, 0 0 25px #22578f, 0 0 50px #22578f, 0 0 100px #22578f;
+    box-shadow: 0 0 5px #268777, 0 0 25px #268777, 0 0 50px #268777, 0 0 100px #268777;
 }
 
-.button-style span {
+.button-style7 span {
     position: absolute;
     display: block;
 }
 
-.button-style span:nth-child(1) {
+.button-style7 span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #3a8ee8
+    background: linear-gradient(90deg, transparent, #35d4b9
     );
     animation: btn-anim1 1s linear infinite;
 }
 
-.button-style span:nth-child(2) {
+.button-style7 span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #3a8ee8
+    background: linear-gradient(180deg, transparent, #35d4b9
     );
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s
 }
 
-.button-style span:nth-child(3) {
+.button-style7 span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent, #3a8ee8
+    background: linear-gradient(270deg, transparent, #35d4b9
     );
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s
 }
 
-.button-style span:nth-child(4) {
+.button-style7 span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #3a8ee8
+    background: linear-gradient(360deg, transparent, #35d4b9
     );
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s

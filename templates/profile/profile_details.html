@@ -22,6 +22,7 @@
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                     <li><a href="{% url 'logout user' %}">Logout</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -34,8 +35,8 @@
 				<div class="profile-tab-nav border-right">
 					<div class="p-4">
 						<div class="img-circle text-center mb-3">
-                            {% if request.user.profile.profile_image.url %}
-                        <img src="{{ request.user.profile.profile_image.url }}" alt="" class="shadow">
+                            {% if request.user.profile.image_url %}
+                        <img src="{{ request.user.profile.image_url }}" alt="" class="shadow">
                             {% else %}
                             <img src="{% static 'images/no_pfp.jpg' %}" alt="" class="shadow">
                             {% endif %}
@@ -74,54 +75,58 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>First Name</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.first_name }}>
+								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.first_name|default_if_none:"" }}>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Last Name</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.last_name }}>
+								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.last_name|default_if_none:"" }}>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Age</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.age }}>
+								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.age|default_if_none:"" }}>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Phone number</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.phone_number }}>
+                                    {% if request.user.profile.phone_number %}
+								  	<input type="text" class="form-control" disabled="disabled" value="+359{{ request.user.profile.phone_number }}">
+                                    {% else %}
+                                    <input type="text" class="form-control" disabled="disabled" value="">
+                                    {% endif %}
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Country</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.country }}>
+								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.country|default_if_none:"" }}>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>City</label>
-								  	<input type="text" class="form-control" disabled="disabled" value="Sandanski">
+								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.city|default_if_none:"" }}>
 								</div>
 							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-								  	<label>Bio</label>
-									<textarea class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>
-								</div>
-							</div>
+{#							<div class="col-md-12">#}
+{#								<div class="form-group">#}
+{#								  	<label>Bio</label>#}
+{#									<textarea class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>#}
+{#								</div>#}
+{#							</div>#}
 						</div>
 						<div>
-							<button type="button" class="button-style" onclick="window.location.href='{% url 'edit profile' pk=request.user.pk  %}';">
+							<button type="button" class="button-style7" onclick="window.location.href='{% url 'edit profile' pk=request.user.pk  %}';">
                                 Edit</button>
 
-                            <button type="button" class="button-style" onclick="window.location.href='{% url 'edit password' pk=request.user.pk %}';">
+                            <button type="button" class="button-style7" onclick="window.location.href='{% url 'edit password' pk=request.user.pk %}';">
                                 Change Password</button>
 
-							<button class="button-style10">
+							<button type="button" class="button-style10" onclick="window.location.href='{% url 'delete profile' pk=request.user.pk %}';">
                                 Delete</button>
 						</div>
 					</div>

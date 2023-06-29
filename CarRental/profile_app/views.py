@@ -41,5 +41,10 @@ class EditPasswordView(auth_views.PasswordChangeView):
         return reverse_lazy('profile details', kwargs={'pk': self.request.user.pk})
 
 
-def profile_delete_view(request, pk):
-    pass
+class DeleteProfileView(views.DeleteView):
+    model = User
+    template_name = 'profile/delete_profile.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home page')
+

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile Details</title>
+    <title>Delete Profile Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -30,32 +30,15 @@
             </div>
 </nav>
 
-<div class="login-box animatedTransition">
 
-  <h2>Edit Profile</h2>
-  <form method="post" action="{% url 'edit profile' pk=request.user.pk %}" enctype="multipart/form-data">
-       {% csrf_token %}
-        {% for field in form %}
-      <div class="user-box">
-        {% if field.input_type == "file" %}
-            {% if not request.user.profile.profile_image %}
-                <input type="file" name="{{ form.profile_picture.name }}" />
-            {% endif %}
-      {% else %}
-        {{ field }}
-      {% endif %}
-        {{ field.label_tag }}
-      {% if field.errors %}
-      {{ field.errors }}
-      {% endif %}
-      </div>
-        {% endfor %}
-      <button type="submit" class="button-style1">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-      Save
+<div class="login-box animatedTransition">
+  <h1 class="h1c">Delete Profile</h1>
+  <form method="post" action="{% url 'delete profile' pk=user.pk %}">
+      {% csrf_token %}
+        <h2>Are you sure you want to delete your profile?</h2>
+      <p class="pt1">Note: this will delete all of your car listings as well.</p>
+      <button type="submit" class="button-style10 delete-btn">
+      Delete
       </button>
   </form>
 </div>

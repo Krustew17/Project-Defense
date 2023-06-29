@@ -1,6 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
-from django.utils import timezone
+
+User = get_user_model()
 
 
 # Create your models here.
@@ -157,4 +159,10 @@ class CarModel(models.Model):
 
     modified = models.DateTimeField(
         auto_now=True
+    )
+
+    attached_user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='cars_attached',
     )
