@@ -1,9 +1,11 @@
 import django.contrib.auth.mixins as auth_mixins
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth import views as auth_views
-from .forms import RegisterUserForm, LoginUserForm
-from django.shortcuts import render
+from .forms import RegisterUserForm, LoginUserForm, ContactUsForm
+from django.shortcuts import render, redirect
 from django.views import generic as views
 
 User = get_user_model()
@@ -45,3 +47,26 @@ class LogoutUserView(auth_views.LogoutView, auth_mixins.LoginRequiredMixin):
 
 class PageNotFoundView(views.TemplateView):
     template_name = 'common/404.html'
+
+
+class ContactUsView(views.FormView):
+    form_class = ContactUsForm
+    template_name = 'common/contact_us.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home page')
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        subject = form.cleaned_data['topic']
+        message = form.cleaned_data['message']
+        try:
+            send_mail(subject, message, email, ['krasimircho555@gmail.com'])
+        except BadHeaderError:
+            return HttpResponse("Invalid header found.")
+        return redirect('home page')
+
+
+class FriendlyAskedQuestions(views.TemplateView):
+    template_name = 'common/faq.html'

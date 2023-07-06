@@ -39,19 +39,50 @@ html {
         opacity: 1;
     }
 }
+
 .h1c {
     position: relative;
     margin-bottom: 20px;
     left: 15%;
 }
+
 .delete-btn {
     position: relative;
     left: 25%;
 }
+
 .pt1 {
     font-size: smaller;
     /*position: relative;*/
     /*left:10%;*/
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #B2227B;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #810F56;
+}
+
+.fileinput-filename {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    /* new lines */
+    width: 100%;
+    position: absolute;
+    left: 0;
+    padding-left: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 /* ------------------------------------------------ */

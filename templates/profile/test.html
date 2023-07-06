@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile Details</title>
+    <title>Change Password Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -30,32 +30,29 @@
             </div>
 </nav>
 
-<div class="login-box animatedTransition">
 
-  <h2>Edit Profile</h2>
-  <form method="post" action="{% url 'edit profile' pk=request.user.pk %}" enctype="multipart/form-data">
+<div class="login-box animatedTransition">
+  <h2>Change Password</h2>
+  <form method="post" action="{% url 'edit profile' pk=request.user.pk %}">
        {% csrf_token %}
         {% for field in form %}
       <div class="user-box">
-        {% if field.input_type == "file" %}
-            {% if not request.user.profile.profile_image %}
-                <input type="file" name="{{ form.profile_image.name }}" />
-            {% endif %}
-      {% else %}
         {{ field }}
         {{ field.label_tag }}
-      {% endif %}
       {% if field.errors %}
       {{ field.errors }}
       {% endif %}
       </div>
         {% endfor %}
-      <button type="submit" class="button-style1">
+{#        {% if form.errors %}#}
+{#          <li class="errorlist">Invalid username or password.</li>#}
+{#{% endif %}#}
+      <button type="submit" class="button-style">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-      Save
+      Save Changes
       </button>
   </form>
 </div>

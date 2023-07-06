@@ -12,11 +12,11 @@ class ProfileBaseForm(forms.ModelForm):
 
 
 class EditProfileForm(ProfileBaseForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control onerror'}), label="First Name",
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'user-box'}), label="First Name",
                                  label_suffix="", required=False)
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control onerror'}), label="Last Name",
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'user-box onerror'}), label="Last Name",
                                 label_suffix="", required=False)
-    age = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control onerror'}), label="Age",
+    age = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'user-box onerror'}), label="Age",
                              label_suffix="", required=False)
 
     country = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control onerror'}), label="Country",
@@ -26,7 +26,8 @@ class EditProfileForm(ProfileBaseForm):
     phone_number = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control onerror'}),
                                       label="Profile Number", label_suffix="", required=False, initial=359)
 
-    profile_image = forms.ImageField(widget=forms.FileInput(), label="Profile Image", label_suffix="", required=False)
+    profile_image = forms.ImageField(widget=forms.ClearableFileInput(), label="Profile Image", label_suffix="",
+                                     required=False)
 
 
 class EditPasswordForm(PasswordChangeForm):

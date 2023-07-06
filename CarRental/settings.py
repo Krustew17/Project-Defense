@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
-    'phonenumber_field',
+    'imagekit',
+    'django_cleanup.apps.CleanupConfig',
 
     'CarRental.common',
     'CarRental.car_app',
@@ -145,6 +145,12 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'd6f4c456859ba4'
+EMAIL_HOST_PASSWORD = '7e43fb41bb010f'
+EMAIL_PORT = '2525'
 
 AUTH_USER_MODEL = 'common.AppUser'
 

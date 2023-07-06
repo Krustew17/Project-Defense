@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model
-from django.core.validators import MinLengthValidator, MinValueValidator
+from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxLengthValidator
 from django.db import models
+from imagekit.processors import ResizeToFill
+from imagekit.models import ImageSpecField
 
 User = get_user_model()
 
@@ -19,7 +22,6 @@ class CarModel(models.Model):
     MAX_BODY_STYLE_LENGTH = 10
 
     MIN_YEAR = 1886
-    MAX_YEAR_LENGTH = 5
 
     MIN_HORSE_POWER = 1
 
@@ -79,11 +81,10 @@ class CarModel(models.Model):
         )
     )
 
-    year = models.CharField(
+    year = models.IntegerField(
         verbose_name='Year',
         null=False,
         blank=False,
-        max_length=MAX_YEAR_LENGTH,
         validators=(
             MinValueValidator(MIN_YEAR),
         )
@@ -129,7 +130,7 @@ class CarModel(models.Model):
         blank=False,
         max_length=MAX_DRIVE_TYPE_LENGTH,
         validators=(
-            MinLengthValidator(MAX_DRIVE_TYPE_LENGTH),
+            MaxLengthValidator(MAX_DRIVE_TYPE_LENGTH),
         )
     )
 
@@ -163,6 +164,29 @@ class CarModel(models.Model):
 
     attached_user = models.ForeignKey(
         User,
+        null=True,
         on_delete=models.CASCADE,
         related_name='cars_attached',
     )
+
+
+class PhotoCarModel(models.Model):
+    MAX_IMAGES_ALLOWED = 3
+
+    image = models.ImageField(upload_to='car_photos/', blank=True, null=True, )
+    thumbnail = ImageSpecField(
+        source='image',
+        processors=[ResizeToFill(200, 200)],
+        format='JPEG',
+        options={"quality": 60},
+    )
+
+    car = models.ForeignKey(
+        to=CarModel,
+        on_delete=models.CASCADE,
+
+    )
+
+    def clean(self):
+        if len(self.image) > self.MAX_IMAGES_ALLOWED:
+            raise ValidationError(f'You can upload up to {self.MAX_IMAGES_ALLOWED} images.')

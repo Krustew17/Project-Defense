@@ -72,7 +72,9 @@ class ProfileUser(models.Model):
         max_length=MAX_FIRST_NAME_LENGTH,
         validators=(
             MinLengthValidator(MIN_FIRST_NAME_LENGTH),
-            validate_only_characters(field_name='first name')
+            RegexValidator(regex="^[A-Za-z]+$", inverse_match=False,
+                           message="First Name field can contain only characters."),
+            # validate_only_characters(field_name='first name')
         )
     )
 
@@ -83,7 +85,9 @@ class ProfileUser(models.Model):
         max_length=MAX_LAST_NAME_LENGTH,
         validators=(
             MinLengthValidator(MIN_LAST_NAME_LENGTH),
-            validate_only_characters(field_name='last name')
+            RegexValidator(regex="^[A-Za-z]+$", inverse_match=False,
+                           message="Last Name field can contain only characters."),
+            # validate_only_characters(field_name='last name')
         )
     )
 
@@ -105,7 +109,8 @@ class ProfileUser(models.Model):
         max_length=MAX_COUNTRY_LENGTH,
         validators=(
             MinLengthValidator(MIN_COUNTRY_LENGTH),
-            validate_only_characters(field_name='country'),
+            RegexValidator(regex="^[A-Za-z]+$", inverse_match=False, message="Country field can contain only characters."),
+            # validate_only_characters(field_name='country'),
         )
     )
     phone_number = models.IntegerField(
@@ -125,7 +130,8 @@ class ProfileUser(models.Model):
         null=True,
         blank=True,
         validators=(
-            validate_only_characters(field_name='city'),
+            RegexValidator(regex="^[A-Za-z]+$", inverse_match=False, message="City field can contain only characters."),
+            # validate_only_characters(field_name='city'),
         ),
     )
 
@@ -151,3 +157,39 @@ def create_profile_user(sender, instance, created, **kwargs):
     if created:
         if not hasattr(instance, 'profile'):
             ProfileUser.objects.create(user=instance)
+
+
+class ContactUsModel(models.Model):
+    MAX_NAME_LENGTH = 30
+
+    MAX_TOPIC_LENGTH = 35
+
+    MAX_MESSAGE_LENGTH = 300
+
+    name = models.CharField(
+        verbose_name='Name',
+        null=False,
+        blank=False,
+        max_length=MAX_NAME_LENGTH,
+        validators=(
+            RegexValidator(regex="[a-zA-Z]+", inverse_match=False, message="Name field can contain only characters."),
+        )
+    )
+    email = models.EmailField(
+        verbose_name='Email',
+        null=False,
+        blank=False,
+    )
+    topic = models.CharField(
+        verbose_name='Topic',
+        null=False,
+        blank=False,
+        max_length=MAX_TOPIC_LENGTH,
+    )
+
+    message = models.TextField(
+        verbose_name='Message',
+        null=False,
+        blank=False,
+        max_length=MAX_MESSAGE_LENGTH,
+    )

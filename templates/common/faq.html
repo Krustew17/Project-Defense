@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ UI Design</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/faq.css' %}/">
+</head>
+<body>
+<nav>
+        <div class="banner banner1">
+            <div class="navbar animatedTransition">
+                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+                <ul>
+                    <li><a href="{% url 'home page' %}">Home</a></li>
+                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                {% else %}
+                    <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                     <li><a href="{% url 'logout user' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+            </div>
+            </div>
+</nav>
+
+<section class="main-content">
+    <div class="container">
+        <h1 class="text-center mb-5">Frequently Asked Questions</h1>
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="{% static 'images/faq.svg' %}/" alt="FAQ" class="img-fluid">
+            </div>
+            <div class="col-sm-6">
+                <div id="accordion">
+                    <div class="accordion-card">
+                        <div class="accordion-card__header" id="headingOne" data-toggle="collapse"
+                             data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h5 class="mb-0">
+                                <span>What are the requirements for renting a car?</span>
+                            </h5>
+                            <i class="fa fa-caret-down drop-icon"></i>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#accordion">
+                            <div class="accordion-card__body">
+                                To rent a car, you generally need to be of a minimum age of 18 and hold a valid driver's
+                                license. Some locations may have additional requirements, such as a minimum driving
+                                experience or the need for an international driver's license. Make sure to review the
+                                specific terms and conditions on our website or contact our customer support for
+                                detailed information.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <div class="accordion-card__header collapsed" id="headingTwo" data-toggle="collapse"
+                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h5 class="mb-0">
+                                <span>What types of cars do you offer for rent?</span>
+                            </h5>
+                            <i class="fa fa-caret-down drop-icon"></i>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="accordion-card__body">
+                                We offer a wide range of vehicles to cater to different needs and preferences. Our fleet
+                                includes compact cars, sedans, SUVs, luxury vehicles, vans, and more. You can filter the
+                                available options on our website based on your desired vehicle type, size, features, or
+                                other preferences.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <div class="accordion-card__header collapsed" id="headingThree" data-toggle="collapse"
+                             data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h5 class="mb-0">
+                                <span>What is included in the rental price?</span>
+                            </h5>
+                            <i class="fa fa-caret-down drop-icon"></i>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                             data-parent="#accordion">
+                            <div class="accordion-card__body">
+                                The rental price typically includes the base cost of the vehicle for the specified
+                                duration, but additional fees and charges may apply. These may include taxes, insurance
+                                coverage, fuel, mileage limitations, airport surcharges, and optional extras such as GPS
+                                navigation or child seats. It's important to carefully review the pricing details and
+                                any applicable terms and conditions during the booking process.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <div class="accordion-card__header collapsed" id="headingFour" data-toggle="collapse"
+                             data-target="#collapseFour" aria-expanded="False" aria-controls="collapseFour">
+                            <h5 class="mb-0">
+                                <span>Is insurance included in the rental?</span>
+                            </h5>
+                            <i class="fa fa-caret-down drop-icon"></i>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                             data-parent="#accordion">
+                            <div class="accordion-card__body">
+                                Basic insurance coverage is often included in the rental price. However, it's important
+                                to carefully review the insurance terms and limitations. Additional insurance options,
+                                such as collision damage waivers or supplemental liability coverage, may be available
+                                for purchase to provide further protection during your rental period.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <div class="accordion-card__header collapsed" id="headingFour" data-toggle="collapse"
+                             data-target="#collapseFive" aria-expanded="False" aria-controls="collapseFive">
+                            <h5 class="mb-0">
+                                <span>Do you offer long-term rental or leasing options?</span>
+                            </h5>
+                            <i class="fa fa-caret-down drop-icon"></i>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFour"
+                             data-parent="#accordion">
+                            <div class="accordion-card__body">
+                                Yes, we offer long-term rental and leasing options for customers who require a vehicle
+                                for an extended period, typically beyond a month. These options often come with
+                                discounted rates and flexible terms. Contact our customer support or check our website
+                                for more information on long-term rental or leasing arrangements.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-card">
+                        <div class="accordion-card__header collapsed" id="headingFour" data-toggle="collapse"
+                             data-target="#collapseSix" aria-expanded="False" aria-controls="collapseSix">
+                            <h5 class="mb-0">
+                                <span>Are there any penalties for returning the car late?</span>
+                            </h5>
+                            <i class="fa fa-caret-down drop-icon"></i>
+                        </div>
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingFour"
+                             data-parent="#accordion">
+                            <div class="accordion-card__body">
+                                Late return penalties may apply if you exceed the agreed-upon return time without prior
+                                notification or arrangement. These penalties can vary depending on the rental duration
+                                and the terms of your booking. It's recommended to inform us in advance if you
+                                anticipate any delays or need to extend your rental period to avoid potential penalties.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

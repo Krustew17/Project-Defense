@@ -4,6 +4,7 @@ from django.shortcuts import render
 import django.views.generic as views
 from django.urls import reverse_lazy
 
+from CarRental.common.forms import ContactUsForm
 from CarRental.common.models import ProfileUser
 from CarRental.profile_app.forms import ProfileBaseForm, EditProfileForm, EditPasswordForm
 
@@ -19,7 +20,6 @@ class ProfileDetailView(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ProfileBaseForm
-        context['pf'] = EditPasswordForm(user=self.request.user)
         return context
 
 
@@ -47,4 +47,3 @@ class DeleteProfileView(views.DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('home page')
-

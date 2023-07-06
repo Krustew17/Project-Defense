@@ -1,6 +1,9 @@
 from django.contrib.auth import forms as auth_forms, get_user_model
 from django import forms
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, RegexValidator
+
+from CarRental.common.models import ContactUsModel
+from CarRental.common.validators import validate_phone_number_starts_with_zero
 
 User = get_user_model()
 
@@ -103,3 +106,14 @@ class LoginUserForm(auth_forms.AuthenticationForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+
+class ContactUsForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    topic = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '4'}))
+
+    class Meta:
+        model = ContactUsModel
+        fields = "__all__"
