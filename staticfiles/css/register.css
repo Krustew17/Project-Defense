@@ -1,0 +1,103 @@
+.login-box1 .user-box1 input:focus ~ label,
+.login-box1 .user-box1 input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #d7329d;
+    font-size: 12px;
+}
+.user-box1 {
+    margin-bottom: 30px;
+}
+
+
+.login-box1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 17px;
+}
+
+.login-box1 .user-box1 input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    /*margin-top: 50px;*/
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box1 .user-box1 input:focus,
+.login-box1 .user-box1 input:valid {
+    border-bottom: 1px solid #EFEFEF;
+}
+
+
+.login-box1 h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box1 .user-box1 {
+    position: relative;
+}
+
+.login-box1 .user-box1 input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box1 .user-box1 label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #ffffff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    font-size: medium;
+    font-family: "Comic Sans MS", sans-serif;
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    -webkit-transition-delay: 9999s;
+}
+.login-box1 p:last-child {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.login-box1 a.a2 {
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-box1 a.a2:hover {
+  background: transparent;
+  color: #BEBEBE;
+  border-radius: 5px;
+}

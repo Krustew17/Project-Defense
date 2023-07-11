@@ -5,11 +5,36 @@
     <title>Title</title>
 </head>
 <body>
-{% for car in cars %}
-    {{ car.make }}
-    {{ car.price }}
-    {{ car.attached_user }}
-    {{ car.body_style }}
-{% endfor %}
+<form method="GET" action="{% url 'smth' %}">
+    {{ form.as_p }}
+    <button type="submit" value="submit">Submit</button>
+</form>
+<h1> car list </h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Make</th>
+        <th>Price</th>
+        <th>Body Style</th>
+        <th>Year</th>
+        <th>Transmission</th>
+        <th>Horse Power</th>
+        <th>Mileage</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for car in cars %}
+        <tr>
+            <td>{{ car.make }}</td>
+            <td>{{ car.price }}</td>
+            <td>{{ car.body_style }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.transmission }}</td>
+            <td>{{ car.horse_power }}</td>
+            <td>{{ car.mileage }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>

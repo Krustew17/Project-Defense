@@ -2,28 +2,81 @@ html {
     height: 100%;
 }
 
-/*body {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    font-family: sans-serif;*/
-/*    background: linear-gradient(#141e30, #243b55);*/
-/*}*/
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/bg9.jpg');
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Updated */
+}
+
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 150px;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.navbar ul li::after {
+    content: "";
+    height: 3px;
+    width: 0;
+    background: #157684;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+    box-shadow: 0 0 5px #00CCFF, 0 0 25px #00CCFF, 0 0 50px #00CCFF, 0 0 100px #00CCFF
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
+    background: #37A0AF
+}
 
 .login-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
+    margin: 0 auto;
+    width: 500px;
     padding: 40px;
-    transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, .5);
     box-sizing: border-box;
-
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
 }
 
-.login-box .user-box input {
+.login-box form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+}
+
+.login-box .user-box input, .login-box .user-box select {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -51,7 +104,11 @@ html {
     position: relative;
 }
 
-.login-box .user-box input {
+.login-box .user-box:last-of-type {
+    grid-column: span 2;
+}
+
+.login-box .user-box input, .login-box .user-box select {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -75,7 +132,9 @@ html {
 }
 
 .login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
+.login-box .user-box input:valid ~ label,
+.login-box .user-box select:focus ~ label,
+.login-box .user-box select:valid ~ label {
     top: -20px;
     left: 0;
     color: #03e9f4;
@@ -210,6 +269,8 @@ html {
     background: transparent;
     border: none;
     cursor: pointer;
+    grid-row-start: 8;
+    grid-column: span 2;
 }
 
 .button-style:hover {
@@ -262,5 +323,3 @@ html {
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s
 }
-
-/* Add the remaining styles for the other span elements */

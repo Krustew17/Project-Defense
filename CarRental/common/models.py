@@ -1,5 +1,7 @@
+from enum import Enum
+
 import django.contrib.auth.base_user as auth_models
-from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, RegexValidator
 from django.db import models
 
@@ -11,7 +13,7 @@ from django.db.models.signals import post_save
 
 
 # Create your models here.
-class AppUser(auth_models.AbstractBaseUser):
+class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
     MIN_USERNAME_LENGTH = 6
     MAX_USERNAME_LENGTH = 18
 
@@ -109,7 +111,8 @@ class ProfileUser(models.Model):
         max_length=MAX_COUNTRY_LENGTH,
         validators=(
             MinLengthValidator(MIN_COUNTRY_LENGTH),
-            RegexValidator(regex="^[A-Za-z]+$", inverse_match=False, message="Country field can contain only characters."),
+            RegexValidator(regex="^[A-Za-z]+$", inverse_match=False,
+                           message="Country field can contain only characters."),
             # validate_only_characters(field_name='country'),
         )
     )
@@ -151,12 +154,34 @@ class ProfileUser(models.Model):
         if self.profile_image and hasattr(self.profile_image, 'url'):
             return self.profile_image.url
 
-
+    def __str__(self):
+        return self.full_name
 @receiver(post_save, sender=AppUser)
 def create_profile_user(sender, instance, created, **kwargs):
     if created:
         if not hasattr(instance, 'profile'):
             ProfileUser.objects.create(user=instance)
+
+
+class ChoicesEnum(Enum):
+    @classmethod
+    def choices(cls):
+        return [(c.name, c.value) for c in cls]
+
+    @classmethod
+    def max_length(cls):
+        return max(len(c.value) for c in cls)
+
+
+class AdminMessage(ChoicesEnum):
+    Read = 'Read'
+    Unread = 'Unread'
+
+
+class StatusMessage(ChoicesEnum):
+    Pending = 'Pending'
+    Solved = 'Solved'
+    Unsolved = 'Unsolved'
 
 
 class ContactUsModel(models.Model):
@@ -174,6 +199,21 @@ class ContactUsModel(models.Model):
         validators=(
             RegexValidator(regex="[a-zA-Z]+", inverse_match=False, message="Name field can contain only characters."),
         )
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+    admin_message = models.CharField(
+        null=True,
+        max_length=AdminMessage.max_length(),
+        choices=AdminMessage.choices(),
+        default='Unread',
+    )
+    status = models.CharField(
+        null=True,
+        max_length=StatusMessage.max_length(),
+        choices=StatusMessage.choices(),
+        default='Pending',
     )
     email = models.EmailField(
         verbose_name='Email',
@@ -193,3 +233,6 @@ class ContactUsModel(models.Model):
         blank=False,
         max_length=MAX_MESSAGE_LENGTH,
     )
+
+    def __str__(self):
+        return f"Name: {self.name}, Topic: {self.topic}"

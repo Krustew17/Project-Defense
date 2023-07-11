@@ -116,4 +116,4 @@ class ContactUsForm(forms.ModelForm):
 
     class Meta:
         model = ContactUsModel
-        fields = "__all__"
+        fields = ('name', 'email','topic','message')

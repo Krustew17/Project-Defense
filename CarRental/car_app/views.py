@@ -1,10 +1,10 @@
-from django.core.exceptions import ValidationError
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import django.views.generic as views
 from django.urls import reverse_lazy
-from django.views.generic import FormView
 
-from .models import CarModel, PhotoCarModel
+from .filters import CarFilter
+from .models import CarModel, PhotoCarModel, CarMake, CarListing
 from .forms import AttachPhotosToCar, CreateCarForm
 
 
@@ -31,6 +31,11 @@ from .forms import AttachPhotosToCar, CreateCarForm
 #             PhotoCarModel.objects.create(car=car_obj, image=f)
 #         return super().form_valid(form)
 
+def load_car_models(request):
+    make_id = request.GET.get('make_id')
+    car_models = CarModel.objects.filter(make_id=make_id).values('id', 'model')
+    return JsonResponse(list(car_models), safe=False)
+
 
 def create_ad_view(request):
     if request.method == 'GET':
@@ -54,21 +59,39 @@ def create_ad_view(request):
         'form1': form1,
         'form2': form2,
     }
-    return render(request, 'car/create_ad.html', context)
+    return render(request, 'car/create_car.html', context)
 
 
-class TestView(views.CreateView):
-    template_name = 'car/create_car.html'
-    form_class = CreateCarForm
+def edit_car_ad(request, pk):
+    pass
 
-    def get_success_url(self):
-        return reverse_lazy('home page')
 
-    def form_valid(self, form):
-        car_obj = form.save(commit=False)
-        car_obj.attached_user = self.request.user
-        car_obj.save()
-        return super().form_valid(form)
+def view_car_ad_details(request, pk):
+    return render(request, 'car/car_details.html')
+
+
+def delete_car_ad(request, pk):
+    pass
+
+
+# ~~~~~~~~~ T   E   S   T      A   R   E   A ~~~~~~~~~
+
+
+# class TestView(views.CreateView):
+#     template_name = 'car/create_car.html'
+#     form_class = CreateCarForm
+#
+#     def get_success_url(self):
+#         return reverse_lazy('home page')
+#
+#     def form_valid(self, form):
+#         car_obj = form.save(commit=False)
+#         car_obj.attached_user = self.request.user
+#         car_obj.save()
+#         return super().form_valid(form)
+
+def test_html_css(request):
+    return render(request, 'car/listing.html')
 
 
 def test_image(request):
@@ -88,20 +111,19 @@ class TestImage(views.ListView):
 
 class Something(views.ListView):
     template_name = 'car/test1.html'
-    model = CarModel
+    model = CarFilter
+    queryset = CarListing.objects.all()
+    context_object_name = 'cars'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = CarFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cars'] = CarModel.objects.filter(attached_user=self.request.user)
+        context['form'] = self.filterset.form
         return context
 
-def edit_car_ad(request, pk):
-    pass
 
 
-def view_car_ad_details(request, pk):
-    return render(request, 'car/car_details.html')
-
-
-def delete_car_ad(request, pk):
-    pass

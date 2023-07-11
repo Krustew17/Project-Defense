@@ -1,0 +1,50 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/override.css' %}"/>{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script>
+        function load_car_models(makeId) {
+            var url = "{% url 'load_car_models' %}";
+            var modelSelect = document.getElementById("id_model");
+
+            // Clear existing options
+            while (modelSelect.firstChild) {
+                modelSelect.removeChild(modelSelect.firstChild);
+            }
+
+            // Fetch car models based on the selected make
+            if (makeId !== "") {
+                // Fetch car models based on the selected make
+                fetch(url + "?make_id=" + makeId)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Add new options for each car model
+                        data.forEach(carModel => {
+                            var option = document.createElement("option");
+                            option.value = carModel.id;
+                            option.text = carModel.model;
+                            modelSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block extrajs %}
+    {{ block.super }}
+    <script>
+        document.getElementById("id_make").onchange = function () {
+            var makeId = this.value;
+            load_car_models(makeId);
+        };
+    </script>
+{% endblock %}

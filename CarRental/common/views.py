@@ -62,9 +62,10 @@ class ContactUsView(views.FormView):
         subject = form.cleaned_data['topic']
         message = form.cleaned_data['message']
         try:
-            send_mail(subject, message, email, ['krasimircho555@gmail.com'])
+            send_mail(subject, message, email, ['krasitaskapp@gmail.com'])
         except BadHeaderError:
             return HttpResponse("Invalid header found.")
+        form.save(commit=True)
         return redirect('home page')
 
 

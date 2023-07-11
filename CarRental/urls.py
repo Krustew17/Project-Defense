@@ -19,11 +19,19 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from CarRental.common.views import PageNotFoundView
+
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
-    path('car/', include('CarRental.car_app.urls')),
-    path('profile/', include('CarRental.profile_app.urls')),
+
+    # Common
     path('', include('CarRental.common.urls')),
+
+    # Car
+    path('car/', include('CarRental.car_app.urls')),
+
+    # User Profile
+    path('profile/', include('CarRental.profile_app.urls')),
 
 ]
 if settings.DEBUG:
