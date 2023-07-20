@@ -7,6 +7,9 @@
 @import "account_details.css";
 @import 'test.css';
 @import 'register.css';
+@import 'car_details.css';
+@import 'car_delete.css';
+@import 'car_listings.css';
 
 html {
     height: 100%;

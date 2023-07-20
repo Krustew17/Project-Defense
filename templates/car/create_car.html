@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Test1</title>
 </head>
-<body>
+<body class="create_ad_body">
 <script>
     function load_car_models(makeId) {
         var url = "{% url 'load_car_models' %}";
@@ -39,15 +41,49 @@
     }
 </script>
 
-{% if request.user.is_authenticated %}
-    <h1>test</h1>
-{% endif %}
-<form method="post" action="{% url 'create car ad' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form1.as_p }}
-    {{ form2.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<nav>
+    <div class="banner">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                {% else %}
+                    <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <form method="post" action="{% url 'create car ad' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form1 %}
+            <div class="user-box">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    {{ field.errors }}
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% for field in form2 %}
+            <div class="user-box">
+            {{ field.label_tag }}
+                {{ field }}
+
+                {% if field.errors %}
+                    {{ field.errors }}
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</div>
 <script>
     document.getElementById("id_make").onchange = function () {
         var makeId = this.value;

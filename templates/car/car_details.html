@@ -1,10 +1,138 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ car_listing.car_make_and_model }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    car details
+<body class="car-details-body">
+<div class="stars">
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+</div>
+
+<nav>
+    <div class="banner">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                {% else %}
+                    <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="gallery">
+    {% for image in car_photos %}
+        <img class="image" src="{{ image.image.url }}" alt="image">
+    {% endfor %}
+</div>
+<div class="buttons">
+    <button class="prev arrow left arrow-button">
+        <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+    <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+	45.63,75.8 0.375,38.087 45.63,0.375 "/>
+  </svg>
+    </button>
+    <button class="next arrow right arrow-button">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="80px"
+             viewBox="0 0 50 80" xml:space="preserve">
+    <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+	0.375,0.375 45.63,38.087 0.375,75.8 "/>
+  </svg>
+    </button>
+</div>
+<script src="{% static 'js/swipe.js' %}"></script>
+<section>
+    <div>
+        <h1>{{ car_listing.car_title }}</h1>
+        <h3>posted {{ car_listing.delta }} ago</h3>
+    </div>
+    <div>
+        <div class="button-container">
+            <button type="button" class="button-style7">RENT</button>
+            {% if request.user == car_listing.attached_user %}
+                <button type="button" class="button-style7"
+                        onclick="window.location.href='{% url 'edit car ad' pk=car_listing.pk %}'">Edit
+                </button>
+                <button type="button" class="button-style-delete"
+                        onclick="window.location.href='{% url 'delete car ad' pk=car_listing.pk %}'">Delete
+                </button>
+            {% endif %}
+        </div>
+
+        <div class="container1">
+            <h2>Car Details</h2>
+            <ul>
+                <li>{{ car_listing.car_make_and_model }}</li>
+                <li>Price Per Day: ${{ car_listing.price }}</li>
+                <li>Year: {{ car_listing.year }}</li>
+                <li>Engine Type: {{ car_listing.engine_type }}</li>
+                <li>Engine Litres: {{ car_listing.engine_litres }}</li>
+                <li>Horse Power: {{ car_listing.horse_power }}</li>
+                <li>Mileage: {{ car_listing.mileage }}</li>
+                <li>Transmission: {{ car_listing.transmission }}</li>
+                <li>Body Style: {{ car_listing.body_style }}</li>
+                <li>Euro: {{ car_listing.euro }}</li>
+            </ul>
+        </div>
+    </div>
+</section>
 </body>
 </html>

@@ -264,123 +264,180 @@
 
 
 .btn-style5 {
- position: relative;
- padding: 1em 1.8em;
- outline: none;
- border: 1px solid #303030;
- background: #212121;
- color: #20A4E7;
- text-transform: uppercase;
- letter-spacing: 2px;
- font-size: 15px;
- overflow: hidden;
- transition: 0.2s;
- border-radius: 20px;
- cursor: pointer;
- font-weight: bold;
+    position: relative;
+    padding: 1em 1.8em;
+    outline: none;
+    border: 1px solid #303030;
+    background: #212121;
+    color: #20A4E7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;
+    overflow: hidden;
+    transition: 0.2s;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .btn-style5:hover {
- box-shadow: 0 0 10px #20A4E7, 0 0 25px #0776AE, 0 0 50px #20A4E7;
- transition-delay: 0.6s;
+    box-shadow: 0 0 10px #20A4E7, 0 0 25px #0776AE, 0 0 50px #20A4E7;
+    transition-delay: 0.6s;
 }
 
 .btn-style5 span {
- position: absolute;
+    position: absolute;
 }
 
 .btn-style5 span:nth-child(1) {
- top: 0;
- left: -100%;
- width: 100%;
- height: 2px;
- background: linear-gradient(90deg, transparent, #20A4E7);
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #20A4E7);
 }
 
 .btn-style5:hover span:nth-child(1) {
- left: 100%;
- transition: 0.7s;
+    left: 100%;
+    transition: 0.7s;
 }
 
 .btn-style5 span:nth-child(3) {
- bottom: 0;
- right: -100%;
- width: 100%;
- height: 2px;
- background: linear-gradient(90deg, transparent, #0776AE);
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0776AE);
 }
 
 .btn-style5:hover span:nth-child(3) {
- right: 100%;
- transition: 0.7s;
- transition-delay: 0.35s;
+    right: 100%;
+    transition: 0.7s;
+    transition-delay: 0.35s;
 }
 
 .btn-style5 span:nth-child(2) {
- top: -100%;
- right: 0;
- width: 2px;
- height: 100%;
- background: linear-gradient(180deg, transparent, #20A4E7);
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #20A4E7);
 }
 
 .btn-style5:hover span:nth-child(2) {
- top: 100%;
- transition: 0.7s;
- transition-delay: 0.17s;
+    top: 100%;
+    transition: 0.7s;
+    transition-delay: 0.17s;
 }
 
 .btn-style5 span:nth-child(4) {
- bottom: -100%;
- left: 0;
- width: 2px;
- height: 100%;
- background: linear-gradient(360deg, transparent, #0776AE);
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #0776AE);
 }
 
 .btn-style5:hover span:nth-child(4) {
- bottom: 100%;
- transition: 0.7s;
- transition-delay: 0.52s;
+    bottom: 100%;
+    transition: 0.7s;
+    transition-delay: 0.52s;
 }
+
 .btn-style5:active {
- background: #ae00af;
- background: linear-gradient(to top right, #ae00af, #0776AE);
- color: #bfbfbf;
- box-shadow: 0 0 8px #20A4E7, 0 0 8px #0776AE, 0 0 8px #20A4E7;
- transition: 0.1s;
+    background: #ae00af;
+    background: linear-gradient(to top right, #ae00af, #0776AE);
+    color: #bfbfbf;
+    box-shadow: 0 0 8px #20A4E7, 0 0 8px #0776AE, 0 0 8px #20A4E7;
+    transition: 0.1s;
 }
 
 .btn-style5:active span:nth-child(1),
 span:nth-child(2),
 span:nth-child(2),
 span:nth-child(2) {
- transition: none;
- transition-delay: 0s;
+    transition: none;
+    transition-delay: 0s;
 }
 
 .btn12 {
-  font-size: 1.2rem;
-  padding: 1rem 2.5rem;
-  border: none;
-  outline: none;
-  border-radius: 0.4rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  background-color: rgb(14, 14, 26);
-  color: rgb(234, 234, 234);
-  font-weight: 700;
-  transition: 0.6s;
-  box-shadow: 0px 0px 60px #1f4c65;
-  /*-webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));*/
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-weight: 700;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    /*-webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));*/
 }
 
 .btn12:active {
-  scale: 0.92;
+    scale: 0.92;
 }
 
 .btn12:hover {
-  background: rgb(2,29,78);
-  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
-  color: rgb(4, 4, 38);
+    background: rgb(2, 29, 78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+}
+
+.button-style7 {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #009688;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    letter-spacing: 4px;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    border-color: #009688;
+    cursor: pointer;
+}
+
+.button-style7:hover {
+    background: #009688;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #007c6e, 0 0 25px #007c6e, 0 0 50px #007c6e, 0 0 100px #007c6e;
+}
+
+
+.button-style-delete {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ff0e0e;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    letter-spacing: 4px;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    border-color: #ff0e0e;
+    cursor: pointer;
+}
+
+.button-style-delete:hover {
+    background: #ff0e0e;
+    color: #000;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #6e1e1e, 0 0 25px #6e1e1e, 0 0 50px #6e1e1e, 0 0 100px #6e1e1e;
 }

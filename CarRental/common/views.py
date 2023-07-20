@@ -8,6 +8,8 @@ from .forms import RegisterUserForm, LoginUserForm, ContactUsForm
 from django.shortcuts import render, redirect
 from django.views import generic as views
 
+from ..car_app.models import CarListing
+
 User = get_user_model()
 
 
@@ -17,8 +19,13 @@ class HomePageView(views.TemplateView):
     template_name = 'common/index.html'
 
 
-class CarListingsView(views.TemplateView):
+class CarListingsView(views.ListView):
     template_name = 'car/car_listings.html'
+    model = CarListing
+    paginate_by = 3
+
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(**kwargs)
 
 
 class RegisterUserView(views.CreateView):

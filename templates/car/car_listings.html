@@ -6,6 +6,9 @@
     <title>DriverHub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="car-listings-body">
@@ -23,60 +26,69 @@
     </div>
 </nav>
 
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
 <div class="container">
-    <section class="hero-section">
-        <div class="card-grid">
-            <a class="card" href="#">
-                <div class="card__background"
-                     style="background-image: url(https://hips.hearstapps.com/hmg-prod/images/a213107-large-1655144753.jpg?crop=0.684xw:0.770xh;0.174xw,0.188xh&resize=640:*)"></div>
-                <div class="card__content">
-                    <p class="card__category">Car Type</p>
-                    <h3 class="card__heading">$/Day</h3>
-                    <h3 class="card__heading">Fuel Type</h3>
+    <div class="row" id="ads">
+        <!-- Category Card -->
+        {% for obj in page_obj %}
+            <div class="col-md-4 mb-5">
+                <div class="card rounded" style="border: none;">
+                    <div class="card-image">
+                        {% if obj.mileage <= 50000 %}
+                        <span class="card-notify-badge">Low KMS</span>
+                        {% endif %}
+                        <span class="card-notify-year">{{ obj.year }}</span>
+                        <img class="car-thumbnail"
+                             src="{{ obj.car_pics.all.0.image.url }}"
+                             alt="Alternate Text"/>
+                    </div>
+                    <div class="card-image-overlay m-auto">
+                        <span class="card-detail-badge">Used</span>
+                        <span class="card-detail-badge">${{ obj.price }}</span>
+                        <span class="card-detail-badge">{{ obj.mileage }} Kms</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="ad-title m-auto">
+                            <h5>{{ obj.car_make_and_model }}</h5>
+                        </div>
+                        <a class="ad-btn" href="{% url 'car ad details' pk=obj.pk %}">View</a>
+                    </div>
                 </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card__background"
-                     style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-                <div class="card__content">
-                    <p class="card__category">Category</p>
-                    <h3 class="card__heading">Example Card Heading</h3>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card__background"
-                     style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-                <div class="card__content">
-                    <p class="card__category">Category</p>
-                    <h3 class="card__heading">Example Card Heading</h3>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card__background"
-                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-                <div class="card__content">
-                    <p class="card__category">Category</p>
-                    <h3 class="card__heading">Example Card Heading</h3>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card__background"
-                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-                <div class="card__content">
-                    <p class="card__category">Category</p>
-                    <h3 class="card__heading">Example Card Heading</h3>
-                </div>
-            </a>
-{#            <a class="card" href="#">#}
-{#                <div class="card__background"#}
-{#                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>#}
-{#                <div class="card__content">#}
-{#                    <p class="card__category">Category</p>#}
-{#                    <h3 class="card__heading">Example Card Heading</h3>#}
-                </div>
-            </a>
+            </div>
+        {% endfor %}
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
         </div>
-    </section>
+    </div>
 </div>
 </body>
 

@@ -1,7 +1,8 @@
+from django.utils import timezone
 from enum import Enum
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.core.validators import MinLengthValidator, MinValueValidator, MaxLengthValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
 from imagekit.processors import ResizeToFill
 from imagekit.models import ImageSpecField
@@ -99,6 +100,10 @@ class CarListingEuroChoices(ChoicesEnum):
 
 
 class CarListing(models.Model):
+    MAX_CAR_TITLE_LENGTH = 50
+    MIN_CAR_TITLE_LENGTH = 5
+    MIN_CAR_TITLE_LENGTH_MESSAGE = f"Your car title should be at least {MIN_CAR_TITLE_LENGTH} characters long."
+
     MIN_PRICE = 1
 
     MIN_BODY_STYLE_LENGTH = 4
@@ -126,8 +131,18 @@ class CarListing(models.Model):
 
     MAX_ENGINE_TYPE_LENGTH = 10
 
+    MIN_ENGINE_LITRES = 0.0
     MAX_ENGINE_LITRES = 8
     ENGINE_LITRES_MESSAGE = f"There's no bigger car engine than {MAX_ENGINE_LITRES} litres."
+
+    car_title = models.CharField(
+        null=False,
+        blank=False,
+        max_length=MAX_CAR_TITLE_LENGTH,
+        validators=(
+            MinLengthValidator(MIN_CAR_TITLE_LENGTH, message=MIN_CAR_TITLE_LENGTH_MESSAGE),
+        )
+    )
 
     make = models.ForeignKey(
         CarMake,
@@ -170,11 +185,13 @@ class CarListing(models.Model):
         max_length=CarListingEngineTypeChoices.max_length(),
         choices=CarListingEngineTypeChoices.choices()
     )
-    engine_litres = models.PositiveIntegerField(
+    engine_litres = models.FloatField(
         verbose_name='Engine Litres',
         null=False,
         blank=False,
         validators=(
+            MinValueValidator(MIN_ENGINE_LITRES,
+                              message=f'You cannot have an engine below {MIN_ENGINE_LITRES} litres.'),
             MaxValueValidator(MAX_ENGINE_LITRES, message=ENGINE_LITRES_MESSAGE),
         )
 
@@ -210,7 +227,14 @@ class CarListing(models.Model):
         null=False,
         blank=False,
         max_length=CarListingEuroChoices.max_length(),
-        choices=CarListingEuroChoices.choices(),
+        choices=(
+            ('1', 'Euro 1'),
+            ('2', 'Euro 2'),
+            ('3', 'Euro 3'),
+            ('4', 'Euro 4'),
+            ('5', 'Euro 5'),
+            ('6', 'Euro 6'),
+        ),
     )
 
     drive_type = models.CharField(
@@ -219,16 +243,6 @@ class CarListing(models.Model):
         blank=False,
         max_length=CarListingDriveTypeChoices.max_length(),
         choices=CarListingDriveTypeChoices.choices()
-    )
-
-    color = models.CharField(
-        verbose_name='Color',
-        null=False,
-        blank=True,
-        max_length=MAX_COLOR_LENGTH,
-        validators=(
-            MinLengthValidator(MIN_COLOR_LENGTH),
-        )
     )
 
     created = models.DateTimeField(
@@ -249,6 +263,25 @@ class CarListing(models.Model):
     def __str__(self):
         return f"{self.make} {self.model} {self.year}"
 
+    @property
+    def car_make_and_model(self):
+        return f"{self.make} {self.model}"
+
+    def delta(self):
+        delta = timezone.now() - self.created
+        seconds = int(delta.total_seconds())
+        minutes = seconds // 60
+        hours = minutes // 60
+        days = hours // 24
+        if days >= 1:
+            return f"{days} days"
+        elif minutes > 60:
+            return f"{hours} hours"
+        elif 1 <= minutes < 60:
+            return f"{minutes} minutes"
+        elif minutes < 1:
+            return f"{seconds} seconds"
+
 
 class PhotoCarModel(models.Model):
     MAX_IMAGES_ALLOWED = 3
@@ -264,9 +297,9 @@ class PhotoCarModel(models.Model):
     car = models.ForeignKey(
         to=CarListing,
         on_delete=models.CASCADE,
-
+        related_name='car_pics'
     )
 
     def clean(self):
-        if len(self.image) > self.MAX_IMAGES_ALLOWED:
+        if self.car.car_pics.all().count() > self.MAX_IMAGES_ALLOWED:
             raise ValidationError(f'You can upload up to {self.MAX_IMAGES_ALLOWED} images.')

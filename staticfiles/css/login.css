@@ -162,17 +162,17 @@ input:-webkit-autofill:active {
 }
 
 .login-box p:last-child {
-  color: #aaa;
-  font-size: 14px;
+    color: #aaa;
+    font-size: 14px;
 }
 
 .login-box a.a2 {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 .login-box a.a2:hover {
-  background: transparent;
-  color: #BEBEBE;
-  border-radius: 5px;
+    background: transparent;
+    color: #BEBEBE;
+    border-radius: 5px;
 }

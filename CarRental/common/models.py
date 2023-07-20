@@ -156,6 +156,8 @@ class ProfileUser(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
 @receiver(post_save, sender=AppUser)
 def create_profile_user(sender, instance, created, **kwargs):
     if created:

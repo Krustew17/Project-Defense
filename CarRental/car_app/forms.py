@@ -27,6 +27,10 @@ class CreateCarForm(BaseCarForm):
         return make
 
 
+class EditCarForm(BaseCarForm):
+    pass
+
+
 # ~~~~~ Car Photo below ~~~~~
 
 class AttachPhotosToCar(forms.ModelForm):

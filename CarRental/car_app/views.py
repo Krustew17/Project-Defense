@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 
 from .filters import CarFilter
 from .models import CarModel, PhotoCarModel, CarMake, CarListing
-from .forms import AttachPhotosToCar, CreateCarForm
+from .forms import AttachPhotosToCar, CreateCarForm, EditCarForm
 
 
 # class TestUploadMultipleImages(FormView):
@@ -62,16 +62,43 @@ def create_ad_view(request):
     return render(request, 'car/create_car.html', context)
 
 
-def edit_car_ad(request, pk):
-    pass
+class CarListingDetails(views.DetailView):
+    template_name = 'car/car_details.html'
+    model = CarListing
+    context_object_name = 'car_listing'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['car_photos'] = PhotoCarModel.objects.filter(car_id=CarListing.objects.filter(pk=self.object.id).get())
+        return context
 
 
-def view_car_ad_details(request, pk):
-    return render(request, 'car/car_details.html')
+def edit_car_listing(request, pk):
+    car = CarListing.objects.filter(pk=pk).get()
+    car_photos = PhotoCarModel.objects.filter(car=car).first()
+
+    if request.method == 'GET':
+        form1 = EditCarForm(instance=car)
+        form2 = AttachPhotosToCar(instance=car_photos)
+    else:
+        form1 = EditCarForm(request.POST, instance=car)
+        form2 = AttachPhotosToCar(request.POST, instance=car_photos)
+        if form1.is_valid() and form2.is_valid():
+            form1.save()
+            form2.save()
+            return redirect(reverse_lazy('car ad details', kwargs={'pk': pk}))
+
+    context = {
+        'car_form': form1,
+        'photos_form': form2,
+        'pk': pk
+    }
+
+    return render(request, 'car/edit_car_listing.html', context)
 
 
 def delete_car_ad(request, pk):
-    pass
+    return render(request, 'car/delete_car.html')
 
 
 # ~~~~~~~~~ T   E   S   T      A   R   E   A ~~~~~~~~~
@@ -94,8 +121,9 @@ def test_html_css(request):
     return render(request, 'car/listing.html')
 
 
-def test_image(request):
-    images = PhotoCarModel.objects.filter(car_id=PhotoCarModel.objects.filter(pk=57))
+def test_image(request, pk):
+    images = PhotoCarModel.objects.filter(car=CarListing.objects.filter(pk=pk).get())
+    # print(images)
     return render(request, 'car/test_again.html', {'images': images})
 
 
@@ -124,6 +152,3 @@ class Something(views.ListView):
         context = super().get_context_data(**kwargs)
         context['form'] = self.filterset.form
         return context
-
-
-

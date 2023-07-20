@@ -6,11 +6,42 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {#    <link rel="stylesheet" href="{% static 'css/style.css' %}">#}
     <title>Create Car Ad</title>
 </head>
 <body class="create_ad_body">
+<script>
+    function load_car_models(makeId) {
+        var url = "{% url 'load_car_models' %}";
+        var modelSelect = document.getElementById("id_model");
+
+        // Clear existing options
+        while (modelSelect.firstChild) {
+            modelSelect.removeChild(modelSelect.firstChild);
+        }
+
+        // Fetch car models based on the selected make
+        if (makeId !== "") {  // Check if makeId is not empty
+            // Fetch car models based on the selected make
+            fetch(url + "?make_id=" + makeId)
+                .then(response => response.json())
+                .then(data => {
+                    // Add new options for each car model
+                    data.forEach(carModel => {
+                        var option = document.createElement("option");
+                        option.value = carModel.id;
+                        option.text = carModel.model;
+                        modelSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+</script>
+
 <nav>
     <div class="banner">
         <div class="navbar animatedTransition">
@@ -50,9 +81,9 @@
                 {% endif %}
             </div>
         {% endfor %}
-{#        {{ form1.as_p }}#}
-{#        {{ form2.as_p }}#}
-{#        {% csrf_token %}#}
+        {#        {{ form1.as_p }}#}
+        {#        {{ form2.as_p }}#}
+        {#        {% csrf_token %}#}
         {#        {% if form.errors %}#}
         {#          <li class="errorlist">Invalid username or password.</li>#}
         {#{% endif %}#}
@@ -74,5 +105,11 @@
 {#    {% csrf_token %}#}
 {#    <button type="submit">submit</button>#}
 {#</form>#}
+<script>
+    document.getElementById("id_make").onchange = function () {
+        var makeId = this.value;
+        load_car_models(makeId);
+    };
+</script>
 </body>
 </html>

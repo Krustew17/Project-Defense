@@ -1,5 +1,5 @@
 
-body {
+.profile-details-body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/bg8.jpg');
     color: white;
     background-repeat: no-repeat;
@@ -61,85 +61,10 @@ body {
     margin-right: auto;
     margin-left: auto;
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 15%;
 }
 
-.button-style7 {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #35d4b9;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    letter-spacing: 4px;
-    background: transparent;
-    border: 2px solid black;
-    border-radius: 5px;
-    border-color: #35d4b9;
-    cursor: pointer;
-}
-
-.button-style7:hover {
-    background: #35d4b9;
-    color: #000000;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #268777, 0 0 25px #268777, 0 0 50px #268777, 0 0 100px #268777;
-}
-
-.button-style7 span {
-    position: absolute;
-    display: block;
-}
-
-.button-style7 span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #35d4b9
-    );
-    animation: btn-anim1 1s linear infinite;
-}
-
-.button-style7 span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #35d4b9
-    );
-    animation: btn-anim2 1s linear infinite;
-    animation-delay: .25s
-}
-
-.button-style7 span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #35d4b9
-    );
-    animation: btn-anim3 1s linear infinite;
-    animation-delay: .5s
-}
-
-.button-style7 span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #35d4b9
-    );
-    animation: btn-anim4 1s linear infinite;
-    animation-delay: .75s
-}
 
 
 @keyframes btn-anim1 {
@@ -189,79 +114,3 @@ body {
 }
 
 
-.button-style10 {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #f72020;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    letter-spacing: 4px;
-    background: transparent;
-    border: 2px solid black;
-    border-radius: 5px;
-    border-color: #f72020;
-    cursor: pointer;
-
-}
-
-.button-style10:hover {
-    background: #f72020;
-    color: #000;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #9c2525, 0 0 25px #9c2525, 0 0 50px #9c2525, 0 0 100px #9c2525;
-}
-
-.button-style10 span {
-    position: absolute;
-    display: block;
-}
-
-.button-style10 span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #f72020
-    );
-    animation: btn-anim1 1s linear infinite;
-}
-
-.button-style10 span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #f72020
-    );
-    animation: btn-anim2 1s linear infinite;
-    animation-delay: .25s
-}
-
-.button-style10 span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #f72020
-    );
-    animation: btn-anim3 1s linear infinite;
-    animation-delay: .5s
-}
-
-.button-style10 span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #f72020
-    );
-    animation: btn-anim4 1s linear infinite;
-    animation-delay: .75s
-}
