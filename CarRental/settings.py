@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'django_filters',
     'imagekit',
     'django_cleanup.apps.CleanupConfig',
 
+    'CarRental.api',
     'CarRental.common',
     'CarRental.car_app',
     'CarRental.profile_app',

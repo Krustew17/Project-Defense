@@ -8,6 +8,7 @@ from .forms import RegisterUserForm, LoginUserForm, ContactUsForm
 from django.shortcuts import render, redirect
 from django.views import generic as views
 
+from ..car_app.filters import CarFilter
 from ..car_app.models import CarListing
 
 User = get_user_model()
@@ -21,11 +22,21 @@ class HomePageView(views.TemplateView):
 
 class CarListingsView(views.ListView):
     template_name = 'car/car_listings.html'
-    model = CarListing
-    paginate_by = 3
+    model = CarFilter
+    paginate_by = 12
+    context_object_name = 'listings'
+    queryset = CarListing.objects.all()
 
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(**kwargs)
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = CarFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['car_listings'] = CarListing.objects.all()
+        context['form'] = self.filterset.form
+        return context
 
 
 class RegisterUserView(views.CreateView):

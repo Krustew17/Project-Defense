@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DriverHub</title>
+    <title>Car Listings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -15,12 +15,17 @@
 <nav>
     <div class="banner">
         <div class="navbar animatedTransition">
-            <img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
-                <li><a href="{% url 'login user' %}">login</a></li>
-                <li><a href="{% url 'register user' %}">Register</a></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                {% else %}
+                    <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -42,36 +47,85 @@
 </div>
 
 
-<div class="container">
-    <div class="row" id="ads">
-        <!-- Category Card -->
-        {% for obj in page_obj %}
-            <div class="col-md-4 mb-5">
-                <div class="card rounded" style="border: none;">
-                    <div class="card-image">
-                        {% if obj.mileage <= 50000 %}
-                        <span class="card-notify-badge">Low KMS</span>
-                        {% endif %}
-                        <span class="card-notify-year">{{ obj.year }}</span>
-                        <img class="car-thumbnail"
-                             src="{{ obj.car_pics.all.0.image.url }}"
-                             alt="Alternate Text"/>
-                    </div>
-                    <div class="card-image-overlay m-auto">
-                        <span class="card-detail-badge">Used</span>
-                        <span class="card-detail-badge">${{ obj.price }}</span>
-                        <span class="card-detail-badge">{{ obj.mileage }} Kms</span>
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="ad-title m-auto">
-                            <h5>{{ obj.car_make_and_model }}</h5>
+<form method="GET" class="filters-container">
+        {{ form.as_p }}
+    <button type="submit" value="submit">Submit</button>
+</form>
+
+
+
+<script>
+    // Function to load car models based on the selected car make
+    function load_car_models() {
+        var makeId = document.getElementById("id_make").value;
+        var modelSelect = document.getElementById("id_model");
+        modelSelect.innerHTML = '<option value="">---------</option>'; // Clear existing options
+
+        // Fetch car models based on the selected make
+        if (makeId !== "") {
+            var url = "{% url 'load_car_models' %}?make_id=" + makeId;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Add new options for each car model
+                    data.forEach(carModel => {
+                        var option = document.createElement("option");
+                        option.value = carModel.id;
+                        option.text = carModel.model;
+                        modelSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+
+    // Attach the onchange event to the car make dropdown to load car models dynamically
+    document.getElementById("id_make").onchange = function () {
+        load_car_models();
+    };
+
+    // Load car models on page load if there's a selected car make
+    document.addEventListener('DOMContentLoaded', function () {
+        load_car_models();
+    });
+</script>
+
+
+<div class="listings-container">
+    {% if not page_obj %}
+        <h1 class="no-cars"> No carlistings available</h1>
+    {% else %}
+        <div class="row" id="ads">
+            <!-- Category Card -->
+            {% for obj in page_obj %}
+                <div class="col-md-4 mb-5">
+                    <div class="card rounded-custom" style="border-radius: 1.6rem; border:none">
+                        <div class="card-image">
+                            {% if obj.mileage <= 50000 %}
+                                <span class="card-notify-badge">Low KMS</span>
+                            {% endif %}
+                            <span class="card-notify-year">{{ obj.year }}</span>
+                            <img class="car-thumbnail"
+                                 src="{{ obj.car_pics.all.0.image_url }}"
+                                 alt="Alternate Text"/>
                         </div>
-                        <a class="ad-btn" href="{% url 'car ad details' pk=obj.pk %}">View</a>
+                        <div class="card-image-overlay m-auto">
+                            <span class="card-detail-badge">Used</span>
+                            <span class="card-detail-badge">Daily price: ${{ obj.price }}</span>
+                            <span class="card-detail-badge">{{ obj.mileage }} Kms</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="ad-title m-auto">
+                                <h5>{{ obj.car_make_and_model }}</h5>
+                            </div>
+                            <a class="ad-btn" href="{% url 'car ad details' pk=obj.pk %}">View</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-        <div class="pagination">
+            {% endfor %}
+            <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
@@ -87,9 +141,9 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
+            </div>
         </div>
-    </div>
-</div>
+    {% endif %}
 </body>
 
 </html>

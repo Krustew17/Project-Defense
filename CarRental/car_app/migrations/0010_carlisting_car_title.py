@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='carlisting',
             name='car_title',
-            field=models.CharField(default='test', max_length=50, validators=[django.core.validators.MinLengthValidator(5, message='Your car title should be at least 5 characters long.')]),
+            field=models.CharField(default='', max_length=50, validators=[django.core.validators.MinLengthValidator(5, message='Your car title should be at least 5 characters long.')]),
             preserve_default=False,
         ),
     ]

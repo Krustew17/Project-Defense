@@ -1,40 +1,9 @@
-from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import django.views.generic as views
 from django.urls import reverse_lazy
-
 from .filters import CarFilter
-from .models import CarModel, PhotoCarModel, CarMake, CarListing
+from .models import CarModel, PhotoCarModel, CarListing
 from .forms import AttachPhotosToCar, CreateCarForm, EditCarForm
-
-
-# class TestUploadMultipleImages(FormView):
-#     form_class = AttachPhotosToCar
-#     template_name = 'car/create_ad.html'  # Replace with your template.
-#
-#     def get_success_url(self):
-#         return reverse_lazy('home page')
-#
-#     def post(self, request, *args, **kwargs):
-#         form_class = self.get_form_class()
-#         form = self.get_form(form_class)
-#         if form.is_valid():
-#             return self.form_valid(form)
-#         else:
-#             return self.form_invalid(form)
-#
-#     def form_valid(self, form):
-#         car_obj = CarModel.objects.filter(pk=1).get()
-#         print(form.cleaned_data)
-#         files = form.cleaned_data["image"]
-#         for f in files:
-#             PhotoCarModel.objects.create(car=car_obj, image=f)
-#         return super().form_valid(form)
-
-def load_car_models(request):
-    make_id = request.GET.get('make_id')
-    car_models = CarModel.objects.filter(make_id=make_id).values('id', 'model')
-    return JsonResponse(list(car_models), safe=False)
 
 
 def create_ad_view(request):
@@ -79,18 +48,19 @@ def edit_car_listing(request, pk):
 
     if request.method == 'GET':
         form1 = EditCarForm(instance=car)
-        form2 = AttachPhotosToCar(instance=car_photos)
+        # form2 = AttachPhotosToCar(instance=car_photos)
     else:
         form1 = EditCarForm(request.POST, instance=car)
-        form2 = AttachPhotosToCar(request.POST, instance=car_photos)
-        if form1.is_valid() and form2.is_valid():
+        # form2 = AttachPhotosToCar(request.POST, instance=car_photos)
+        print(car_photos)
+        if form1.is_valid():
             form1.save()
-            form2.save()
+            # form2.save()
             return redirect(reverse_lazy('car ad details', kwargs={'pk': pk}))
 
     context = {
         'car_form': form1,
-        'photos_form': form2,
+        # 'photos_form': form2,
         'pk': pk
     }
 
@@ -103,19 +73,6 @@ def delete_car_ad(request, pk):
 
 # ~~~~~~~~~ T   E   S   T      A   R   E   A ~~~~~~~~~
 
-
-# class TestView(views.CreateView):
-#     template_name = 'car/create_car.html'
-#     form_class = CreateCarForm
-#
-#     def get_success_url(self):
-#         return reverse_lazy('home page')
-#
-#     def form_valid(self, form):
-#         car_obj = form.save(commit=False)
-#         car_obj.attached_user = self.request.user
-#         car_obj.save()
-#         return super().form_valid(form)
 
 def test_html_css(request):
     return render(request, 'car/listing.html')
@@ -152,3 +109,41 @@ class Something(views.ListView):
         context = super().get_context_data(**kwargs)
         context['form'] = self.filterset.form
         return context
+
+# ~~~~~~~~~~~ MIGHT NEED LATER ~~~~~~~~~~~
+# class TestUploadMultipleImages(FormView):
+#     form_class = AttachPhotosToCar
+#     template_name = 'car/create_ad.html'  # Replace with your template.
+#
+#     def get_success_url(self):
+#         return reverse_lazy('home page')
+#
+#     def post(self, request, *args, **kwargs):
+#         form_class = self.get_form_class()
+#         form = self.get_form(form_class)
+#         if form.is_valid():
+#             return self.form_valid(form)
+#         else:
+#             return self.form_invalid(form)
+#
+#     def form_valid(self, form):
+#         car_obj = CarModel.objects.filter(pk=1).get()
+#         print(form.cleaned_data)
+#         files = form.cleaned_data["image"]
+#         for f in files:
+#             PhotoCarModel.objects.create(car=car_obj, image=f)
+#         return super().form_valid(form)
+
+
+# class TestView(views.CreateView):
+#     template_name = 'car/create_car.html'
+#     form_class = CreateCarForm
+#
+#     def get_success_url(self):
+#         return reverse_lazy('home page')
+#
+#     def form_valid(self, form):
+#         car_obj = form.save(commit=False)
+#         car_obj.attached_user = self.request.user
+#         car_obj.save()
+#         return super().form_valid(form)

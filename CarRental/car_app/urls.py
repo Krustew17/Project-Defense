@@ -1,9 +1,7 @@
 from django.urls import path, include
-from .views import create_ad_view, CarListingDetails, edit_car_listing, delete_car_ad, Something, test_html_css, \
-    load_car_models
+from .views import create_ad_view, CarListingDetails, delete_car_ad, Something, test_html_css, edit_car_listing
 
 urlpatterns = (
-    path('load_car_models/', load_car_models, name='load_car_models'),
     path('create-ad/', create_ad_view, name='create car ad'),
     path('something/', Something.as_view(), name='smth'),
     path('temp/', test_html_css, name='html_css test'),

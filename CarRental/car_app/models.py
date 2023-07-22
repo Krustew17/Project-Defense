@@ -300,6 +300,11 @@ class PhotoCarModel(models.Model):
         related_name='car_pics'
     )
 
-    def clean(self):
-        if self.car.car_pics.all().count() > self.MAX_IMAGES_ALLOWED:
-            raise ValidationError(f'You can upload up to {self.MAX_IMAGES_ALLOWED} images.')
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
+    # def clean(self):
+    #     if self.car.car_pics.all().count() > self.MAX_IMAGES_ALLOWED:
+    #         raise ValidationError(f'You can upload up to {self.MAX_IMAGES_ALLOWED} images.')

@@ -1,20 +1,29 @@
 .car-listings-body {
+    /*margin: 30px;*/
+    /*padding: 30px;*/
     background: radial-gradient(ellipse at bottom, rgba(49, 49, 49, 0.96) 0%, #070101 100%);
+}
+
+.car-listings-body .navbar {
+    margin-top: 20px;
+    padding: 20px
 }
 
 .area {
     /*background: #4e54c8;*/
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
 
+
 }
 
 .circles {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-repeat: no-repeat;
 }
 
 .circles li {
@@ -222,4 +231,45 @@
     height: 300px;
     max-width: 100%;
     object-fit: fill;
+}
+
+.rounded-custom {
+    border-radius: 1.6rem;
+}
+
+.car-listing-container {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 55%
+}
+
+.listings-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 65%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    /*overflow: scroll;*/
+    border: 1px solid red;
+}
+
+.filters-container {
+    color: white;
+    border: 1px solid red;
+    width: 350px;
+    height: 600px;
+    overflow: hidden;
+    top: 15%;
+    left: 5%;
+    padding: 20px;
+    position: absolute;
+}
+
+.filters-container:hover {
+    overflow: scroll;
 }

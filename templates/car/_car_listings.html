@@ -1,0 +1,47 @@
+<div class="row" id="ads">
+    <!-- Category Card -->
+    {% for obj in page_obj %}
+        <div class="col-md-4 mb-5">
+            <div class="card rounded-custom" style="border-radius: 1.6rem; border:none">
+                <div class="card-image">
+                    {% if obj.mileage <= 50000 %}
+                        <span class="card-notify-badge">Low KMS</span>
+                    {% endif %}
+                    <span class="card-notify-year">{{ obj.year }}</span>
+                    <img class="car-thumbnail"
+                         src="{{ obj.car_pics.all.0.image_url }}"
+                         alt="Alternate Text"/>
+                </div>
+                <div class="card-image-overlay m-auto">
+                    <span class="card-detail-badge">Used</span>
+                    <span class="card-detail-badge">Daily price: ${{ obj.price }}</span>
+                    <span class="card-detail-badge">{{ obj.mileage }} Kms</span>
+                </div>
+                <div class="card-body text-center">
+                    <div class="ad-title m-auto">
+                        <h5>{{ obj.car_make_and_model }}</h5>
+                    </div>
+                    <a class="ad-btn" href="{% url 'car ad details' pk=obj.pk %}">View</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
