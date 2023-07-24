@@ -47,14 +47,15 @@
 }
 
 .container1 {
-    border: 2px solid #9d9d9d;
+    border: 2px solid #009688;
     position: absolute;
+    color: #c0c0c0;
     left: 65%;
     top: 30%;
     padding: 15px;
     background: rgba(0, 0, 0, .5);
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    box-shadow: 0  0 30px 3px #009688;
     border-radius: 17px;
 }
 
@@ -570,14 +571,4 @@ polyline {
     50% {
         opacity: 0.6;
     }
-}
-
-.no-cars {
-    margin-top: 200px;
-    font-size: 5rem;
-    color: #a9aba6;
-    position: relative;
-    width: 1000px;
-    top: 0;
-    left: 15%
 }

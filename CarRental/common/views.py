@@ -23,7 +23,7 @@ class HomePageView(views.TemplateView):
 class CarListingsView(views.ListView):
     template_name = 'car/car_listings.html'
     model = CarFilter
-    paginate_by = 12
+    paginate_by = 6
     context_object_name = 'listings'
     queryset = CarListing.objects.all()
 

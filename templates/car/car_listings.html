@@ -7,11 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="car-listings-body">
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 <nav>
     <div class="banner">
         <div class="navbar animatedTransition">
@@ -31,29 +49,28 @@
     </div>
 </nav>
 
-<div class="area">
-    <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-
+<h1>Car Listings</h1>
 
 <form method="GET" class="filters-container">
-        {{ form.as_p }}
-    <button type="submit" value="submit">Submit</button>
+    {{ form.as_p }}
+    <button type="submit" value="submit" class="button-style-green">
+        Filter
+    </button>
+    {% if form.is_bound %}
+        <button type="button" class="button-style-red" onclick="window.location.href={% url 'car listings' %};">
+            Clear
+        </button>
+    {% endif %}
 </form>
+<div class="button-container1">
 
-
-
+    <button class="button-style-green" onclick="window.location.href='{% url 'create car ad' %}';">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>List Your Car
+    </button>
+</div>
 <script>
     // Function to load car models based on the selected car make
     function load_car_models() {
@@ -92,58 +109,63 @@
     });
 </script>
 
-
-<div class="listings-container">
-    {% if not page_obj %}
-        <h1 class="no-cars"> No carlistings available</h1>
-    {% else %}
-        <div class="row" id="ads">
-            <!-- Category Card -->
-            {% for obj in page_obj %}
-                <div class="col-md-4 mb-5">
-                    <div class="card rounded-custom" style="border-radius: 1.6rem; border:none">
-                        <div class="card-image">
-                            {% if obj.mileage <= 50000 %}
-                                <span class="card-notify-badge">Low KMS</span>
-                            {% endif %}
-                            <span class="card-notify-year">{{ obj.year }}</span>
-                            <img class="car-thumbnail"
-                                 src="{{ obj.car_pics.all.0.image_url }}"
-                                 alt="Alternate Text"/>
+{% if not page_obj %}
+    <p class="no-cars"> No carlistings available</p>
+{% else %}
+    <div class="listings-container">
+    <div class="row" id="ads">
+        <!-- Category Card -->
+        {% for obj in page_obj %}
+            <div class="col-md-4 mb-5">
+                <div class="card rounded-custom" style="border-radius: 1.6rem; border:none; background-color: #e5e5e5;">
+                    <div class="card-image">
+                        {% if obj.mileage <= 50000 %}
+                            <span class="card-notify-badge">Low KMS</span>
+                        {% endif %}
+                        <span class="card-notify-year">{{ obj.year }}</span>
+                        <img class="car-thumbnail"
+                             src="{{ obj.car_pics.all.0.image_url }}"
+                             alt="Alternate Text"/>
+                    </div>
+                    <div class="card-image-overlay m-auto">
+                        <span class="card-detail-badge">Used</span>
+                        <span class="card-detail-badge">Daily price: ${{ obj.price }}</span>
+                        <span class="card-detail-badge">{{ obj.mileage }} Kms</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="ad-title m-auto">
+                            <h5>{{ obj.car_title|truncatechars:25 }}</h5>
                         </div>
-                        <div class="card-image-overlay m-auto">
-                            <span class="card-detail-badge">Used</span>
-                            <span class="card-detail-badge">Daily price: ${{ obj.price }}</span>
-                            <span class="card-detail-badge">{{ obj.mileage }} Kms</span>
-                        </div>
-                        <div class="card-body text-center">
-                            <div class="ad-title m-auto">
-                                <h5>{{ obj.car_make_and_model }}</h5>
-                            </div>
-                            <a class="ad-btn" href="{% url 'car ad details' pk=obj.pk %}">View</a>
-                        </div>
+                        <a class="ad-btn" href="{% url 'car ad details' pk=obj.pk %}">View</a>
                     </div>
                 </div>
-            {% endfor %}
-            <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
             </div>
-        </div>
-    {% endif %}
+        {% endfor %}
+        {#            <div class="pagination">#}
+        {#    <span class="step-links">#}
+        {#        {% if page_obj.has_previous %}#}
+        {#            <a href="?page=1">&laquo; first</a>#}
+        {#            <a href="?page={{ page_obj.previous_page_number }}">previous</a>#}
+        {#        {% endif %}#}
+        {##}
+        {#        <span class="current">#}
+        {#            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+        {#        </span>#}
+        {##}
+        {#        {% if page_obj.has_next %}#}
+        {#            <a href="?page={{ page_obj.next_page_number }}">next</a>#}
+        {#            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>#}
+        {#        {% endif %}#}
+        {#    </span>#}
+        {#            </div>#}
+    </div>
+{% endif %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+
+    {% include 'car/_pagination.html' with page_obj=page_obj %}
+
+{% endif %}
 </body>
 
 </html>

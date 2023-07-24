@@ -441,3 +441,106 @@ span:nth-child(2) {
     border-radius: 5px;
     box-shadow: 0 0 5px #6e1e1e, 0 0 25px #6e1e1e, 0 0 50px #6e1e1e, 0 0 100px #6e1e1e;
 }
+
+
+.button-style-green {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #009688;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    letter-spacing: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.button-style-green:hover {
+    background: #009688;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #006056, 0 0 25px #006056, 0 0 50px #006056, 0 0 100px #006056;
+}
+
+.button-style-green span {
+    position: absolute;
+    display: block;
+}
+
+.button-style-green span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #009688
+    );
+    animation: btn-anim1 1s linear infinite;
+}
+
+.button-style-green span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #009688
+    );
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+.button-style-green span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #009688
+    );
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+.button-style-green span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #009688
+    );
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+
+.button-style-red {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ec0000;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    letter-spacing: 4px;
+    background: transparent;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.button-style-red:hover {
+    background: #ec0000;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #860505, 0 0 25px #860505, 0 0 50px #860505, 0 0 100px #860505;
+}

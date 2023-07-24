@@ -1,9 +1,8 @@
 import django_filters
-from django.db import models
 from django_filters import widgets as df
 from django.forms import widgets
 
-from .models import CarListing, CarMake
+from .models import CarListing
 
 
 class CarFilter(django_filters.FilterSet):
@@ -16,11 +15,3 @@ class CarFilter(django_filters.FilterSet):
     class Meta:
         model = CarListing
         exclude = ('created', 'modified', 'attached_user')
-        filter_overrides = {
-            models.CharField: {
-                'filter_class': django_filters.ChoiceFilter,
-                'extra': lambda f: {
-                    'lookup_expr': 'icontains'
-                }
-            }
-        }

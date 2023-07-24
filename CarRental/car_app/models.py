@@ -135,6 +135,8 @@ class CarListing(models.Model):
     MAX_ENGINE_LITRES = 8
     ENGINE_LITRES_MESSAGE = f"There's no bigger car engine than {MAX_ENGINE_LITRES} litres."
 
+    LOW_KMS_MAX = 50000
+
     car_title = models.CharField(
         null=False,
         blank=False,
@@ -266,6 +268,10 @@ class CarListing(models.Model):
     @property
     def car_make_and_model(self):
         return f"{self.make} {self.model}"
+
+    @property
+    def low_kms(self):
+        return True if self.mileage <= self.LOW_KMS_MAX else False
 
     def delta(self):
         delta = timezone.now() - self.created
