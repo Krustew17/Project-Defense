@@ -1,15 +1,95 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-<form action="{% url 'edit car ad' pk=pk %}" method="post" enctype="multipart/form-data">
+<body class="edit-car-listing-body">
+
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<nav>
+    <div class="banner">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'register user' %}">Register</a></li>
+                {% else %}
+                    <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form action="{% url 'edit car ad' pk=pk %}" method="post" enctype="multipart/form-data" class="form-container">
     {% csrf_token %}
-{{ photos_form.as_p }}
-{{ car_form.as_p }}
-    <button type="submit"> Submit</button>
+    {{ car_form.as_p }}
+    <button type="submit" class="button-style-green">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>Submit</button>
 </form>
+<script>
+    // Function to load car models based on the selected car make
+    function load_car_models() {
+        var makeId = document.getElementById("id_make").value;
+        var modelSelect = document.getElementById("id_model");
+        modelSelect.innerHTML = '<option value="">---------</option>'; // Clear existing options
+
+        // Fetch car models based on the selected make
+        if (makeId !== "") {
+            var url = "{% url 'load_car_models' %}?make_id=" + makeId;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Add new options for each car model
+                    data.forEach(carModel => {
+                        var option = document.createElement("option");
+                        option.value = carModel.id;
+                        option.text = carModel.model;
+                        modelSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+
+    // Attach the onchange event to the car make dropdown to load car models dynamically
+    document.getElementById("id_make").onchange = function () {
+        load_car_models();
+    };
+
+    // Load car models on page load if there's a selected car make
+    document.addEventListener('DOMContentLoaded', function () {
+        load_car_models();
+    });
+</script>
+
 </body>
 </html>

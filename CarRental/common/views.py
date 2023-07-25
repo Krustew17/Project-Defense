@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views
 from .forms import RegisterUserForm, LoginUserForm, ContactUsForm
 from django.shortcuts import render, redirect
 from django.views import generic as views
-
+from verify_email.email_handler import send_verification_email
 from ..car_app.filters import CarFilter
 from ..car_app.models import CarListing
 
@@ -46,6 +46,7 @@ class RegisterUserView(views.CreateView):
 
     def form_valid(self, form):
         result = super().form_valid(form)
+        inactive_user = send_verification_email(self.request, form)
 
         login(self.request, self.object)
         return result

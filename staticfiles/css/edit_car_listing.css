@@ -1,0 +1,38 @@
+
+.edit-car-listing-body {
+    background: radial-gradient(ellipse at bottom, rgba(49, 49, 49, 0.96) 0%, #070101 100%);
+    color: #fff
+}
+
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 500px;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .6);
+    box-sizing: border-box;
+    box-shadow: 0 0 50px 15px #009688;
+    border-radius: 17px;
+}
+
+.form-container input,
+.form-container select {
+    margin-bottom: 20px;
+    background-color: #d5d5d5;
+    width: 180px;
+    height: 30px;
+    text-align: center;
+    border-radius: 2px;
+}
+.form-container .button-style-green {
+    margin-top: 15px;
+    left: 25px;
+}
+.form-container input:active,
+.form-container input:focus {
+    box-shadow: 0 0 10px 2px #009688;
+}

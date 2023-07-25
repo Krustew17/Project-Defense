@@ -325,7 +325,7 @@
     width: 150px;
     text-align: center;
     cursor: pointer;
-    background-color: #e5e5e5;
+    background-color: #bebebe;
 }
 .filters-container select:active,
 .filters-container select:focus {
@@ -334,7 +334,7 @@
 .filters-container input {
     width: 100px;
     text-align: center;
-    background-color: #e5e5e5;
+    background-color: #bebebe;
 }
 
 .filters-container input:active,

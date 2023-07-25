@@ -1,3 +1,7 @@
+.login-user-body {
+    background: radial-gradient(ellipse at bottom, rgba(4, 13, 24, 0.96) 0%, #00072d 100%);
+}
+
 .user-box {
     margin-bottom: 30px;
 }

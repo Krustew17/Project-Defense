@@ -6,41 +6,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Profile Page</title>
+    <title>Delete Profile</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="profile-delete-body">
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
 <nav>
-        <div class="banner banner1">
-            <div class="navbar animatedTransition">
-                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
-                <ul>
-                    <li><a href="{% url 'home page' %}">Home</a></li>
-                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+    <div class="banner">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
-                     <li><a href="{% url 'logout user' %}">Logout</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
                 {% endif %}
             </ul>
-            </div>
-            </div>
+        </div>
+    </div>
 </nav>
 
 
 <div class="login-box animatedTransition">
-  <h1 class="h1c">Delete Profile</h1>
-  <form method="post" action="{% url 'delete profile' pk=user.pk %}">
-      {% csrf_token %}
+    <h1 class="h1c">Delete Profile</h1>
+    <form method="post" action="{% url 'delete profile' pk=user.pk %}">
+        {% csrf_token %}
         <h2>Are you sure you want to delete your profile?</h2>
-      <p class="pt1">Note: this will delete all of your car listings as well.</p>
-      <button type="submit" class="button-style10 delete-btn">
-      Delete
-      </button>
-  </form>
+        <p class="pt1">Note: this will delete all of your car listings as well.</p>
+        <button type="submit" class="button-style-red">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Delete
+        </button>
+    </form>
 </div>
 </body>
 

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 import django.views.generic as views
 from django.urls import reverse_lazy
@@ -6,6 +7,7 @@ from .models import CarModel, PhotoCarModel, CarListing
 from .forms import AttachPhotosToCar, CreateCarForm, EditCarForm
 
 
+@login_required
 def create_ad_view(request):
     if request.method == 'GET':
         form1 = AttachPhotosToCar()

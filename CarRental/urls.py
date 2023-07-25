@@ -34,7 +34,8 @@ urlpatterns = [
     path('profile/', include('CarRental.profile_app.urls')),
 
     # REST API
-    path('api/', include('CarRental.api.urls'))
+    path('api/', include('CarRental.api.urls')),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

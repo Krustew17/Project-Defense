@@ -1,0 +1,15 @@
+.profile-delete-body {
+    background: radial-gradient(ellipse at bottom, rgba(59, 59, 59, 0.96) 0%, #333333 100%);
+    color: white;
+}
+.profile-delete-body .login-box {
+    width: 400px;
+    align-content: center;
+    align-items: center;
+}
+
+.profile-delete-body .login-box .button-style-red {
+    position: relative;
+    left: 23%;
+    margin-bottom: 5px;
+}

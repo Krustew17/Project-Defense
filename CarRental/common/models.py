@@ -17,6 +17,8 @@ class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
     MIN_USERNAME_LENGTH = 6
     MAX_USERNAME_LENGTH = 18
 
+    MAX_EMAIL_LENGTH = 60
+
     username = models.CharField(
         verbose_name='Username',
         null=False,
@@ -31,6 +33,17 @@ class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
             'unique': "A user with that username already exists.",
         }
     )
+    email = models.EmailField(
+        verbose_name='Email',
+        null=False,
+        blank=False,
+        unique=True,
+        max_length=MAX_EMAIL_LENGTH,
+        error_messages={
+            'unique': 'A user with that email already exists.'
+        }
+    )
+
     date_joined = models.DateTimeField(
         auto_now_add=True,
     )
