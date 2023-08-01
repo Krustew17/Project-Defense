@@ -2,65 +2,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Account Settings UI Design</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Account Settings UI Design</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body class="profile-details-body">
 <div class="stars">
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
 </div>
 
 <nav>
@@ -75,93 +76,112 @@
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
-                     <li><a href="{% url 'logout user' %}">Logout</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
                 {% endif %}
             </ul>
         </div>
     </div>
 </nav>
-	<section>
-		<div class="container">
-			<h1 class="mb-5">Account Settings</h1>
-			<div class="container-details-ad shadow rounded-lg d-block d-sm-flex">
-				<div class="profile-tab-nav border-right">
-					<div class="p-4">
-						<div class="img-circle text-center mb-3">
-                            {% if request.user.profile.image_url %}
-                        <img src="{{ request.user.profile.image_url }}" alt="" class="shadow">
-                            {% else %}
+<section>
+    <div class="container">
+        <h1 class="mb-5">Account Settings</h1>
+        <div class="container-details-ad shadow rounded-lg d-block d-sm-flex">
+            <div class="profile-tab-nav border-right">
+                <div class="p-4">
+                    <div class="img-circle text-center mb-3">
+                        {% if request.user.profile.image_url %}
+                            <img src="{{ request.user.profile.image_url }}" alt="" class="shadow">
+                        {% else %}
                             <img src="{% static 'images/no_pfp.jpg' %}" alt="" class="shadow">
-                            {% endif %}
-						</div>
-                        {% if request.user.profile.full_name %}
-						<h4 class="text-center">{{ request.user.profile.full_name }}</h4>
                         {% endif %}
-					</div>
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-					</div>
-				</div>
-				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-						<h3 class="mb-4">Account Settings</h3>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>First Name</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.first_name|default_if_none:"" }}>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>Last Name</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.last_name|default_if_none:"" }}>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>Age</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.age|default_if_none:"" }}>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>Phone number</label>
-                                    {% if request.user.profile.phone_number %}
-								  	<input type="text" class="form-control" disabled="disabled" value="+359{{ request.user.profile.phone_number }}">
-                                    {% else %}
+                    </div>
+                    {% if request.user.profile.full_name %}
+                        <h4 class="text-center">{{ request.user.profile.full_name }}</h4>
+                    {% endif %}
+                </div>
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                </div>
+            </div>
+            <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                    <h3 class="mb-4">Account Settings</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" disabled="disabled"
+                                       value={{ request.user.profile.first_name|default_if_none:"" }}>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" disabled="disabled"
+                                       value={{ request.user.profile.last_name|default_if_none:"" }}>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" disabled="disabled"
+                                       value={{ request.user.email }}>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="text" class="form-control" disabled="disabled"
+                                       value={{ request.user.profile.age|default_if_none:"" }}>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone number</label>
+                                {% if request.user.profile.phone_number %}
+                                    <input type="text" class="form-control" disabled="disabled"
+                                           value="+359{{ request.user.profile.phone_number }}">
+                                {% else %}
                                     <input type="text" class="form-control" disabled="disabled" value="">
-                                    {% endif %}
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>Country</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.country|default_if_none:"" }}>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>City</label>
-								  	<input type="text" class="form-control" disabled="disabled" value={{ request.user.profile.city|default_if_none:"" }}>
-								</div>
-							</div>
-						</div>
-						<div>
-							<button type="button" class="button-style7" onclick="window.location.href='{% url 'edit profile' pk=request.user.pk  %}';">
-                                Edit</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" disabled="disabled"
+                                       value={{ request.user.profile.country|default_if_none:"" }}>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" class="form-control" disabled="disabled"
+                                       value={{ request.user.profile.city|default_if_none:"" }}>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="button-style7"
+                                onclick="window.location.href='{% url 'edit profile' pk=request.user.pk %}';">
+                            Edit
+                        </button>
 
-                            <button type="button" class="button-style7" onclick="window.location.href='{% url 'edit password' pk=request.user.pk %}';">
-                                Change Password</button>
+                        <button type="button" class="button-style7"
+                                onclick="window.location.href='{% url 'edit password' pk=request.user.pk %}';">
+                            Change Password
+                        </button>
 
-							<button type="button" class="button-style-delete" onclick="window.location.href='{% url 'delete profile' pk=request.user.pk %}';">
-                                Delete</button>
-						</div>
-					</div>
-	</section>
+                        <button type="button" class="button-style-delete"
+                                onclick="window.location.href='{% url 'delete profile' pk=request.user.pk %}';">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+</section>
 
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

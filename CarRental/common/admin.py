@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model, admin as auth
 from django.utils.html import format_html
-
 from .models import ProfileUser, ContactUsModel
 
 User = get_user_model()
@@ -14,7 +13,7 @@ class AppUserAdmin(auth.UserAdmin):
     list_filter = ['last_login', 'username']
     ordering = ['pk']
     fieldsets = (
-        ('Credentials', {'fields': ('username', 'password')}),
+        ('Credentials', {'fields': ('username', 'email', 'password')}),
         ('Permissions', {'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Dates', {'fields': ('last_login', 'date_joined')}),
     )
@@ -30,7 +29,8 @@ class ProfileUserAdmin(admin.ModelAdmin):
     ordering = ['user']
     list_filter = ['user']
     fieldsets = (
-        ('User Information', {'fields': ('profile_image','first_name', 'last_name', 'age', 'country', 'city', 'phone_number')}),
+        ('User Information',
+         {'fields': ('profile_image', 'first_name', 'last_name', 'age', 'country', 'city', 'phone_number')}),
     )
 
     list_per_page = 10

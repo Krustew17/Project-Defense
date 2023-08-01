@@ -21,6 +21,10 @@ body {
     white-space: nowrap;
 }
 
+.related-widget-wrapper select {
+    background-color: #494949;
+}
+
 
 /*!*.dark-mode .sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active, .dark-mode .sidebar-light-success .nav-sidebar > .nav-item > .nav-link.active {*!*/
 /*!*    background-color: #66af8b;*!*/

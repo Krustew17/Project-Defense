@@ -12,6 +12,8 @@ class RegisterUserForm(auth_forms.UserCreationForm):
     MAX_USERNAME_LENGTH = 16
     MIN_USERNAME_LENGTH = 3
 
+    MAX_EMAIL_LENGTH = 50
+
     MAX_PASSWORD_LENGTH = 18
     MIN_PASSWORD_LENGTH = 8
 
@@ -28,6 +30,18 @@ class RegisterUserForm(auth_forms.UserCreationForm):
             },
         ),
         label="Username",
+        label_suffix=""
+    )
+    email = forms.EmailField(
+        required=True,
+        max_length=MAX_EMAIL_LENGTH,
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'user-box onerror',
+
+            },
+        ),
+        label='Email',
         label_suffix=""
     )
 
@@ -62,7 +76,7 @@ class RegisterUserForm(auth_forms.UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class LoginUserForm(auth_forms.AuthenticationForm):
@@ -116,4 +130,4 @@ class ContactUsForm(forms.ModelForm):
 
     class Meta:
         model = ContactUsModel
-        fields = ('name', 'email','topic','message')
+        fields = ('name', 'email', 'topic', 'message')

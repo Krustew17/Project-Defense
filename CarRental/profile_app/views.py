@@ -4,6 +4,7 @@ from django.shortcuts import render
 import django.views.generic as views
 from django.urls import reverse_lazy
 
+from CarRental.car_app.models import CarListing, PhotoCarModel
 from CarRental.common.forms import ContactUsForm
 from CarRental.common.models import ProfileUser
 from CarRental.profile_app.forms import ProfileBaseForm, EditProfileForm, EditPasswordForm
@@ -42,3 +43,9 @@ class DeleteProfileView(views.DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('home page')
+
+    def form_valid(self, form):
+        PhotoCarModel.objects.all().delete()
+        CarListing.objects.all().delete()
+
+        return super().form_valid(form)

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'imagekit',
     'django_cleanup.apps.CleanupConfig',
 
+    'CarRental.rent',
     'CarRental.api',
     'CarRental.common',
     'CarRental.car_app',

@@ -1,12 +1,9 @@
 from enum import Enum
-
 import django.contrib.auth.base_user as auth_models
 from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, RegexValidator
 from django.db import models
-
-from CarRental.common.validators import validate_only_characters, \
-    validate_phone_number_starts_with_zero
+from CarRental.common.validators import validate_phone_number_starts_with_zero
 from CarRental.core.utils import check_username_starts_with_letter
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -170,6 +167,9 @@ class ProfileUser(models.Model):
     def __str__(self):
         return self.full_name
 
+    class Meta:
+        verbose_name = "User Profile"
+
 
 @receiver(post_save, sender=AppUser)
 def create_profile_user(sender, instance, created, **kwargs):
@@ -205,7 +205,6 @@ class ContactUsModel(models.Model):
     MAX_TOPIC_LENGTH = 35
 
     MAX_MESSAGE_LENGTH = 300
-
     name = models.CharField(
         verbose_name='Name',
         null=False,
@@ -251,3 +250,8 @@ class ContactUsModel(models.Model):
 
     def __str__(self):
         return f"Name: {self.name}, Topic: {self.topic}"
+
+    class Meta:
+        verbose_name = "Contact Us"
+        verbose_name_plural = "Contact Us Requests"
+

@@ -39,7 +39,7 @@
       <div class="user-box">
         {% if field.input_type == "file" %}
             {% if not request.user.profile.profile_image %}
-                <input type="file" name="{{ form.profile_image.name }}" />
+                <input type="file" name="{{ form.profile_image.name }}"/>
             {% endif %}
       {% else %}
         {{ field }}
