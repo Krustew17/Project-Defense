@@ -144,4 +144,22 @@ input[type=file]::file-selector-button:hover {
 .password-change-body {
     background: radial-gradient(ellipse at bottom, rgba(4, 13, 24, 0.96) 0%, #00072d 100%);
 }
+
+
+.messages {
+    color: white;
+    margin-bottom: 15px;
+    list-style: none;
+    position: absolute;
+    top: 17%;
+    left: 37%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: #143250;
+    border: 1px solid #1b5d9d;
+    box-shadow: 0 0 10px 5px #1b1d36;
+}
+
 /* ------------------------------------------------ */

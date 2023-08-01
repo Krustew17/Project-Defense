@@ -128,6 +128,8 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+DATETIME_FORMAT = "N j, Y, P"
+
 USE_I18N = True
 
 USE_TZ = True
@@ -150,16 +152,25 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+# Email Configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = '2525'
+
+# Base User Model
 
 AUTH_USER_MODEL = 'common.AppUser'
 
+# Login
+
 LOGIN_URL = reverse_lazy('login user')
 LOGOUT_REDIRECT_URL = reverse_lazy('home page')
+
+# Jazzmin Tweaks
 
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,

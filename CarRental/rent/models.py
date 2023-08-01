@@ -3,6 +3,9 @@ from enum import Enum
 
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils import formats
+
+from CarRental import settings
 
 User = get_user_model()
 
@@ -58,6 +61,7 @@ class RentModel(models.Model):
     @property
     def rent_until(self):
         until = self.rent_date + datetime.timedelta(days=self.days)
+        until = formats.date_format(until, settings.DATETIME_FORMAT)
         return until
 
     def __str__(self):

@@ -1,14 +1,18 @@
 import django.contrib.auth.mixins as auth_mixins
+from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from django.urls import reverse_lazy
-from django.contrib.auth import get_user_model, login
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth import get_user_model, login, authenticate
 from django.contrib.auth import views as auth_views
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from .forms import RegisterUserForm, LoginUserForm, ContactUsForm
 from django.shortcuts import render, redirect
 from django.views import generic as views
 from ..car_app.filters import CarFilter
 from ..car_app.models import CarListing
+from ..core.utils import generate_token, send_activation_email
 
 User = get_user_model()
 
@@ -38,16 +42,47 @@ class CarListingsView(views.ListView):
         return context
 
 
-class RegisterUserView(views.CreateView):
-    template_name = 'common/register.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('home page')
+def register_user_view(request):
+    if request.method == 'GET':
+        form = RegisterUserForm()
+    else:
+        form = RegisterUserForm(request.POST)
 
-    def form_valid(self, form):
-        result = super().form_valid(form)
+        username = request.POST.get('username')
+        if form.is_valid():
+            form.save()
+            user = User.objects.get(username=username)
+            send_activation_email(user, request)
+            messages.add_message(request, messages.SUCCESS, "We sent you an email to verify your account.")
+            return redirect('login user')
 
-        login(self.request, self.object)
-        return result
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'common/register.html', context)
+
+
+def activate_user_view(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+
+        user = User.objects.get(pk=uid)
+    except Exception as e:
+        user = None
+
+    if user and generate_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        messages.add_message(request, messages.SUCCESS, 'You have successfully verified your email.')
+        return redirect(reverse('login user'))
+
+    context = {
+        'user': user
+    }
+
+    return render(request, 'authentication/activate-failed.html', context)
 
 
 class LoginUserView(auth_views.LoginView):

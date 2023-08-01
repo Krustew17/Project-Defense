@@ -16,6 +16,8 @@ class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
 
     MAX_EMAIL_LENGTH = 60
 
+    MAX_EMAIL_TOKEN_LENGTH = 200
+
     username = models.CharField(
         verbose_name='Username',
         null=False,
@@ -44,6 +46,8 @@ class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(
         auto_now_add=True,
     )
+
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
@@ -254,4 +258,3 @@ class ContactUsModel(models.Model):
     class Meta:
         verbose_name = "Contact Us"
         verbose_name_plural = "Contact Us Requests"
-

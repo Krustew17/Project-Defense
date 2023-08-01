@@ -13,7 +13,8 @@ class RentAdmin(admin.ModelAdmin):
     readonly_fields = ['rent_date', 'rent_until']
     list_per_page = 12
     fieldsets = (
-        ('Details', {'fields': ('rented_to', 'location', 'days', 'rent_status', 'rent_date', 'rent_until')}),
+        ('Details',
+         {'fields': ('rent_status', 'rented_to', 'location', 'days', 'rent_date', 'rent_until')}),
     )
 
     def _(self, obj):
