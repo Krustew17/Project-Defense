@@ -1,5 +1,6 @@
 import django.contrib.auth.mixins as auth_mixins
 from django.contrib import messages
+from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
@@ -7,9 +8,11 @@ from django.contrib.auth import get_user_model, login, authenticate
 from django.contrib.auth import views as auth_views
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from .forms import RegisterUserForm, LoginUserForm, ContactUsForm
+from .forms import RegisterUserForm, LoginUserForm, ContactUsForm, ResetPasswordForm, SetNewPasswordForm
 from django.shortcuts import render, redirect
 from django.views import generic as views
+
+from .. import settings
 from ..car_app.filters import CarFilter
 from ..car_app.models import CarListing
 from ..core.utils import generate_token, send_activation_email
@@ -96,6 +99,27 @@ class LoginUserView(auth_views.LoginView):
 class LogoutUserView(auth_views.LogoutView, auth_mixins.LoginRequiredMixin):
     template_name = 'common/logout.html'
 
+
+# ~~~~~~~~~~~ Password Reset ~~~~~~~~~~~~
+class PasswordReset(auth_views.PasswordResetView):
+    template_name = 'password_reset/password_reset.html'
+    form_class = ResetPasswordForm
+
+
+class PasswordResetDone(auth_views.PasswordResetDoneView):
+    template_name = 'password_reset/password_reset_done.html'
+
+
+class PasswordResetConfirm(auth_views.PasswordResetConfirmView):
+    template_name = 'password_reset/password_reset_confirm.html'
+    form_class = SetNewPasswordForm
+
+
+class PasswordResetComplete(auth_views.PasswordResetCompleteView):
+    template_name = 'password_reset/password_reset_complete.html'
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class PageNotFoundView(views.TemplateView):
     template_name = 'common/404.html'

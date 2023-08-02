@@ -173,6 +173,7 @@ input:-webkit-autofill:active {
 .login-box a.a2 {
     color: #fff;
     text-decoration: none;
+    margin-bottom: 5px;
 }
 
 .login-box a.a2:hover {

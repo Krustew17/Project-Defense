@@ -122,6 +122,41 @@ class LoginUserForm(auth_forms.AuthenticationForm):
         fields = ('username', 'password')
 
 
+class ResetPasswordForm(auth_forms.PasswordResetForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'user-box onerror'}), label_suffix="",
+                             label="Email")
+
+
+class SetNewPasswordForm(auth_forms.SetPasswordForm):
+    MIN_PASSWORD_LENGTH = 8
+    PASSWORD_NOT_LONG_ENOUGH_MESSAGE = "Password should be at least 8 characters long."
+
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'autocomplete': 'new-password'
+            }
+        ),
+        label_suffix='',
+        label='New Password',
+        validators=(
+            MinLengthValidator(MIN_PASSWORD_LENGTH, message=PASSWORD_NOT_LONG_ENOUGH_MESSAGE),
+        )
+    )
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'autocomplete': 'new-password'
+            }
+        ),
+        label_suffix='',
+        label='Confirm New Password',
+        validators=(
+            MinLengthValidator(MIN_PASSWORD_LENGTH, message=PASSWORD_NOT_LONG_ENOUGH_MESSAGE),
+        )
+    )
+
+
 class ContactUsForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))

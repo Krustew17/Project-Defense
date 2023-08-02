@@ -12,6 +12,10 @@
 @import 'pagination.css';
 @import 'edit_car_listing.css';
 @import 'delete_profile.css';
+@import 'password_reset_done.css';
+@import 'password_reset_complete.css';
+@import 'password_reset_confirm.css';
+@import 'password_reset.css';
 
 html {
     height: 100%;
