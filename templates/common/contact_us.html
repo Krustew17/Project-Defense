@@ -1,92 +1,99 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Contact Form</title>
-		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+</head>
 <body class="contact-us-body">
 <nav>
-        <div class="banner banner1">
-            <div class="navbar animatedTransition">
-                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
-                <ul>
-                    <li><a href="{% url 'home page' %}">Home</a></li>
-                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+    <div class="banner banner1">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
-                     <li><a href="{% url 'logout user' %}">Logout</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
                 {% endif %}
             </ul>
-            </div>
-            </div>
+        </div>
+    </div>
 </nav>
 
-	<section class="section-100">
-		<div class="container">
+<section class="section-100">
+    <div class="container">
 
-			<h1 class="text-center">Contact Form</h1>
-			<br><br><br>
+        <h1 class="text-center">Contact Form</h1>
+        <br><br><br>
 
-			<div class="contact-form">
-				<div class="contact-form__left">
-					<h3 class="m-b-15">Contact Info</h3>
-					<hr>
-					<div>
-						<small class="light-grey"><i class="fas fa-user m-r-5"></i> Name</small>
-						<p>Krasimir Krastev</p>
-					</div>
-					<div>
-						<small class="light-grey"><i class="fas fa-envelope m-r-5"></i> Email</small>
-						<p>kkrustew17@gmail.com</p>
-					</div>
-					<div>
-						<small class="light-grey"><i class="fas fa-phone m-r-5"></i> Phone</small>
-						<p>+359882820552</p>
-					</div>
-					<div>
-						<small class="light-grey"><i class="fas fa-map-marker m-r-5"></i> Address</small>
-						<p>ul. Krairechna №3</p>
-					</div>
-					<div class="contact-form__left_footer">
-						<a target="_blank" href="https://instagram.com/krustew17"><i class="fab fa-instagram"></i></a>
-						<a target="_blank" href="https://github.com/krustew17"><i class="fab fa-github"></i></a>
-					</div>
-				</div>
-				<div class="contact-form__right">
-					<h3 class="m-b-15">Contact Us</h3>
-					<hr>
-					<form method="post" {% url 'contact us' %}>
-                        {{ form }}
-                        {% csrf_token %}
-{#						<div class="form-group">#}
-{#						  	<label for="">Name</label>#}
-{#						  	<input type="text" class="form-control form-control-lg">#}
-{#						</div>#}
-{#						<div class="form-group">#}
-{#						  	<label for="">Email</label>#}
-{#						  	<input type="text" class="form-control form-control-lg">#}
-{#						</div>#}
-{#						<div class="form-group">#}
-{#						  	<label for="">Phone</label>#}
-{#						  	<input type="text" class="form-control form-control-lg">#}
-{#						</div>#}
-{#						<div class="form-group">#}
-{#							<label for="">Message</label>#}
-{#							<textarea class="form-control form-control-lg" name="" id="" rows="3"></textarea>#}
-{#						</div>#}
-						<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
+        <div class="contact-form">
+            <div class="contact-form__left">
+                <h3 class="m-b-15">Contact Info</h3>
+                <hr>
+                <div>
+                    <small class="light-grey"><i class="fas fa-user m-r-5"></i> Name</small>
+                    <p>Krasimir Krastev</p>
+                </div>
+                <div>
+                    <small class="light-grey"><i class="fas fa-envelope m-r-5"></i> Email</small>
+                    <p>kkrustew17@gmail.com</p>
+                </div>
+                <div>
+                    <small class="light-grey"><i class="fas fa-phone m-r-5"></i> Phone</small>
+                    <p>+359882820552</p>
+                </div>
+                <div>
+                    <small class="light-grey"><i class="fas fa-map-marker m-r-5"></i> Address</small>
+                    <p>ul. Krairechna №3</p>
+                </div>
+                <div class="contact-form__left_footer">
+                    <a target="_blank" href="https://instagram.com/krustew17"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="https://github.com/krustew17"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="contact-form__right">
+                <h3 class="m-b-15">Contact Us</h3>
+                <hr>
+                <form method="post" {% url 'contact us' %}>
+                    {{ form }}
+                    {% csrf_token %}
+                    {#						<div class="form-group">#}
+                    {#						  	<label for="">Name</label>#}
+                    {#						  	<input type="text" class="form-control form-control-lg">#}
+                    {#						</div>#}
+                    {#						<div class="form-group">#}
+                    {#						  	<label for="">Email</label>#}
+                    {#						  	<input type="text" class="form-control form-control-lg">#}
+                    {#						</div>#}
+                    {#						<div class="form-group">#}
+                    {#						  	<label for="">Phone</label>#}
+                    {#						  	<input type="text" class="form-control form-control-lg">#}
+                    {#						</div>#}
+                    {#						<div class="form-group">#}
+                    {#							<label for="">Message</label>#}
+                    {#							<textarea class="form-control form-control-lg" name="" id="" rows="3"></textarea>#}
+                    {#						</div>#}
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </form>
+{#                {% if messages %}#}
+{#                    <ul class="messages">#}
+{#                        {% for message in messages %}#}
+{#                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                {% endif %}#}
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

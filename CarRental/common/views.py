@@ -142,6 +142,7 @@ class ContactUsView(views.FormView):
         except BadHeaderError:
             return HttpResponse("Invalid header found.")
         form.save(commit=True)
+        messages.add_message(self.request, messages.SUCCESS, 'Thanks for contacting us!')
         return redirect('home page')
 
 

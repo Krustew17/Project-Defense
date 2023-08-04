@@ -11,22 +11,22 @@
 </head>
 <body>
 <nav>
-        <div class="banner banner1">
-            <div class="navbar animatedTransition">
-                <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
-                <ul>
-                    <li><a href="{% url 'home page' %}">Home</a></li>
-                    <li><a href="{% url 'car listings' %}">Car listings</a></li>
+    <div class="banner banner1">
+        <div class="navbar animatedTransition">
+            <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
+            <ul>
+                <li><a href="{% url 'home page' %}">Home</a></li>
+                <li><a href="{% url 'car listings' %}">Car listings</a></li>
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
-                     <li><a href="{% url 'logout user' %}">Logout</a></li>
+                    <li><a href="{% url 'logout user' %}">Logout</a></li>
                 {% endif %}
             </ul>
-            </div>
-            </div>
+        </div>
+    </div>
 </nav>
 
 <section class="main-content">

@@ -10,6 +10,23 @@
     <title>Document</title>
 </head>
 <body class="car-delete-body">
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
 <nav>
     <div class="banner">
         <div class="navbar animatedTransition">
@@ -28,5 +45,22 @@
         </div>
     </div>
 </nav>
+
+<div class="login-box animatedTransition">
+    <h1 class="h1c">Delete Car Listing #{{ car_listing.pk }}</h1>
+    <form method="post" action="{% url 'delete car ad' pk=car_listing.pk %}">
+        {% csrf_token %}
+        <h2>Are you sure you want to delete {{ car_listing }}</h2>
+        <p class="pt1">Note: this will delete all of the car's pictures aswell and remove the listing from our website
+            permanently.</p>
+        <button type="submit" class="button-style-red">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Delete
+        </button>
+    </form>
+</div>
 </body>
 </html>

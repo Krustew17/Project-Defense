@@ -29,11 +29,13 @@
                     <br>We provide a seamless platform for you to turn your idle car into a source of income by
                     offering it for rental to our trusted community of travelers.</p>
                 <div>
-                    <button type="button" class="home-page-btn" onclick="window.location.href={% url 'car listings' %};">
+                    <button type="button" class="home-page-btn"
+                            onclick="window.location.href={% url 'car listings' %};">
                         <span></span>
                         RENT A CAR
                     </button>
-                    <button type="button" class="home-page-btn" onclick="window.location.href='{% url 'create car ad' %}';">
+                    <button type="button" class="home-page-btn"
+                            onclick="window.location.href='{% url 'create car ad' %}';">
                         <span></span>
                         LIST YOUR CAR
                     </button>
@@ -44,5 +46,13 @@
 
     </div>
 </nav>
+<footer>
+    <a href="{% url 'contact us' %}">Contact Us</a>
+    <a href="{% url 'faq' %}">FAQ</a>
+    <a target="_blank" href="https://instagram.com/krustew17" class="fa fa-instagram">Instagram</a>
+    <a target="_blank" href="https://github.com/krustew17">Github</a>
+</footer>
+
+
 </body>
 </html>

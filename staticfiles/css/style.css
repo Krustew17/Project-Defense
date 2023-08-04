@@ -166,4 +166,26 @@ input[type=file]::file-selector-button:hover {
     box-shadow: 0 0 10px 5px #1b1d36;
 }
 
+
+footer {
+    position: absolute;
+    top: 970px;
+    left: 535px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    /*width: 100%;*/
+    /*text-align: center;*/
+}
+footer a {
+    color: white;
+    list-style: none;
+    margin-left: 100px;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #a9a9a9
+}
+
+
 /* ------------------------------------------------ */

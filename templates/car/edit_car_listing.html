@@ -44,15 +44,23 @@
     </div>
 </nav>
 
+
+<div style="flex-wrap: wrap; display: flex;">
 <form action="{% url 'edit car ad' pk=pk %}" method="post" enctype="multipart/form-data" class="form-container">
     {% csrf_token %}
-    {{ car_form.as_p }}
+    {% for field in car_form %}
+    <div style="display: flex; width: 50%; padding:10px;">
+    {{ field.label_tag }}
+        {{ field }}
+    </div>
+    {% endfor %}
     <button type="submit" class="button-style-green">
         <span></span>
         <span></span>
         <span></span>
         <span></span>Submit</button>
 </form>
+</div>
 <script>
     // Function to load car models based on the selected car make
     function load_car_models() {

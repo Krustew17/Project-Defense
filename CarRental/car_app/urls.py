@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import create_ad_view, CarListingDetails, delete_car_ad, Something, test_html_css, edit_car_listing
+from .views import create_ad_view, CarListingDetails, DeleteCarView, Something, test_html_css, edit_car_listing
 
 urlpatterns = (
     path('create-ad/', create_ad_view, name='create car ad'),
@@ -8,6 +8,6 @@ urlpatterns = (
     path('<int:pk>/', include([
         path('details/', CarListingDetails.as_view(), name='car ad details'),
         path('edit/', edit_car_listing, name='edit car ad'),
-        path('delete/', delete_car_ad, name='delete car ad')
+        path('delete/', DeleteCarView.as_view(), name='delete car ad')
     ]))
 )

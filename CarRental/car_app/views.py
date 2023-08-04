@@ -25,7 +25,7 @@ def create_ad_view(request):
             # form1.save(commit=False)
             # form2.save()
 
-            return redirect('home page')
+            return redirect('car listings')
     context = {
         'form1': form1,
         'form2': form2,
@@ -44,6 +44,7 @@ class CarListingDetails(views.DetailView):
         return context
 
 
+@login_required
 def edit_car_listing(request, pk):
     car = CarListing.objects.filter(pk=pk).get()
     car_photos = PhotoCarModel.objects.filter(car=car).first()
@@ -69,8 +70,13 @@ def edit_car_listing(request, pk):
     return render(request, 'car/edit_car_listing.html', context)
 
 
-def delete_car_ad(request, pk):
-    return render(request, 'car/delete_car.html')
+class DeleteCarView(views.DeleteView):
+    template_name = 'car/delete_car.html'
+    context_object_name = 'car_listing'
+    model = CarListing
+
+    def get_success_url(self):
+        return reverse_lazy('car listings')
 
 
 # ~~~~~~~~~ T   E   S   T      A   R   E   A ~~~~~~~~~
