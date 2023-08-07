@@ -9,9 +9,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 700px;
-    height: 700px;
-    padding: 10px;
+    width: 650px;
+    height: 800px;
+    padding: 30px;
+    display: grid;
+    margin-inside: auto;
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 10px;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, .6);
     box-sizing: border-box;
@@ -19,19 +23,31 @@
     border-radius: 17px;
 }
 
-.form-container input,
+.form-container label {
+    text-align: right;
+}
+
+.form-container input[type=text],
+.form-container input[type=number],
 .form-container select {
-    margin-bottom: 20px;
+    /*margin-bottom: 10px;*/
     background-color: #d5d5d5;
     width: 180px;
     height: 30px;
+    /*padding-left: 20px;*/
     text-align: center;
     border-radius: 2px;
 }
+
 .form-container .button-style-green {
+    position: absolute;
+    bottom: 30px;
     margin-top: 15px;
-    left: 25px;
+    left: 400px;
+    padding: 10px 20px;
+    height: 70px;
 }
+
 .form-container input:active,
 .form-container input:focus {
     box-shadow: 0 0 10px 2px #009688;

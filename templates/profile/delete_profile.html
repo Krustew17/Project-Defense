@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Profile</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 
 <body class="profile-delete-body">
@@ -35,6 +36,9 @@
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
@@ -46,7 +50,6 @@
         </div>
     </div>
 </nav>
-
 
 <div class="login-box animatedTransition">
     <h1 class="h1c">Delete Profile</h1>

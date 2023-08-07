@@ -2,7 +2,7 @@ import django.contrib.auth.mixins as auth_mixins
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import get_user_model, login, authenticate
 from django.contrib.auth import views as auth_views
@@ -93,7 +93,11 @@ class LoginUserView(auth_views.LoginView):
     form_class = LoginUserForm
 
     def get_success_url(self):
-        return reverse_lazy('home page')
+        next_url = self.request.GET.get('next')
+        if next_url:
+            return next_url
+        else:
+            return reverse_lazy('home page')
 
 
 class LogoutUserView(auth_views.LogoutView, auth_mixins.LoginRequiredMixin):

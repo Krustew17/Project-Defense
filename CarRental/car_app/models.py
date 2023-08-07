@@ -1,9 +1,10 @@
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from enum import Enum
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
+from django_cleanup import cleanup
 from imagekit.processors import ResizeToFill
 from imagekit.models import ImageSpecField
 
@@ -99,6 +100,7 @@ class CarListingEuroChoices(ChoicesEnum):
     Euro_6 = 'Euro 6'
 
 
+@cleanup.select
 class CarListing(models.Model):
     MAX_CAR_TITLE_LENGTH = 50
     MIN_CAR_TITLE_LENGTH = 5
@@ -289,6 +291,7 @@ class CarListing(models.Model):
             return f"{seconds} seconds"
 
 
+@cleanup.select
 class PhotoCarModel(models.Model):
     MAX_IMAGES_ALLOWED = 3
 
@@ -310,7 +313,3 @@ class PhotoCarModel(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
-
-    # def clean(self):
-    #     if self.car.car_pics.all().count() > self.MAX_IMAGES_ALLOWED:
-    #         raise ValidationError(f'You can upload up to {self.MAX_IMAGES_ALLOWED} images.')

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 
 <body class="login-user-body">
@@ -54,6 +55,7 @@
 <div class="login-box animatedTransition">
     <h2>Login</h2>
     <form method="post" action="{% url 'login user' %}">
+        <input type="hidden" name="next" value="{{ request.POST.next }}"/>
         {% csrf_token %}
         {% for field in form %}
             <div class="user-box">
@@ -75,8 +77,8 @@
             Login
         </button>
         {% if form.errors %}
-        <p>Forgotten password? <a href="{% url 'password_reset' %}" class="a2">Reset!</a></p>
-    {% endif %}
+            <p>Forgotten password? <a href="{% url 'password_reset' %}" class="a2">Reset!</a></p>
+        {% endif %}
     </form>
     <p>Don't have an account? <a class="a2" href="{% url 'register user' %}">Sign up!</a></p>
 </div>

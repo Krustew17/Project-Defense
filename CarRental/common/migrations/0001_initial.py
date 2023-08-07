@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, max_length=18, unique=True, validators=[django.core.validators.MinLengthValidator(6), CarRental.core.utils.check_username_starts_with_letter], verbose_name='Username')),
+                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, max_length=18, unique=True, validators=[django.core.validators.MinLengthValidator(6), CarRental.common.validators.check_username_starts_with_letter], verbose_name='Username')),
                 ('date_joined', models.DateTimeField(auto_now_add=True)),
                 ('is_staff', models.BooleanField(default=False)),
                 ('is_superuser', models.BooleanField(default=False)),

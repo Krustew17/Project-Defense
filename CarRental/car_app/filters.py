@@ -6,7 +6,7 @@ from .models import CarListing
 
 
 class CarFilter(django_filters.FilterSet):
-    price = django_filters.RangeFilter()
+    price = django_filters.RangeFilter(label="$/Day")
     year = django_filters.RangeFilter()
     mileage = django_filters.RangeFilter()
     horse_power = django_filters.RangeFilter()

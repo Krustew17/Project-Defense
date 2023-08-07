@@ -1,10 +1,16 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import django.contrib.auth.mixins as mixins
+from django.core.exceptions import ValidationError
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 from django.shortcuts import render, redirect
 import django.views.generic as views
 from django.urls import reverse_lazy
 from .filters import CarFilter
 from .models import CarModel, PhotoCarModel, CarListing
 from .forms import AttachPhotosToCar, CreateCarForm, EditCarForm
+from .. import settings
 
 
 @login_required
@@ -15,6 +21,7 @@ def create_ad_view(request):
     else:
         form1 = AttachPhotosToCar(request.POST, request.FILES)
         form2 = CreateCarForm(request.POST)
+
         if form1.is_valid() and form2.is_valid():
             car_obj = form2.save(commit=False)
             car_obj.attached_user = request.user
@@ -34,6 +41,7 @@ def create_ad_view(request):
 
 
 class CarListingDetails(views.DetailView):
+    permission_denied_message = 'You have to login first!'
     template_name = 'car/car_details.html'
     model = CarListing
     context_object_name = 'car_listing'
@@ -70,7 +78,7 @@ def edit_car_listing(request, pk):
     return render(request, 'car/edit_car_listing.html', context)
 
 
-class DeleteCarView(views.DeleteView):
+class DeleteCarView(views.DeleteView, mixins.LoginRequiredMixin):
     template_name = 'car/delete_car.html'
     context_object_name = 'car_listing'
     model = CarListing

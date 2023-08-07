@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 
 from CarRental.car_app.models import CarModel, PhotoCarModel, CarListing, CarMake
 from CarRental.core.utils import MultipleFileField
@@ -13,6 +15,7 @@ class BaseCarForm(forms.ModelForm):
 class CreateCarForm(BaseCarForm):
     make = forms.ModelChoiceField(queryset=CarMake.objects.all(), empty_label="-------")
     model = forms.ModelChoiceField(queryset=CarModel.objects.none(), empty_label="-------")
+    price = forms.IntegerField(label="$/Day: ", label_suffix="")
 
     def __init__(self, *args, **kwargs):
         super(CreateCarForm, self).__init__(*args, **kwargs)
@@ -35,14 +38,19 @@ class EditCarForm(BaseCarForm):
 
 class AttachPhotosToCar(forms.ModelForm):
     image = MultipleFileField()
+    image.label = "Images:"
 
     class Meta:
         model = PhotoCarModel
         fields = ('image',)
-
-    def clean_images(self):
-        images = self.cleaned_data.get(['image'])
-        print(images)
-        if len(images) > 3:
-            raise forms.ValidationError('test')
-        return images
+    #
+    # def clean_image(self):
+    #     images = self.cleaned_data.get('image', [])
+    #     return images
+    #
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     images = cleaned_data.get('image', [])
+    #     if len(images) > 3:
+    #         print('error')
+    #         raise ValidationError('You can only upload up to 3 images.')

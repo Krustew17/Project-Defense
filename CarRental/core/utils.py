@@ -13,17 +13,6 @@ import six
 from CarRental import settings
 
 
-def check_username_starts_with_letter(value):
-    if not value[0].isalpha():
-        raise ValidationError('Your username should start with a letter.')
-
-
-def validate_username_only_letters_and_numbers(value):
-    for char in value:
-        if not char.isalpha():
-            raise ValidationError('Your username should consist of letters and numbers.')
-
-
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
@@ -76,3 +65,6 @@ def send_activation_email(user, request):
 
     EmailThread(email).start()
 
+
+def megabytes_to_bytes(mb):
+    return mb * 1024 * 1024

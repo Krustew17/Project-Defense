@@ -7,9 +7,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Test1</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <title>Create Car Listing</title>
 </head>
-<body class="create_ad_body">
+<body class="create_car_listing_body">
 <script>
     function load_car_models(makeId) {
         var url = "{% url 'load_car_models' %}";
@@ -41,6 +42,23 @@
     }
 </script>
 
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
 <nav>
     <div class="banner">
         <div class="navbar animatedTransition">
@@ -48,6 +66,9 @@
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
@@ -59,31 +80,66 @@
         </div>
     </div>
 </nav>
-<div class="container">
-    <form method="post" action="{% url 'create car ad' %}" enctype="multipart/form-data">
+
+<h1>Create Car Listing</h1>
+
+<div>
+    <form method="post" action="{% url 'create car ad' %}" enctype="multipart/form-data" class="form-container">
         {% csrf_token %}
         {% for field in form1 %}
-            <div class="user-box">
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.errors %}
-                    {{ field.errors }}
-                {% endif %}
+            {{ field.label_tag }}
+            {{ field }}
+            <div class="image-counter">
+                <p class="image-count-text">Selected Images: <span class="image-count">0</span></p>
+                <p class="image-limit-message" style="color: #C93E50;"></p>
             </div>
         {% endfor %}
+        {% if field.errors %}
+            {{ field.errors }}
+        {% endif %}
+        {#        {% endif %}#}
+        {#        {{ field.non_field_errors }}#}
+        {#        {% endfor %}#}
         {% for field in form2 %}
-            <div class="user-box">
-                {{ field.label_tag }}
-                {{ field }}
-
-                {% if field.errors %}
-                    {{ field.errors }}
-                {% endif %}
-            </div>
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                {{ field.errors }}
+            {% endif %}
         {% endfor %}
-        <button type="submit">Submit</button>
+        <button type="submit" class="button-style-green">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+        </button>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const imageInput = document.querySelector("#id_image"); // Update with your input field's ID
+        const imageCountText = document.querySelector(".image-count");
+        const imageLimitMessage = document.querySelector(".image-limit-message");
+        const submitButton = document.querySelector(".button-style-green");
+        const maxImageCount = 5; // Update with your maximum allowed image count
+
+        imageInput.addEventListener("change", function () {
+            const selectedCount = imageInput.files.length;
+            imageCountText.textContent = selectedCount;
+
+            if (selectedCount > maxImageCount) {
+                imageLimitMessage.textContent = `Maximum allowed images: ${maxImageCount}`;
+                submitButton.disabled = true; // Disable the submit button
+            } else {
+                imageLimitMessage.textContent = "";
+                submitButton.disabled = false; // Enable the submit button
+            }
+        });
+    });
+</script>
+
 <script>
     document.getElementById("id_make").onchange = function () {
         var makeId = this.value;

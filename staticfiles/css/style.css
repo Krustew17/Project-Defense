@@ -16,6 +16,9 @@
 @import 'password_reset_complete.css';
 @import 'password_reset_confirm.css';
 @import 'password_reset.css';
+@import 'edit_profile.css';
+@import 'create_car.css';
+
 
 html {
     height: 100%;
@@ -69,18 +72,19 @@ html {
 }
 
 input[type=file]::file-selector-button {
-    margin-right: 20px;
+    margin-right: 25px;
     border: none;
-    background: #B2227B;
+    background: #117385;
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
+    width: 180px;
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
 
 input[type=file]::file-selector-button:hover {
-    background: #810F56;
+    background: #117385;
 }
 
 .fileinput-filename {
@@ -141,10 +145,6 @@ input[type=file]::file-selector-button:hover {
     background: #37A0AF
 }
 
-.edit-profile-body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/bg9.jpg');
-}
-
 .password-change-body {
     background: radial-gradient(ellipse at bottom, rgba(4, 13, 24, 0.96) 0%, #00072d 100%);
 }
@@ -186,6 +186,16 @@ footer a {
 footer a:hover {
     color: #a9a9a9
 }
+.image-counter {
+    position: absolute;
+    top: 9%;
+    left: 12%;
+    color: #c2c2c2;
+}
 
-
+/*.image-count {*/
+/*    position: absolute;*/
+/*    top:20%;*/
+/*    */
+/*}*/
 /* ------------------------------------------------ */

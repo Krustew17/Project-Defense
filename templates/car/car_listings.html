@@ -11,6 +11,7 @@
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 
 <body class="car-listings-body">
@@ -37,6 +38,9 @@
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>

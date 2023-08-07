@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 import django.contrib.auth.views as auth_views
+import django.contrib.auth.mixins as mixins
 from django.shortcuts import render
 import django.views.generic as views
 from django.urls import reverse_lazy
@@ -13,13 +14,14 @@ User = get_user_model()
 
 
 # Create your views here.
-class ProfileDetailView(views.DetailView):
+
+class ProfileDetailView(views.DetailView, mixins.LoginRequiredMixin):
     template_name = 'profile/profile_details.html'
     context_object_name = 'user'
     model = User
 
 
-class EditProfileDetailsView(views.UpdateView):
+class EditProfileDetailsView(views.UpdateView, mixins.LoginRequiredMixin):
     template_name = 'profile/edit_profile.html'
     model = ProfileUser
     form_class = EditProfileForm
@@ -29,7 +31,7 @@ class EditProfileDetailsView(views.UpdateView):
         return reverse_lazy('profile details', kwargs={'pk': self.request.user.pk})
 
 
-class EditPasswordView(auth_views.PasswordChangeView):
+class EditPasswordView(auth_views.PasswordChangeView, mixins.LoginRequiredMixin):
     template_name = 'profile/password_change.html'
     form_class = EditPasswordForm
 
@@ -37,7 +39,7 @@ class EditPasswordView(auth_views.PasswordChangeView):
         return reverse_lazy('profile details', kwargs={'pk': self.request.user.pk})
 
 
-class DeleteProfileView(views.DeleteView):
+class DeleteProfileView(views.DeleteView, mixins.LoginRequiredMixin):
     model = User
     template_name = 'profile/delete_profile.html'
 

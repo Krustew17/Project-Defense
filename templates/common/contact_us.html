@@ -8,15 +8,19 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 <body class="contact-us-body">
 <nav>
-    <div class="banner banner1">
+    <div class="banner">
         <div class="navbar animatedTransition">
             <a href="{% url 'home page' %}"><img src=" {% static 'images/logo1.png' %}" class="logo" alt="logo"></a>
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
@@ -84,13 +88,13 @@
                     {#						</div>#}
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                 </form>
-{#                {% if messages %}#}
-{#                    <ul class="messages">#}
-{#                        {% for message in messages %}#}
-{#                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
-{#                        {% endfor %}#}
-{#                    </ul>#}
-{#                {% endif %}#}
+                {#                {% if messages %}#}
+                {#                    <ul class="messages">#}
+                {#                        {% for message in messages %}#}
+                {#                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+                {#                        {% endfor %}#}
+                {#                    </ul>#}
+                {#                {% endif %}#}
             </div>
         </div>
     </div>

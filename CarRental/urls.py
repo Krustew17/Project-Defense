@@ -17,11 +17,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse, reverse_lazy
+from django.views.generic import RedirectView
+
 from CarRental.common.views import PageNotFoundView
 
 urlpatterns = [
     # Admin
+    # path('admin1/', RedirectView.as_view(url=reverse_lazy('admin:home page'))),
     path('admin/', admin.site.urls),
 
     # Common
@@ -38,7 +41,6 @@ urlpatterns = [
 
     # Rent
     path('car/', include('CarRental.rent.urls')),
-
 
 ]
 if settings.DEBUG:

@@ -14,6 +14,8 @@ from pathlib import Path
 from decouple import config
 from django.urls import reverse_lazy
 
+from CarRental.core.utils import megabytes_to_bytes
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -169,6 +171,12 @@ AUTH_USER_MODEL = 'common.AppUser'
 
 LOGIN_URL = reverse_lazy('login user')
 LOGOUT_REDIRECT_URL = reverse_lazy('home page')
+# MAX FILE UPLOAD SIZE
+MAX_MEGABYTES_UPLOAD = 2
+MAX_UPLOAD_SIZE = megabytes_to_bytes(MAX_MEGABYTES_UPLOAD)
+
+# MAX IMAGES PER CAR LISTINGS
+MAX_IMAGES_PER_CAR_LISTING = 5
 
 # Jazzmin Tweaks
 

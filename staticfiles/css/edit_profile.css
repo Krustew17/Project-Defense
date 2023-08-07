@@ -1,0 +1,42 @@
+.edit-profile-body {
+    background: radial-gradient(ellipse at bottom, rgba(4, 15, 24, 0.96) 0%, #103636 100%);
+}
+
+.edit-profile-body .login-box .user-box input:focus ~ label,
+.edit-profile-body .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #1e9d99;
+    font-size: 12px;
+}
+
+.edit-profile-body .button-style1 {
+    color: #1e9d99;
+}
+
+.edit-profile-body .button-style1:hover {
+    background: #1e9d99;
+    color: #fff;
+    box-shadow: 0 0 5px #1e9d99, 0 0 25px #1e9d99, 0 0 50px #1e9d99, 0 0 100px #1e9d99;
+}
+
+
+.edit-profile-body .button-style1 span:nth-child(1) {
+    background: linear-gradient(360deg, transparent, #1e9d99
+    );
+}
+
+.edit-profile-body .button-style1 span:nth-child(2) {
+    background: linear-gradient(360deg, transparent, #1e9d99
+    );
+}
+
+.edit-profile-body .button-style1 span:nth-child(3) {
+    background: linear-gradient(360deg, transparent, #1e9d99
+    );
+}
+
+.edit-profile-body .button-style1 span:nth-child(4) {
+    background: linear-gradient(360deg, transparent, #1e9d99
+    );
+}

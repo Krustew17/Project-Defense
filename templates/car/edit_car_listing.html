@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Car Listing</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 <body class="edit-car-listing-body">
 
@@ -32,6 +33,9 @@
             <ul>
                 <li><a href="{% url 'home page' %}">Home</a></li>
                 <li><a href="{% url 'car listings' %}">Car listings</a></li>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
                 {% if not request.user.is_authenticated %}
                     <li><a href="{% url 'login user' %}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
@@ -44,28 +48,40 @@
     </div>
 </nav>
 
-
-<div style="flex-wrap: wrap; display: flex;">
-<form action="{% url 'edit car ad' pk=pk %}" method="post" enctype="multipart/form-data" class="form-container">
-    {% csrf_token %}
-    {% for field in car_form %}
-    <div style="display: flex; width: 50%; padding:10px;">
-    {{ field.label_tag }}
-        {{ field }}
-    </div>
-    {% endfor %}
-    <button type="submit" class="button-style-green">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>Submit</button>
-</form>
+<div>
+    <form action="{% url 'edit car ad' pk=pk %}" method="post" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+{#        {{ car_form }}#}
+        {#        {% for field in car_form %}#}
+        {#            {{ field.label_tag }} {{ field }}#}
+        {#            {% if forloop.counter|divisibleby:"2" %}#}
+        {#                <br>#}
+        {#            {% endif %}#}
+        {#        {% endfor %}#}
+        {% for field in car_form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                {{ field.errors }}
+            {% endif %}
+        {% endfor %}
+        <button type="submit" class="button-style-green">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>Submit
+        </button>
+    </form>
 </div>
 <script>
     // Function to load car models based on the selected car make
     function load_car_models() {
         var makeId = document.getElementById("id_make").value;
         var modelSelect = document.getElementById("id_model");
+
+        // Store the currently selected model ID before clearing options
+        var selectedModelId = modelSelect.value;
+
         modelSelect.innerHTML = '<option value="">---------</option>'; // Clear existing options
 
         // Fetch car models based on the selected make
@@ -81,6 +97,11 @@
                         option.text = carModel.model;
                         modelSelect.appendChild(option);
                     });
+
+                    // If there was a selected model ID, set it as the selected value
+                    if (selectedModelId) {
+                        modelSelect.value = selectedModelId;
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);

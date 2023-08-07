@@ -4,9 +4,10 @@ from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, RegexValidator
 from django.db import models
 from CarRental.common.validators import validate_phone_number_starts_with_zero
-from CarRental.core.utils import check_username_starts_with_letter
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from CarRental.common.validators import check_username_starts_with_letter
+from CarRental.common.validators import validate_image_size
 
 
 # Create your models here.
@@ -78,7 +79,10 @@ class ProfileUser(models.Model):
         verbose_name='Profile Image',
         null=True,
         blank=True,
-        upload_to='profile_pictures/'
+        upload_to='profile_pictures/',
+        validators=(
+            validate_image_size,
+        )
     )
 
     first_name = models.CharField(
@@ -136,7 +140,6 @@ class ProfileUser(models.Model):
         blank=True,
         unique=True,
         validators=(
-            # validate_phone_number_length(PHONE_NUMBER_LENGTH),
             validate_phone_number_starts_with_zero,
         )
     )

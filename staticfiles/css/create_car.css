@@ -1,0 +1,30 @@
+.create_car_listing_body {
+    background: radial-gradient(ellipse at bottom, rgba(49, 49, 49, 0.96) 0%, #070101 100%);
+    color: #fff
+}
+
+.create_car_listing_body .form-container {
+    top: 57%;
+    left: 50%;
+}
+
+
+.create_car_listing_body .button-style-green {
+    position: absolute;
+    bottom: 10px;
+    left: 260px;
+    height: 50px;
+}
+
+.create_car_listing_body h1 {
+    position: absolute;
+    top: 11%;
+    left: 43%;
+    color: #9d9d9d
+}
+
+
+.create_car_listing_body .messages {
+    position: absolute;
+    left: 30%;
+}
