@@ -22,7 +22,7 @@
                     <li><a href="{% url 'admin:index' %}">Administration</a></li>
                 {% endif %}
                 {% if not request.user.is_authenticated %}
-                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'login user' %}?next={{ request.path }}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
@@ -163,6 +163,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="js/script.js"></script>
+{#<script src="js/script.js"></script>#}
 </body>
 </html>

@@ -18,6 +18,8 @@
 @import 'password_reset.css';
 @import 'edit_profile.css';
 @import 'create_car.css';
+@import 'rent_car.css';
+@import 'rent_success.css';
 
 
 html {
@@ -192,10 +194,4 @@ footer a:hover {
     left: 12%;
     color: #c2c2c2;
 }
-
-/*.image-count {*/
-/*    position: absolute;*/
-/*    top:20%;*/
-/*    */
-/*}*/
 /* ------------------------------------------------ */

@@ -41,7 +41,6 @@ def create_ad_view(request):
 
 
 class CarListingDetails(views.DetailView):
-    permission_denied_message = 'You have to login first!'
     template_name = 'car/car_details.html'
     model = CarListing
     context_object_name = 'car_listing'
@@ -90,8 +89,8 @@ class DeleteCarView(views.DeleteView, mixins.LoginRequiredMixin):
 # ~~~~~~~~~ T   E   S   T      A   R   E   A ~~~~~~~~~
 
 
-def test_html_css(request):
-    return render(request, 'car/listing.html')
+# def test_html_css(request):
+#     return render(request, 'car/listing.html')
 
 
 def test_image(request, pk):

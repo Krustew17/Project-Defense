@@ -93,7 +93,7 @@ class LoginUserView(auth_views.LoginView):
     form_class = LoginUserForm
 
     def get_success_url(self):
-        next_url = self.request.GET.get('next')
+        next_url = self.request.POST.get('next')
         if next_url:
             return next_url
         else:

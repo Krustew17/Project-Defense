@@ -55,7 +55,9 @@
 <div class="login-box animatedTransition">
     <h2>Login</h2>
     <form method="post" action="{% url 'login user' %}">
-        <input type="hidden" name="next" value="{{ request.POST.next }}"/>
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+        {% endif %}
         {% csrf_token %}
         {% for field in form %}
             <div class="user-box">

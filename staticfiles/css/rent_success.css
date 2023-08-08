@@ -1,0 +1,79 @@
+.rent-success-body {
+    background: radial-gradient(ellipse at bottom, rgba(19, 18, 18, 0.96) 0%, #0c2d22 100%);
+    color: #a1a1a1
+}
+
+.rent-success-body h1 {
+    position: absolute;
+    top: 40%;
+    left: 23%;
+    font-size: 3rem;
+}
+
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    font-size: 1rem;
+}
+
+.rent-success-body .star:nth-child(1) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(2) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(3) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(4) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(5) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(6) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(7) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(8) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(9) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(10) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(11) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(12) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(13) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(14) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(15) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(16) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(17) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(18) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(19) {
+    --fall-delay: 0s;
+}
+.rent-success-body .star:nth-child(20) {
+    --fall-delay: 0s;
+}

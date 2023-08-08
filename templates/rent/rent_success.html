@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rent Successful</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+</head>
+<body class="rent-success-body">
+<div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+</div>
+<h1>You have successfully rented your desired car</h1>
+<div id="countdown-timer" class="countdown"></div>
+
+<script>
+    // Set the number of seconds before redirection
+    const secondsToRedirect = 5;  // Adjust as needed
+    let remainingTime = secondsToRedirect;
+
+    // Function to update the countdown timer
+    function updateTimer() {
+        const timerElement = document.getElementById("countdown-timer");
+        timerElement.textContent = `You'll be redirected to home page in  ${remainingTime} seconds...`;
+    }
+
+    // Function to redirect to the home page
+    function redirectToHome() {
+        window.location.href = "{% url 'home page' %}";  // Replace with your home page URL
+    }
+
+    // Schedule the countdown and redirection
+    function startCountdown() {
+        updateTimer();
+        setInterval(function () {
+            remainingTime--;
+            if (remainingTime <= 0) {
+                redirectToHome();
+            } else {
+                updateTimer();
+            }
+        }, 1000);  // Update every second (1000 milliseconds)
+    }
+
+    // Start the countdown when the page is loaded
+    document.addEventListener("DOMContentLoaded", startCountdown);
+</script>
+
+</body>
+</html>

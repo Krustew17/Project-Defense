@@ -25,7 +25,6 @@ class StatusChoices(ChoicesEnum):
     Rented = 'Rented'
     Cancelled = 'Cancelled'
 
-
 # Create your models here.
 class RentModel(models.Model):
     MAX_LOCATION_LENGTH = 60

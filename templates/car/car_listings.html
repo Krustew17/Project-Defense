@@ -42,7 +42,7 @@
                     <li><a href="{% url 'admin:index' %}">Administration</a></li>
                 {% endif %}
                 {% if not request.user.is_authenticated %}
-                    <li><a href="{% url 'login user' %}">login</a></li>
+                    <li><a href="{% url 'login user' %}?next={{ request.path }}">login</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                 {% else %}
                     <li><a href="{% url 'profile details' pk=request.user.pk %}">Profile</a></li>
@@ -54,7 +54,6 @@
 </nav>
 
 <h1>Car Listings</h1>
-
 <form method="GET" class="filters-container">
     {{ form.as_p }}
     <button type="submit" value="submit" class="button-style-green">

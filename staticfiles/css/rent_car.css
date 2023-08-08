@@ -1,0 +1,50 @@
+.rent_car_body {
+    background: radial-gradient(ellipse at bottom, rgba(19, 18, 18, 0.96) 0%, #093828 100%);
+    color: #fff
+}
+
+.rent_car_body .login-box {
+    width: 300px;
+    color: #fff;
+    justify-content: space-between;
+    position: absolute;
+    left: 50%;
+}
+
+.rent_car_body .login-box .user-box input:focus ~ label,
+.rent_car_body .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #469687;
+    font-size: 12px;
+}
+
+.rent_car_body .login-box .user-box input {
+    margin-bottom: 20px;
+}
+
+.rent_car_body .button-style {
+    color: #469687;
+}
+
+.rent_car_body .button-style:hover {
+    background-color: #469687;
+    color: #fff;
+    box-shadow: 0 0 5px #237260, 0 0 25px #237260, 0 0 50px #237260, 0 0 100px #237260;
+}
+
+.rent_car_body .button-style span:nth-child(1) {
+    background: linear-gradient(90deg, transparent, #469687);
+}
+
+.rent_car_body .button-style span:nth-child(2) {
+    background: linear-gradient(90deg, transparent, #469687);
+}
+
+.rent_car_body .button-style span:nth-child(3) {
+    background: linear-gradient(90deg, transparent, #469687);
+}
+
+.rent_car_body .button-style span:nth-child(4) {
+    background: linear-gradient(90deg, transparent, #469687);
+}
