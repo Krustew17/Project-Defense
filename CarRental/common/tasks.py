@@ -1,14 +1,11 @@
 import datetime
 from datetime import timedelta
-
-import celery.utils.time
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .models import UserRevenue
 from celery import shared_task
 from celery import Celery
 import logging
-
 from ..rent.models import RentModel
 
 app = Celery('CarRental')
