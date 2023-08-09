@@ -3,11 +3,12 @@ from django.shortcuts import render, get_object_or_404
 import django.views.generic as views
 from django.urls import reverse_lazy
 from django.views.generic.detail import SingleObjectMixin
-
+from datetime import date, timedelta
+from django.utils import timezone
 from CarRental.car_app.models import CarListing
 from CarRental.rent.forms import BaseRentForm
 from CarRental.rent.models import RentModel
-
+from CarRental.common.tasks import update_all_revenue_values
 
 # Create your views here.
 class RentCarView(views.CreateView, LoginRequiredMixin):
@@ -29,9 +30,22 @@ class RentCarView(views.CreateView, LoginRequiredMixin):
         return context
 
     def form_valid(self, form):
+        car_listing = self.get_object()
+        car_listing.is_available = False
+        car_listing.save()
+
         rent_obj = form.save(commit=False)
         rent_obj.rented_to = self.request.user
+        rent_obj.rented_from = car_listing.attached_user
+        rent_obj.car_rented = car_listing
         rent_obj.save()
+
+        car_listing = self.get_object()
+        car_listing.is_available = False
+        car_listing.save()
+
+        update_all_revenue_values.delay(car_listing.attached_user.id)
+
         return super().form_valid(form)
 
 

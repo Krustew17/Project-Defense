@@ -169,7 +169,7 @@ class CarListing(models.Model):
     )
 
     price = models.PositiveIntegerField(
-        verbose_name='Price',
+        verbose_name='$/Day',
         null=False,
         blank=False,
     )
@@ -262,6 +262,9 @@ class CarListing(models.Model):
         null=True,
         on_delete=models.CASCADE,
         related_name='cars_attached',
+    )
+    is_available = models.BooleanField(
+        default=True
     )
 
     def __str__(self):

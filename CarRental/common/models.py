@@ -75,6 +75,15 @@ class ProfileUser(models.Model):
 
     PHONE_NUMBER_LENGTH = 9
 
+    DEFAULT_REVENUE_TODAY = 0
+    DEFAULT_REVENUE_YESTERDAY = 0
+    DEFAULT_REVENUE_LAST_WEEK = 0
+    DEFAULT_REVENUE_LAST_MONTH = 0
+    DEFAULT_TOTAL_REVENUE = 0
+
+    MAX_REVENUE_DIGITS = 10
+    REVENUE_DECIMALS = 2
+
     profile_image = models.ImageField(
         verbose_name='Profile Image',
         null=True,
@@ -178,11 +187,63 @@ class ProfileUser(models.Model):
         verbose_name = "User Profile"
 
 
+class UserRevenue(models.Model):
+    MAX_REVENUE_DIGITS = 10
+    REVENUE_DECIMALS = 0
+
+    DEFAULT_REVENUE_TODAY = 0
+    DEFAULT_REVENUE_YESTERDAY = 0
+    DEFAULT_REVENUE_LAST_WEEK = 0
+    DEFAULT_REVENUE_LAST_MONTH = 0
+    DEFAULT_TOTAL_REVENUE = 0
+
+    revenue_today = models.DecimalField(
+        max_digits=MAX_REVENUE_DIGITS,
+        decimal_places=REVENUE_DECIMALS,
+        default=DEFAULT_REVENUE_TODAY
+    )
+    revenue_yesterday = models.DecimalField(
+        max_digits=MAX_REVENUE_DIGITS,
+        decimal_places=REVENUE_DECIMALS,
+        default=DEFAULT_REVENUE_YESTERDAY
+    )
+    revenue_last_week = models.DecimalField(
+        max_digits=MAX_REVENUE_DIGITS,
+        decimal_places=REVENUE_DECIMALS,
+        default=DEFAULT_REVENUE_LAST_WEEK
+    )
+    revenue_last_month = models.DecimalField(
+        max_digits=MAX_REVENUE_DIGITS,
+        decimal_places=REVENUE_DECIMALS,
+        default=DEFAULT_REVENUE_LAST_MONTH
+    )
+    total_revenue = models.DecimalField(
+        max_digits=MAX_REVENUE_DIGITS,
+        decimal_places=REVENUE_DECIMALS,
+        default=DEFAULT_TOTAL_REVENUE
+    )
+    revenue_last_updated = models.DateTimeField(auto_now=True)
+
+    user = models.OneToOneField(
+        AppUser,
+        primary_key=True,
+        on_delete=models.CASCADE,
+        related_name='revenue'
+    )
+
+
 @receiver(post_save, sender=AppUser)
 def create_profile_user(sender, instance, created, **kwargs):
     if created:
         if not hasattr(instance, 'profile'):
             ProfileUser.objects.create(user=instance)
+
+
+@receiver(post_save, sender=AppUser)
+def create_revenue_user(sender, instance, created, **kwargs):
+    if created:
+        if not hasattr(instance, 'revenue'):
+            UserRevenue.objects.create(user=instance)
 
 
 class ChoicesEnum(Enum):

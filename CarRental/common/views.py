@@ -11,8 +11,6 @@ from django.utils.http import urlsafe_base64_decode
 from .forms import RegisterUserForm, LoginUserForm, ContactUsForm, ResetPasswordForm, SetNewPasswordForm
 from django.shortcuts import render, redirect
 from django.views import generic as views
-
-from .. import settings
 from ..car_app.filters import CarFilter
 from ..car_app.models import CarListing
 from ..core.utils import generate_token, send_activation_email
@@ -22,7 +20,6 @@ User = get_user_model()
 
 # Create your views here.
 class HomePageView(views.TemplateView):
-    model = User
     template_name = 'common/index.html'
 
 
@@ -31,7 +28,7 @@ class CarListingsView(views.ListView):
     model = CarFilter
     paginate_by = 6
     context_object_name = 'listings'
-    queryset = CarListing.objects.all()
+    queryset = CarListing.objects.filter(is_available=True)
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -9,7 +9,7 @@ from CarRental.core.utils import MultipleFileField
 class BaseCarForm(forms.ModelForm):
     class Meta:
         model = CarListing
-        exclude = ('attached_user',)
+        exclude = ('attached_user', 'is_available')
 
 
 class CreateCarForm(BaseCarForm):

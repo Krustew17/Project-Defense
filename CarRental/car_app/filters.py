@@ -14,4 +14,4 @@ class CarFilter(django_filters.FilterSet):
 
     class Meta:
         model = CarListing
-        exclude = ('created', 'modified', 'attached_user')
+        exclude = ('created', 'modified', 'attached_user', 'is_available')

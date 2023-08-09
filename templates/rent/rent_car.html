@@ -87,24 +87,53 @@
 <div class="login-box animatedTransition">
     <h2>Rent {{ car_listing.car_title }}</h2>
     <form action="{% url 'rent car' pk=car_listing.pk %}" method="post">
+        <input type="hidden" id="id_car_price" value="{{ car_listing.price }}">
         {% csrf_token %}
         {% for field in form %}
-        <div class="user-box">
+            <div class="user-box">
             {{ field }}
             {{ field.label_tag }}
             {% if field.errors %}
                 {{ field.errors }}
             {% endif %}
         {% endfor %}
+        <div>
+            <p>Total Cost: $<span id="totalCost">0</span></p>
         </div>
-    <button class="button-style">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Rent
-    </button>
+        </div>
+        <button class="button-style">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Rent
+        </button>
     </form>
 </div>
+
+<script>
+    // Get the input elements
+    const carPriceInput = document.getElementById('id_car_price'); // Update with the actual ID
+    const numDaysInput = document.getElementById("id_days");   // Update with the actual ID
+    const totalCostElement = document.getElementById("totalCost");
+
+    // Function to update the total cost
+    function updateTotalCost() {
+        const carPrice = parseFloat(carPriceInput.value);
+        const numDays = parseInt(numDaysInput.value);
+
+        if (!isNaN(carPrice) && !isNaN(numDays)) {
+            const totalCost = carPrice * numDays;
+            totalCostElement.textContent = totalCost.toFixed(2);
+        } else {
+            totalCostElement.textContent = "0";
+        }
+    }
+
+    // Attach change event listeners to inputs
+    carPriceInput.addEventListener("input", updateTotalCost);
+    numDaysInput.addEventListener("input", updateTotalCost);
+</script>
+
 </body>
 </html>

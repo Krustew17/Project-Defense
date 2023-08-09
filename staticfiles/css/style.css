@@ -194,4 +194,18 @@ footer a:hover {
     left: 12%;
     color: #c2c2c2;
 }
+
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #157684;
+}
+
+.img-circle img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 5px solid #5e5e5e;
+}
+
 /* ------------------------------------------------ */

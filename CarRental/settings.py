@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+
+from celery.schedules import crontab
 from decouple import config
 from django.urls import reverse_lazy
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'celery',
     'rest_framework',
     'django_filters',
     'imagekit',
@@ -212,3 +215,35 @@ JAZZMIN_UI_TWEAKS = {
     },
     "actions_sticky_top": False
 }
+
+# CELERY_BROKER_URL = 'amqps://rdpgcgai:3GrJ_oXCYGLFdV6LmAy0Uoa0BGbrIwOy@cow.rmq2.cloudamqp.com/rdpgcgai'
+# CELERY_RESULT_BACKEND = 'rpc://'
+# CELERY_BEAT_SCHEDULE = {
+#     'my-periodic-task': {
+#         'task': 'common.tasks.reset_revenue_today',
+#         'schedule': crontab(minute=0, hour=1),  # Every day at 1:00 AM
+#     },
+# }
+# CELERY_IMPORTS = (
+#     'CarRental.common.tasks',
+# )
+CELERY_BROKER_URL = config('CELERY_BROKER_URL')
+CELERY_BEAT_SCHEDULE = {
+    "Daily_Revenue_Reset": {
+        "task": "CarRental.common.tasks.daily_revenue_reset",
+        "schedule": crontab(hour=00, minute=00),
+        "options": {"timezone": "Europe/Sofia"},
+    },
+    'Update_Revenue_Yesterday': {
+        'task': 'CarRental.common.tasks.update_revenue_yesterday',
+        'schedule': crontab(hour=00, minute=00),
+        'options': {'timezone': 'Europe/Sofia'},
+    },
+}
+CELERY_TIMEZONE = 'Europe/Sofia'
+
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_TIMEZONE = ''
