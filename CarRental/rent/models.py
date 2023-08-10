@@ -51,19 +51,14 @@ class RentModel(models.Model):
 
     car_rented = models.ForeignKey(
         CarListing,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='car_rented_rent_model'
     )
 
     rented_to = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='Rented_to_User',
-    )
-
-    rented_from = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='Rented_from_User'
+        related_name='car_rented_to_user',
     )
 
     rent_status = models.CharField(
@@ -76,20 +71,51 @@ class RentModel(models.Model):
     rent_date = models.DateTimeField(
         auto_now_add=True,
     )
-
-    @property
-    def rent_until(self):
-        # until = self.rent_date + datetime.timedelta(days=self.days)
-        until = self.rent_date + datetime.timedelta(minutes=1, hours=3)
-        until = formats.date_format(until, settings.DATETIME_FORMAT)
-        return until
-
-    @property
-    def calculate_revenue(self):
-        return self.days * self.car_rented.price
+    rent_until = models.DateTimeField(
+        default=None,
+        null=True,
+    )
 
     def __str__(self):
         return f"{self.location}"
 
     class Meta:
         verbose_name_plural = 'Rent Requests'
+
+
+class RentLogs(models.Model):
+    MAX_DECIMAL_FIELD_DIGITS = 10
+    DECIMAL_FIELD_DECIMALS = 2
+
+    car_rented = models.ForeignKey(
+        CarListing,
+        on_delete=models.SET_NULL,
+        name='Car_Rented',
+        null=True,
+    )
+    days = models.IntegerField(
+        default=0,
+    )
+    rented_to = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        related_name='Rented_to_User',
+        null=True,
+    )
+
+    rented_from = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='Rented_from_User'
+    )
+    rent_date = models.DateTimeField(
+        auto_now_add=True,
+    )
+    revenue = models.DecimalField(
+        max_digits=MAX_DECIMAL_FIELD_DIGITS,
+        decimal_places=DECIMAL_FIELD_DECIMALS,
+        null=True,
+    )
+
+    def __str__(self):
+        return f"{self.car_rented.car_title}, revenue: ${self.revenue}"

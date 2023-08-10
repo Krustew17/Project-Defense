@@ -234,9 +234,9 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=00, minute=00),
         'options': {'timezone': 'Europe/Sofia'},
     },
-    # 'update-car-availability': {
-    #     'task': 'CarRental.common.tasks.update_car_availability',
-    #     'schedule': timedelta(seconds=30),  # Adjust the interval as needed
-    # },
+    'update-car-availability': {
+        'task': 'CarRental.common.tasks.update_car_availability',
+        'schedule': timedelta(minutes=30),
+    },
 }
 CELERY_TIMEZONE = 'Europe/Sofia'

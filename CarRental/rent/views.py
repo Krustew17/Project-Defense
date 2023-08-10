@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 import django.views.generic as views
@@ -7,8 +9,9 @@ from datetime import date, timedelta
 from django.utils import timezone
 from CarRental.car_app.models import CarListing
 from CarRental.rent.forms import BaseRentForm
-from CarRental.rent.models import RentModel
+from CarRental.rent.models import RentModel, RentLogs
 from CarRental.common.tasks import update_all_revenue_values
+
 
 # Create your views here.
 class RentCarView(views.CreateView, LoginRequiredMixin):
@@ -30,22 +33,30 @@ class RentCarView(views.CreateView, LoginRequiredMixin):
         return context
 
     def form_valid(self, form):
+        # Car Listing
         car_listing = self.get_object()
         car_listing.is_available = False
         car_listing.save()
 
+        # Rent Model
         rent_obj = form.save(commit=False)
         rent_obj.rented_to = self.request.user
-        rent_obj.rented_from = car_listing.attached_user
         rent_obj.car_rented = car_listing
         rent_obj.save()
 
-        car_listing = self.get_object()
-        car_listing.is_available = False
-        car_listing.save()
+        rent_obj.rent_until = rent_obj.rent_date + datetime.timedelta(days=rent_obj.days)
+        rent_obj.save()
 
+        # Rent Logs
+        revenue = car_listing.price * rent_obj.days
+        RentLogs.objects.create(Car_Rented=car_listing,
+                                days=rent_obj.days,
+                                rented_to=self.request.user,
+                                rented_from=car_listing.attached_user,
+                                revenue=revenue)
+
+        # Update Revenue
         update_all_revenue_values.delay(car_listing.attached_user.id)
-
         return super().form_valid(form)
 
 
