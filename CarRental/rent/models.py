@@ -4,7 +4,7 @@ from enum import Enum
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils import formats
+from django.utils import formats, timezone
 
 from CarRental import settings
 from CarRental.car_app.models import CarListing
@@ -79,7 +79,8 @@ class RentModel(models.Model):
 
     @property
     def rent_until(self):
-        until = self.rent_date + datetime.timedelta(days=self.days)
+        # until = self.rent_date + datetime.timedelta(days=self.days)
+        until = self.rent_date + datetime.timedelta(minutes=1, hours=3)
         until = formats.date_format(until, settings.DATETIME_FORMAT)
         return until
 

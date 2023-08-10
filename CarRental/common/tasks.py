@@ -1,12 +1,13 @@
-import datetime
 from datetime import timedelta
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from .models import UserRevenue
 from celery import shared_task
 from celery import Celery
 import logging
 from ..rent.models import RentModel
+from django.db.models import F
+from django.utils import timezone
+
 
 app = Celery('CarRental')
 app.config_from_object('django.conf:settings', namespace='CELERY')
@@ -87,4 +88,17 @@ def update_user_revenues(start_date, end_date, user_id, attribute):
     setattr(user_revenue, attribute, total_revenue)
     user_revenue.save()
 
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#
+# @shared_task
+# def update_car_availability():
+#     current_time = timezone.localtime(timezone.now())
+#     expired_rentals = RentModel.objects.filter(
+#         rent_date__lte=current_time - F('days')
+#     )
+#
+#     for rental in expired_rentals:
+#         rental.car_rented.is_available = True
+#         rental.car_rented.save()

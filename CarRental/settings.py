@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from celery.schedules import crontab
@@ -181,6 +182,11 @@ MAX_UPLOAD_SIZE = megabytes_to_bytes(MAX_MEGABYTES_UPLOAD)
 # MAX IMAGES PER CAR LISTINGS
 MAX_IMAGES_PER_CAR_LISTING = 5
 
+
+# TIME ZONE
+TIME_ZONE = "Europe/Sofia"
+USE_TZ = True
+
 # Jazzmin Tweaks
 
 JAZZMIN_UI_TWEAKS = {
@@ -228,5 +234,9 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=00, minute=00),
         'options': {'timezone': 'Europe/Sofia'},
     },
+    # 'update-car-availability': {
+    #     'task': 'CarRental.common.tasks.update_car_availability',
+    #     'schedule': timedelta(seconds=30),  # Adjust the interval as needed
+    # },
 }
 CELERY_TIMEZONE = 'Europe/Sofia'
