@@ -110,9 +110,16 @@
     </div>
     <div>
         <div class="button-container">
+            {% if request.user == car_listing.attached_user %}
+            <button type="button" class="button-style7" style="cursor: not-allowed;" disabled="disabled"
+                    title="You cannot rent your own car."
+                    onclick="window.location.href='{% url 'rent car' pk=car_listing.pk %}';">RENT
+            </button>
+        {% else %}
             <button type="button" class="button-style7"
                     onclick="window.location.href='{% url 'rent car' pk=car_listing.pk %}';">RENT
             </button>
+        {% endif %}
             {% if request.user == car_listing.attached_user or is_manager %}
                 <button type="button" class="button-style7"
                         onclick="window.location.href='{% url 'edit car ad' pk=car_listing.pk %}'">Edit
