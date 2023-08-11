@@ -112,3 +112,6 @@ class RentLogs(models.Model):
 
     def __str__(self):
         return f"{self.car_rented.car_title}, revenue: ${self.revenue}"
+
+    class Meta:
+        verbose_name_plural = 'Rent Logs'

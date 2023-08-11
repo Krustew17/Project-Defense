@@ -21,6 +21,15 @@ class AppUserAdmin(auth.UserAdmin):
     readonly_fields = ['date_joined', 'last_login']
     search_fields = ['username']
 
+    def save_model(self, request, obj, form, change):
+        if not change:  # Check if this is a new user being created
+            obj.set_password(form.cleaned_data['password'])  # Use cleaned_data to get the password
+        else:
+            user = User.objects.get(pk=obj.pk)
+            if form.cleaned_data['password'] != user.password:
+                obj.set_password(form.cleaned_data['password'])
+        obj.save()
+
 
 # Profile User Admin
 @admin.register(ProfileUser)

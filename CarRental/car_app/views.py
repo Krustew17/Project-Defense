@@ -5,6 +5,7 @@ import django.views.generic as views
 from django.urls import reverse_lazy
 from .models import PhotoCarModel, CarListing
 from .forms import AttachPhotosToCar, CreateCarForm, EditCarForm
+from ..core.utils import check_user_is_manager
 
 
 @login_required
@@ -40,6 +41,7 @@ class CarListingDetails(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['car_photos'] = PhotoCarModel.objects.filter(car_id=CarListing.objects.filter(pk=self.object.id).get())
+        context['is_manager'] = check_user_is_manager(self.request.user)
         return context
 
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from CarRental.rent.models import RentModel
+from CarRental.rent.models import RentModel, RentLogs
 
 
 @admin.register(RentModel)
@@ -35,3 +35,16 @@ class RentAdmin(admin.ModelAdmin):
         return format_html('<strong><p style="color: {}">{}</p></strong>'.format(color, obj.rent_status))
 
     Rent_status.allow_tags = True
+
+
+# @admin.register(RentLogs)
+# class LogsAdmin(admin.ModelAdmin):
+#     list_display = ['rented_from', 'rented_to', 'Car_Rented_id', 'days', 'revenue', 'rent_date']
+#     ordering = ['revenue', 'days']
+#     list_filter = ['rented_from', 'rented_to', 'Car_Rented_id', 'days', 'revenue', 'rent_date']
+#     readonly_fields = ['rent_date', 'revenue']
+#     list_per_page = 20
+#     fieldsets = (
+#         ('Details',
+#          {'fields': ('rented_from', 'rented_to', 'revenue', 'days', 'rent_date', 'car_rented')}),
+#     )

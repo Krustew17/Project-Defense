@@ -3,6 +3,8 @@ import django.contrib.auth.views as auth_views
 import django.contrib.auth.mixins as mixins
 import django.views.generic as views
 from django.urls import reverse_lazy
+
+from CarRental.car_app.filters import CarFilter
 from CarRental.car_app.models import CarListing, PhotoCarModel
 from CarRental.common.models import ProfileUser
 from CarRental.profile_app.forms import EditProfileForm, EditPasswordForm
@@ -14,6 +16,31 @@ class ProfileDetailView(mixins.LoginRequiredMixin, views.DetailView):
     template_name = 'profile/profile_details.html'
     context_object_name = 'user'
     model = User
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['has_car_listings'] = CarListing.objects.filter(attached_user=self.request.user.id)
+        return context
+
+
+class UserListingsView(views.ListView):
+    template_name = 'profile/user_car_listings.html'
+    model = CarFilter
+    paginate_by = 6
+    context_object_name = 'listings'
+    queryset = CarListing.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = CarListing.objects.filter(attached_user=self.request.user.id)
+        self.filterset = CarFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['car_listings'] = CarListing.objects.filter(attached_user=self.request.user.id)
+        context['form'] = self.filterset.form
+        return context
 
 
 class EditProfileDetailsView(mixins.LoginRequiredMixin, views.UpdateView):

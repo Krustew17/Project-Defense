@@ -66,3 +66,7 @@ def send_activation_email(user, request):
 
 def megabytes_to_bytes(mb):
     return mb * 1024 * 1024
+
+
+def check_user_is_manager(user):
+    return user.groups.filter(name='Car Listing Moderator').exists()

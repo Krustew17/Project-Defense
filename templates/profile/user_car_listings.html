@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Listings</title>
+    <title>User Car Listings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -54,7 +54,7 @@
 </nav>
 
 {% if page_obj %}
-<h1>Car Listings</h1>
+<h1>Your Car Listings</h1>
 {% endif %}
 <form method="GET" class="filters-container">
     {{ form.as_p }}
@@ -67,15 +67,6 @@
         </button>
     {% endif %}
 </form>
-<div class="button-container1">
-
-    <button class="button-style-green" onclick="window.location.href='{% url 'create car ad' %}';">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>List Your Car
-    </button>
-</div>
 <script>
     // Function to load car models based on the selected car make
     function load_car_models() {
@@ -115,7 +106,7 @@
 </script>
 
 {% if not page_obj %}
-    <p class="no-cars"> No carlistings available</p>
+    <p class="no-cars">You have no car listings uploaded</p>
 {% else %}
     <div class="listings-container">
     <div class="row" id="ads">
@@ -124,8 +115,8 @@
             <div class="col-md-4 mb-5">
                 <div class="card rounded-custom" style="border-radius: 1.6rem; border:none; background-color: #e5e5e5;">
                     <div class="card-image">
-                        {% if obj.mileage <= 50000 %}
-                            <span class="card-notify-badge">Low KMS</span>
+                        {% if not obj.is_available %}
+                            <span class="card-rented-badge">Rented</span>
                         {% endif %}
                         <span class="card-notify-year">{{ obj.year }}</span>
                         <img class="car-thumbnail"
@@ -146,23 +137,6 @@
                 </div>
             </div>
         {% endfor %}
-        {#            <div class="pagination">#}
-        {#    <span class="step-links">#}
-        {#        {% if page_obj.has_previous %}#}
-        {#            <a href="?page=1">&laquo; first</a>#}
-        {#            <a href="?page={{ page_obj.previous_page_number }}">previous</a>#}
-        {#        {% endif %}#}
-        {##}
-        {#        <span class="current">#}
-        {#            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
-        {#        </span>#}
-        {##}
-        {#        {% if page_obj.has_next %}#}
-        {#            <a href="?page={{ page_obj.next_page_number }}">next</a>#}
-        {#            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>#}
-        {#        {% endif %}#}
-        {#    </span>#}
-        {#            </div>#}
     </div>
 {% endif %}
 

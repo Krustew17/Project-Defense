@@ -182,7 +182,12 @@
                                 onclick="window.location.href='{% url 'edit profile' pk=request.user.pk %}';">
                             Edit
                         </button>
-
+                        {% if has_car_listings %}
+                        <button type="button" class="button-style7"
+                                onclick="window.location.href='{% url 'user car listings' pk=request.user.pk %}';">
+                            My Listings
+                        </button>
+                        {% endif %}
                         <button type="button" class="button-style7"
                                 onclick="window.location.href='{% url 'edit password' pk=request.user.pk %}';">
                             Change Password

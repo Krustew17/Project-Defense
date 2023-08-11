@@ -22,9 +22,9 @@ User = get_user_model()
 
 @shared_task
 def daily_revenue_reset():
-    print("Everyone's revenue has been set to 0")
     today_start = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
     UserRevenue.objects.update(revenue_today=0, revenue_last_updated=today_start)
+    print("Everyone's revenue has been set to 0.")
 
 
 @shared_task
@@ -32,6 +32,7 @@ def update_revenue_yesterday():
     start_date = timezone.now() - timedelta(days=2)
     end_date = timezone.now() - timedelta(days=1)
     update_revenue_value(start_date, end_date, 'revenue_yesterday')
+    print(f"Everyone's revenue for yesterday has been updated.")
 
 
 def update_revenue_value(start_date, end_date, attribute):
@@ -62,22 +63,29 @@ def update_all_revenue_values(user_id):
 
 @shared_task
 def update_last_week_revenue(user_id):
+    user = User.objects.get(id=user_id)
     start_date = timezone.now() - timedelta(days=7)
     end_date = timezone.now()
+    print(f"Successfully updated {user.username}'s last week revenue.")
     update_user_revenues(start_date, end_date, user_id, 'revenue_last_week')
 
 
 @shared_task
 def update_last_month_revenue(user_id):
+    user = User.objects.get(id=user_id)
     start_date = timezone.now() - timedelta(days=30)
     end_date = timezone.now()
+
+    print(f"Successfully updated {user.username}'s last month revenue.")
     update_user_revenues(start_date, end_date, user_id, 'revenue_last_month')
 
 
 @shared_task
 def update_daily_revenue(user_id):
+    user = User.objects.get(id=user_id)
     start_date = timezone.now() - timedelta(days=1)
     end_date = timezone.now()
+    print(f"Successfully updated {user.username}'s daily revenue.")
     update_user_revenues(start_date, end_date, user_id, 'revenue_today')
 
 
@@ -89,6 +97,7 @@ def update_total_revenue(user_id):
     total_revenue = sum(rent_logs.revenue for rent_logs in rent_logs_all_time)
     setattr(user_revenue, 'total_revenue', total_revenue)
     user_revenue.save()
+    print(f"Successfully updated {user.username}'s total revenue.")
 
 
 def update_user_revenues(start_date, end_date, user_id, attribute):
