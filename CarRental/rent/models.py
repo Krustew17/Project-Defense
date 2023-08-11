@@ -1,12 +1,7 @@
-import datetime
 from enum import Enum
-
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils import formats, timezone
-
-from CarRental import settings
 from CarRental.car_app.models import CarListing
 
 User = get_user_model()
@@ -27,8 +22,6 @@ class StatusChoices(ChoicesEnum):
     Rented = 'Rented'
     Cancelled = 'Cancelled'
 
-
-# Create your models here.
 class RentModel(models.Model):
     MAX_LOCATION_LENGTH = 60
 

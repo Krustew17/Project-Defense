@@ -1,20 +1,15 @@
 import datetime
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 import django.views.generic as views
 from django.urls import reverse_lazy
-from django.views.generic.detail import SingleObjectMixin
-from datetime import date, timedelta
-from django.utils import timezone
 from CarRental.car_app.models import CarListing
 from CarRental.rent.forms import BaseRentForm
 from CarRental.rent.models import RentModel, RentLogs
 from CarRental.common.tasks import update_all_revenue_values
 
 
-# Create your views here.
-class RentCarView(views.CreateView, LoginRequiredMixin):
+class RentCarView(LoginRequiredMixin, views.CreateView):
     model = RentModel
     form_class = BaseRentForm
     template_name = 'rent/rent_car.html'
@@ -60,5 +55,5 @@ class RentCarView(views.CreateView, LoginRequiredMixin):
         return super().form_valid(form)
 
 
-class RentSuccess(views.TemplateView):
+class RentSuccess(LoginRequiredMixin, views.TemplateView):
     template_name = 'rent/rent_success.html'

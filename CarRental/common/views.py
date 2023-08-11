@@ -1,10 +1,9 @@
 import django.contrib.auth.mixins as auth_mixins
 from django.contrib import messages
-from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth import get_user_model, login, authenticate
+from django.contrib.auth import get_user_model
 from django.contrib.auth import views as auth_views
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
@@ -18,7 +17,6 @@ from ..core.utils import generate_token, send_activation_email
 User = get_user_model()
 
 
-# Create your views here.
 class HomePageView(views.TemplateView):
     template_name = 'common/index.html'
 
@@ -126,7 +124,7 @@ class PageNotFoundView(views.TemplateView):
     template_name = 'common/404.html'
 
 
-class ContactUsView(views.FormView):
+class ContactUsView(auth_mixins.LoginRequiredMixin, views.FormView):
     form_class = ContactUsForm
     template_name = 'common/contact_us.html'
 

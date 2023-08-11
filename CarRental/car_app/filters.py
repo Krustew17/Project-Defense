@@ -1,6 +1,5 @@
 import django_filters
 from django_filters import widgets as df
-from django.forms import widgets
 
 from .models import CarListing
 

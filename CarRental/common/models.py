@@ -1,5 +1,6 @@
 from enum import Enum
 import django.contrib.auth.base_user as auth_models
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, RegexValidator
 from django.db import models
@@ -10,7 +11,6 @@ from CarRental.common.validators import check_username_starts_with_letter
 from CarRental.common.validators import validate_image_size
 
 
-# Create your models here.
 class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
     MIN_USERNAME_LENGTH = 6
     MAX_USERNAME_LENGTH = 18
@@ -56,6 +56,8 @@ class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+
+User = get_user_model()
 
 class ProfileUser(models.Model):
     MAX_FIRST_NAME_LENGTH = 20
@@ -103,7 +105,6 @@ class ProfileUser(models.Model):
             MinLengthValidator(MIN_FIRST_NAME_LENGTH),
             RegexValidator(regex="^[A-Za-z]+$", inverse_match=False,
                            message="First Name field can contain only characters."),
-            # validate_only_characters(field_name='first name')
         )
     )
 
@@ -116,7 +117,6 @@ class ProfileUser(models.Model):
             MinLengthValidator(MIN_LAST_NAME_LENGTH),
             RegexValidator(regex="^[A-Za-z]+$", inverse_match=False,
                            message="Last Name field can contain only characters."),
-            # validate_only_characters(field_name='last name')
         )
     )
 
@@ -140,7 +140,6 @@ class ProfileUser(models.Model):
             MinLengthValidator(MIN_COUNTRY_LENGTH),
             RegexValidator(regex="^[A-Za-z]+$", inverse_match=False,
                            message="Country field can contain only characters."),
-            # validate_only_characters(field_name='country'),
         )
     )
     phone_number = models.IntegerField(
@@ -160,7 +159,6 @@ class ProfileUser(models.Model):
         blank=True,
         validators=(
             RegexValidator(regex="^[A-Za-z]+$", inverse_match=False, message="City field can contain only characters."),
-            # validate_only_characters(field_name='city'),
         ),
     )
 
@@ -185,6 +183,14 @@ class ProfileUser(models.Model):
 
     class Meta:
         verbose_name = "User Profile"
+
+
+# Create Profile for each user created.
+@receiver(post_save, sender=User)
+def create_profile_user(sender, instance, created, **kwargs):
+    if created:
+        if not hasattr(instance, 'profile'):
+            ProfileUser.objects.create(user=instance)
 
 
 class UserRevenue(models.Model):
@@ -225,25 +231,20 @@ class UserRevenue(models.Model):
     revenue_last_updated = models.DateTimeField(auto_now=True)
 
     user = models.OneToOneField(
-        AppUser,
+        User,
         primary_key=True,
         on_delete=models.CASCADE,
         related_name='revenue'
     )
 
 
-@receiver(post_save, sender=AppUser)
-def create_profile_user(sender, instance, created, **kwargs):
-    if created:
-        if not hasattr(instance, 'profile'):
-            ProfileUser.objects.create(user=instance)
-
-
-@receiver(post_save, sender=AppUser)
+# Create UserRevenue model for each user created.
+@receiver(post_save, sender=User)
 def create_revenue_user(sender, instance, created, **kwargs):
     if created:
         if not hasattr(instance, 'revenue'):
             UserRevenue.objects.create(user=instance)
+
 
 
 class ChoicesEnum(Enum):

@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.utils.html import format_html
-
 from CarRental.rent.models import RentModel
 
 
-# Register your models here.
 @admin.register(RentModel)
 class RentAdmin(admin.ModelAdmin):
     list_display = ['rented_to', 'days', 'location', 'Rent_status', '_']

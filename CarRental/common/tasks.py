@@ -17,7 +17,9 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # RAN ONCE EVERY 24 HOURS
+
 @shared_task
 def daily_revenue_reset():
     print("Everyone's revenue has been set to 0")
@@ -29,10 +31,10 @@ def daily_revenue_reset():
 def update_revenue_yesterday():
     start_date = timezone.now() - timedelta(days=2)
     end_date = timezone.now() - timedelta(days=1)
-    update_revenue_values(start_date, end_date, 'revenue_yesterday')
+    update_revenue_value(start_date, end_date, 'revenue_yesterday')
 
 
-def update_revenue_values(start_date, end_date, attribute):
+def update_revenue_value(start_date, end_date, attribute):
     users = User.objects.all()
     for user in users:
         user_revenue = user.revenue

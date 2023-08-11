@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.utils import timezone
 from enum import Enum
 from django.contrib.auth import get_user_model
@@ -135,7 +134,8 @@ class CarListing(models.Model):
 
     MIN_ENGINE_LITRES = 0.0
     MAX_ENGINE_LITRES = 8
-    ENGINE_LITRES_MESSAGE = f"There's no bigger car engine than {MAX_ENGINE_LITRES} litres."
+    MAX_ENGINE_LITRES_MESSAGE = f'You cannot have an engine above {MAX_ENGINE_LITRES} litres.'
+    MIN_ENGINE_LITRES_MESSAGE = f'You cannot have an engine below {MIN_ENGINE_LITRES} litres.'
 
     LOW_KMS_MAX = 50000
 
@@ -195,8 +195,9 @@ class CarListing(models.Model):
         blank=False,
         validators=(
             MinValueValidator(MIN_ENGINE_LITRES,
-                              message=f'You cannot have an engine below {MIN_ENGINE_LITRES} litres.'),
-            MaxValueValidator(MAX_ENGINE_LITRES, message=ENGINE_LITRES_MESSAGE),
+                              message=MIN_ENGINE_LITRES_MESSAGE),
+            MaxValueValidator(MAX_ENGINE_LITRES,
+                              message=MAX_ENGINE_LITRES_MESSAGE),
         )
 
     )

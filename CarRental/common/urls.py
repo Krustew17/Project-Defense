@@ -1,10 +1,5 @@
-import django.contrib.auth.views as auth_views
-from django.urls import path, include, reverse
-from django.views.generic import RedirectView
-
-from .views import HomePageView, CarListingsView, register_user_view, LoginUserView, LogoutUserView, ContactUsView, \
-    FriendlyAskedQuestions, activate_user_view, PasswordReset, PasswordResetDone, \
-    PasswordResetComplete, PasswordResetConfirm
+from django.urls import path, include
+from .views import *
 
 urlpatterns = (
     path('', HomePageView.as_view(), name='home page'),

@@ -95,17 +95,27 @@ WSGI_APPLICATION = 'CarRental.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'CarRental_DB',
+#         'USER': 'root',
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CarRental_DB',
-        'USER': 'root',
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'carrental_db',
+        'USER': 'postgres',
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -132,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Sofia'
 
 DATETIME_FORMAT = "N j, Y, P"
 
@@ -181,11 +191,6 @@ MAX_UPLOAD_SIZE = megabytes_to_bytes(MAX_MEGABYTES_UPLOAD)
 
 # MAX IMAGES PER CAR LISTINGS
 MAX_IMAGES_PER_CAR_LISTING = 5
-
-
-# TIME ZONE
-TIME_ZONE = "Europe/Sofia"
-USE_TZ = True
 
 # Jazzmin Tweaks
 

@@ -1,7 +1,4 @@
 from django import forms
-from django.contrib import messages
-from django.core.exceptions import ValidationError
-
 from CarRental.car_app.models import CarModel, PhotoCarModel, CarListing, CarMake
 from CarRental.core.utils import MultipleFileField
 

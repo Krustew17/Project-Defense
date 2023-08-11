@@ -1,7 +1,5 @@
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
-from django.forms import FileInput
-
 from CarRental.common.models import ProfileUser
 
 
