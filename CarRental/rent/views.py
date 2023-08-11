@@ -1,6 +1,8 @@
 import datetime
+
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 import django.views.generic as views
 from django.urls import reverse_lazy
 from CarRental.car_app.models import CarListing
@@ -53,6 +55,11 @@ class RentCarView(LoginRequiredMixin, views.CreateView):
         # Update Revenue
         update_all_revenue_values.delay(car_listing.attached_user.id)
         return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user == self.car_listing.attached_user:
+            messages.add_message(request, messages.ERROR, 'You cannot rent your own car!')
+            return redirect('home page')
 
 
 class RentSuccess(LoginRequiredMixin, views.TemplateView):

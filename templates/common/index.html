@@ -50,6 +50,45 @@
 
     </div>
 </nav>
+
+{#{% if messages %}#}
+{#<ul class="messages-error">#}
+{#    {% for message in messages %}#}
+{#    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{#{% endif %}#}
+
+{% if messages %}
+<div id="messages-container">
+    {% for message in messages %}
+        <div class="message {{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const messages = document.querySelectorAll('.message');
+
+    messages.forEach(function (message) {
+        message.classList.add('message-slide-in');
+    });
+
+    setTimeout(function () {
+        messages.forEach(function (message) {
+            message.classList.replace('message-slide-in', 'message-slide-out');
+
+            message.addEventListener('animationend', function () {
+                message.remove();
+            });
+        });
+    }, 3000); // 5 seconds in milliseconds
+});
+</script>
+
 <footer>
     <a href="{% url 'contact us' %}">Contact Us</a>
     <a href="{% url 'faq' %}">FAQ</a>
