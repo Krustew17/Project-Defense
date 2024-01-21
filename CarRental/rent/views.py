@@ -29,7 +29,7 @@ class RentCarView(LoginRequiredMixin, views.CreateView):
         context['car_listing'] = self.get_object()
         return context
 
-    def form_valid(self, form):
+    def form_valid(self, form): # if form valid
         # Car Listing
         car_listing = self.get_object()
         car_listing.is_available = False
