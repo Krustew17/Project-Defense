@@ -59,6 +59,7 @@ class AppUser(auth_models.AbstractBaseUser, PermissionsMixin):
 
 User = get_user_model()
 
+
 class ProfileUser(models.Model):
     MAX_FIRST_NAME_LENGTH = 20
     MIN_FIRST_NAME_LENGTH = 3
@@ -244,7 +245,6 @@ def create_revenue_user(sender, instance, created, **kwargs):
     if created:
         if not hasattr(instance, 'revenue'):
             UserRevenue.objects.create(user=instance)
-
 
 
 class ChoicesEnum(Enum):

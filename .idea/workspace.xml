@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="effc6a5e-e606-4eff-8d6d-b737150f01b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CarRental.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CarRental.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0002_fill_data_into_car_make_and_car_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0002_fill_data_into_car_make_and_car_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0003_alter_carmake_unique_together_alter_carmake_make.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0003_alter_carmake_unique_together_alter_carmake_make.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0004_carlisting_engine_litres_alter_carlisting_body_style_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0004_carlisting_engine_litres_alter_carlisting_body_style_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0005_alter_carlisting_engine_litres.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0005_alter_carlisting_engine_litres.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0006_alter_carlisting_euro.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0006_alter_carlisting_euro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0007_alter_carlisting_euro.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0007_alter_carlisting_euro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0008_alter_carlisting_euro.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0008_alter_carlisting_euro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0009_remove_carlisting_color_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0009_remove_carlisting_color_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0010_carlisting_car_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0010_carlisting_car_title.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0011_alter_photocarmodel_car.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0011_alter_photocarmodel_car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0012_alter_photocarmodel_car.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0012_alter_photocarmodel_car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0013_alter_photocarmodel_car.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0013_alter_photocarmodel_car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0014_alter_photocarmodel_car.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0014_alter_photocarmodel_car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0015_carlisting_is_available.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0015_carlisting_is_available.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/migrations/0016_alter_carlisting_price.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/migrations/0016_alter_carlisting_price.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/car_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/car_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/celery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0002_contactusmodel_alter_profileuser_city_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0002_contactusmodel_alter_profileuser_city_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0003_alter_contactusmodel_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0003_alter_contactusmodel_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0004_alter_profileuser_first_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0004_alter_profileuser_first_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0005_alter_profileuser_city_alter_profileuser_country_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0005_alter_profileuser_city_alter_profileuser_country_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0006_alter_profileuser_city_alter_profileuser_country_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0006_alter_profileuser_city_alter_profileuser_country_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0007_appuser_groups_appuser_user_permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0007_appuser_groups_appuser_user_permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0008_contactusmodel_created_at.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0008_contactusmodel_created_at.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0009_contactusmodel_admin_message.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0009_contactusmodel_admin_message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0010_alter_contactusmodel_admin_message.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0010_alter_contactusmodel_admin_message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0011_contactusmodel_status_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0011_contactusmodel_status_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0012_appuser_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0012_appuser_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0013_alter_contactusmodel_options_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0013_alter_contactusmodel_options_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0014_appuser_email_token_appuser_is_active.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0014_appuser_email_token_appuser_is_active.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0015_remove_appuser_email_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0015_remove_appuser_email_token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0016_alter_profileuser_profile_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0016_alter_profileuser_profile_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0017_profileuser_revenue_last_month_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0017_profileuser_revenue_last_month_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0018_profileuser_total_revenue.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0018_profileuser_total_revenue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0019_profileuser_revenue_last_updated.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0019_profileuser_revenue_last_updated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0020_alter_profileuser_revenue_today.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0020_alter_profileuser_revenue_today.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0021_alter_profileuser_revenue_last_month_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0021_alter_profileuser_revenue_last_month_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/migrations/0022_userrevenue_remove_profileuser_revenue_last_month_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/migrations/0022_userrevenue_remove_profileuser_revenue_last_month_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/common/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/common/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/core/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/core/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/profile_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/profile_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0002_alter_rentmodel_options.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0002_alter_rentmodel_options.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0003_alter_rentmodel_days.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0003_alter_rentmodel_days.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0004_rentmodel_car_rented_rentmodel_rented_from.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0004_rentmodel_car_rented_rentmodel_rented_from.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0005_rentmodel_rent_until.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0005_rentmodel_rent_until.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0006_alter_rentmodel_rent_until.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0006_alter_rentmodel_rent_until.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0007_remove_rentmodel_car_rented_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0007_remove_rentmodel_car_rented_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0008_rentmodel_car_rented.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0008_rentmodel_car_rented.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0009_remove_rentlogs_rent_obj_rentlogs_days_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0009_remove_rentlogs_rent_obj_rentlogs_days_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/migrations/0010_alter_rentlogs_car_rented.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/migrations/0010_alter_rentlogs_car_rented.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/rent/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/rent/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarRental/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarRental/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.bak" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dat" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dir" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dir" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/404.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/404.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/account_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/account_details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/activate_failed.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/activate_failed.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/buttons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/car_delete.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/car_delete.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/car_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/car_details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/car_listings.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/car_listings.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/create_car.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/create_car.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/delete_profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/delete_profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/edit_car_listing.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/edit_car_listing.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/edit_profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/edit_profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/errors.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/errors.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/faq.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/faq.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/forms.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/nav.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/override.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/override.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/pagination.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/password_reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/password_reset.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/password_reset_complete.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/password_reset_complete.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/password_reset_confirm.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/password_reset_confirm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/password_reset_done.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/password_reset_done.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/rent_car.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/rent_car.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/rent_success.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/rent_success.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/swipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/js/swipe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/sass/sass/account_details.scss" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/sass/sass/account_details.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/base_site.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/base_site.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/authentication/activate-failed.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/authentication/activate-failed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/authentication/activate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/authentication/activate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/_car_listings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/_car_listings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/_pagination.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/_pagination.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/car_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/car_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/car_listings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/car_listings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/create_ad.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/create_ad.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/create_car.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/create_car.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/delete_car.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/delete_car.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car/edit_car_listing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car/edit_car_listing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/contact_us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/logout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset/password_reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/password_reset/password_reset.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/password_reset/password_reset_complete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/password_reset/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/password_reset/password_reset_done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/delete_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/delete_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/edit_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/password_change.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/password_change.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/profile_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/profile_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/user_car_listings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/user_car_listings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rent/rent_car.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rent/rent_car.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rent/rent_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rent/rent_success.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2aAJAa3YXB7zAA38qD1ziWU9mlz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/krustew/Programming/Django Projects/car_rental/CarRental",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CarRental" type="Python.DjangoServer" factoryName="Django server">
+      <module name="CarRental" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="CarRental.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.10" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="effc6a5e-e606-4eff-8d6d-b737150f01b5" name="Changes" comment="" />
+      <created>1703755308065</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703755308065</updated>
+      <workItem from="1703755310023" duration="30000" />
+      <workItem from="1703775394379" duration="776000" />
+      <workItem from="1703776628605" duration="742000" />
+      <workItem from="1703856980574" duration="646000" />
+      <workItem from="1703892683505" duration="31000" />
+      <workItem from="1703892875699" duration="175000" />
+      <workItem from="1703893056535" duration="13000" />
+      <workItem from="1703893199320" duration="170000" />
+      <workItem from="1703894060847" duration="96000" />
+      <workItem from="1703933954076" duration="1932000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -56,10 +56,10 @@ class RentCarView(LoginRequiredMixin, views.CreateView):
         update_all_revenue_values.delay(car_listing.attached_user.id)
         return super().form_valid(form)
 
-    def get(self, request, *args, **kwargs):
-        if self.request.user == self.car_listing.attached_user:
-            messages.add_message(request, messages.ERROR, 'You cannot rent your own car!')
-            return redirect('home page')
+    # def get(self, request, *args, **kwargs):
+    #     if self.request.user == self.car_listing.attached_user:
+    #         messages.add_message(request, messages.ERROR, 'You cannot rent your own car!')
+    #         return redirect('home page')
 
 
 class RentSuccess(LoginRequiredMixin, views.TemplateView):

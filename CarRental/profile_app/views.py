@@ -3,12 +3,10 @@ import django.contrib.auth.views as auth_views
 import django.contrib.auth.mixins as mixins
 import django.views.generic as views
 from django.urls import reverse_lazy
-
 from CarRental.car_app.filters import CarFilter
 from CarRental.car_app.models import CarListing, PhotoCarModel
 from CarRental.common.models import ProfileUser
 from CarRental.profile_app.forms import EditProfileForm, EditPasswordForm
-
 User = get_user_model()
 
 
